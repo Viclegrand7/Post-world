@@ -46,6 +46,9 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	unsigned int currentTime(0); //FPS regulation
+	const int FPS(30);
+
 	SDL_DisplayMode DisplayMode; //Will allow to get resolution, in theory
 	SDL_GetCurrentDisplayMode(0, &DisplayMode); //Stocking datas in DisplayMode
 
@@ -57,10 +60,14 @@ int main(int argc, char* argv[]) {
 	SDL_Event event;
 
 	while (isRunning) {
+		currentTime = SDL_GetTicks();
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT)
 				isRunning = false;
 		}
+
+		if (1000./FPS > SDL_GetTicks() - currentTime)
+			SDL_Delay(1000./FPS - (SDL_GetTicks() - currentTime)); //FPS regulation. atm 30 FPS max
 	}
 
 	window.cleanUp();
