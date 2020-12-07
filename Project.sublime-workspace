@@ -1,0 +1,718 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"de",
+				"destination"
+			],
+			[
+				"SD",
+				"SDL_Rect"
+			],
+			[
+				"s",
+				"source"
+			],
+			[
+				"is",
+				"isRunning"
+			],
+			[
+				"Disp",
+				"DisplayMode"
+			],
+			[
+				"en",
+				"endif"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"gi",
+				"giveNumber"
+			],
+			[
+				"emp",
+				"emptyNextNum"
+			],
+			[
+				"my",
+				"myCells"
+			],
+			[
+				"give",
+				"giveId"
+			],
+			[
+				"PP",
+				"PIXEL_PER_HEIGHT"
+			],
+			[
+				"PI",
+				"PIXEL_PER_WIDTH"
+			],
+			[
+				"pri",
+				"printSVG"
+			],
+			[
+				"agr",
+				"att_graphic_number"
+			],
+			[
+				"ag",
+				"att_graphic_number"
+			],
+			[
+				"me",
+				"myEvent"
+			],
+			[
+				"aev",
+				"att_event_list"
+			],
+			[
+				"mS",
+				"myString"
+			],
+			[
+				"ae",
+				"att_event_list"
+			],
+			[
+				"th",
+				"temp_height"
+			],
+			[
+				"te",
+				"temp_height"
+			],
+			[
+				"ge",
+				"giveEvent"
+			],
+			[
+				"anu",
+				"att_numero"
+			],
+			[
+				"nbr",
+				"nbr_cols"
+			],
+			[
+				"agra",
+				"att_graph_number"
+			],
+			[
+				"cra",
+				"created_cells"
+			],
+			[
+				"creat",
+				"created_cells"
+			],
+			[
+				"cre",
+				"created_cells"
+			],
+			[
+				"b",
+				"beginend\t$1.begin(), $1.end()"
+			],
+			[
+				"ce",
+				"cells_in_scope"
+			],
+			[
+				"attd",
+				"att_dateBirth"
+			],
+			[
+				"att",
+				"att_dateBirth"
+			],
+			[
+				"da",
+				"date"
+			],
+			[
+				"numb",
+				"number_of_daughters"
+			],
+			[
+				"E",
+				"eventPossibility"
+			],
+			[
+				"num",
+				"number_of_daughters"
+			],
+			[
+				"ate",
+				"att_event_list"
+			],
+			[
+				"mys",
+				"myStream"
+			],
+			[
+				"myStr",
+				"myString"
+			],
+			[
+				"even",
+				"eventPossibility"
+			],
+			[
+				"ve",
+				"vector\tstandard header"
+			],
+			[
+				"pto",
+				"pathToConfig"
+			],
+			[
+				"ptore",
+				"pathToHornResult"
+			],
+			[
+				"ptres",
+				"pathToHornResult"
+			],
+			[
+				"pare",
+				"pathToHornResult"
+			],
+			[
+				"path",
+				"pathToHornResult"
+			],
+			[
+				"patho",
+				"pathToConfig"
+			],
+			[
+				"tr",
+				"trouvePosZero"
+			],
+			[
+				"ta",
+				"taille"
+			],
+			[
+				"cla",
+				"classy_pointer"
+			],
+			[
+				"re",
+				"referencing"
+			],
+			[
+				"valu",
+				"value_one"
+			],
+			[
+				"val",
+				"value_one"
+			],
+			[
+				"ma",
+				"matrix"
+			],
+			[
+				"fai",
+				"faireDesTrucs"
+			],
+			[
+				"nl",
+				"nombreLigne"
+			],
+			[
+				"nC",
+				"nombreColonne"
+			],
+			[
+				"nli",
+				"nbLig"
+			],
+			[
+				"nL",
+				"nombreLigne"
+			],
+			[
+				"nomb",
+				"nombreColonne"
+			],
+			[
+				"nom",
+				"nombreColonne"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/main.cc",
+			"settings":
+			{
+				"buffer_size": 1732,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include <SDL2/SDL.h>"
+			}
+		},
+		{
+			"file": "include/Render.hh",
+			"settings":
+			{
+				"buffer_size": 757,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Render.cc",
+			"settings":
+			{
+				"buffer_size": 1359,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include \"Render.hh\""
+			}
+		},
+		{
+			"contents": "#ifndef RV_ZD_SDL_H\n#define RV_ZD_SDL_H\n#include <SDL2/SDL.h>\n#endif\n\n#ifndef RV_ZD_SDL_IMAGE_H\n#define RV_ZD_SDL_IMAGE_H\n#include <SDL2/SDL_image.h>\n#endif\n\n#ifndef RV_ZD_SDL_MIXER_H\n#define RV_ZD_SDL_MIXER_H\n#include <SDL2/SDL_mixer.h>\n#endif\n\n#ifndef RV_ZD_SDL_TTF_H\n#define RV_ZD_SDL_TTF_H\n#include <SDL2/SDL_ttf.h>\n#endif\n\n#ifndef RV_ZD_IOSTREAM\n#define RV_ZD_IOSTREAM\n#include <iostream>\n#endif\n\n#ifndef RV_ZD_STRING\n#define RV_ZD_STRING\n#include <string>\n#endif\n\n\nclass Entity {\n\tdouble att_x;\n\tdouble att_y;\n\tdouble att_z;\n\tSDL_Rect att_curFrame;\npublic:\n\tEntity(double x, double y, double z);\n};",
+			"file": "include/Entity.hh",
+			"file_size": 566,
+			"file_write_time": 132518076134306999,
+			"settings":
+			{
+				"buffer_size": 604,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Entity.cc",
+			"settings":
+			{
+				"buffer_size": 75,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reminder.txt",
+			"settings":
+			{
+				"buffer_size": 672,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"contro",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/victor/Desktop/Post-world"
+	],
+	"file_history":
+	[
+		"/home/victor/Desktop/Post-world/Project.sublime-project",
+		"/home/victor/.config/sublime-text-3/Packages/Default/exec.py",
+		"/home/victor/Desktop/MyTP/Debugger.cpp",
+		"/home/victor/Desktop/Post-world/SDL2-2.0.12/include/SDL_config.h.cmake",
+		"/home/victor/Desktop/Post-world/SDL2-2.0.12/CMakeLists.txt",
+		"/home/victor/Desktop/Post-world/SDL2-2.0.12/SDL2Config.cmake",
+		"/home/victor/Downloads/SDL2-2.0.12.tar.gz.sig",
+		"/home/victor/Desktop/DB/meReminder.txt",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/include/test_hs_operator.h",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.out",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.bak",
+		"/home/victor/Downloads/MyTP/tests/TestCase.cpp",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/test_hs_operator_V2.cpp",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/nrpyramid.cpp",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/include/nrpyramid.h",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/test_hs_operator.cpp",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/search_alpha.cpp",
+		"/home/victor/Downloads/Debugger.cpp",
+		"/home/victor/Desktop/Lea/Test.svg",
+		"/home/victor/Desktop/Lea/Cells.cc",
+		"/home/victor/Desktop/Lea/Test.sv",
+		"/home/victor/Desktop/Lea/myString",
+		"/home/victor/Desktop/DB/1. Caserne/schemaCaserne.sql",
+		"/home/victor/Desktop/DB/1. Caserne/instanceCaserne.sql",
+		"/home/victor/Desktop/DB/0. world/reminder.txt",
+		"/home/victor/Desktop/Lea.txt",
+		"/home/victor/Downloads/Segfault.cpp",
+		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/Makefile",
+		"/home/victor/Desktop/MyTP/Character.hh",
+		"/home/victor/Desktop/test.cpp",
+		"/home/victor/Desktop/figure.cc",
+		"/home/victor/Desktop/figure.hh",
+		"/home/victor/Desktop/cercle.hh",
+		"/home/victor/Desktop/cercle.cc",
+		"/home/victor/Downloads/figure.hh",
+		"/home/victor/Downloads/figure.cc",
+		"/home/victor/Downloads/cercle.hh",
+		"/home/victor/Downloads/cercle.cc",
+		"/home/victor/file_ssh_key",
+		"/home/victor/file_ssh_key.pub",
+		"/home/victor/Desktop/tp1-alf942/tests/TestCase.cc",
+		"/home/victor/Desktop/tp1-alf942/main.cc",
+		"/home/victor/Desktop/tp1-alf942/path.hh",
+		"/home/victor/Desktop/tp1-alf942/path.cc",
+		"/home/victor/Desktop/tp1-alf942/passgrid.hh",
+		"/home/victor/Desktop/tp1-alf942/passgrid.cc",
+		"/home/victor/Desktop/MyTP/tests/test_matcher.hh",
+		"/home/victor/Desktop/MyTP/tests/Makefile",
+		"/home/victor/Desktop/MyTP/tests/catch.hh",
+		"/home/victor/Desktop/MyTP/tests/TestCase.cpp",
+		"/home/victor/Desktop/MyTP/Segfault.cpp",
+		"/home/victor/Desktop/ToWork.txt"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"endif",
+			"int main(",
+			"main"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1732,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								763,
+								763
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include <SDL2/SDL.h>",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "include/Render.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 757,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								469,
+								469
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Render.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1114,
+								1114
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include \"Render.hh\"",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "include/Entity.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 604,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								599,
+								599
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/Entity.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 75,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "reminder.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 672,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Build Debug",
+	"project": "Project.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 223.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
