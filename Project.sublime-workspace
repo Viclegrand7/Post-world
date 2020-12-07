@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"ti",
+				"timeStep"
+			],
+			[
+				"time",
+				"timeStep"
+			],
+			[
+				"tim",
+				"timeInSeconds"
+			],
+			[
+				"util",
+				"Utility"
+			],
+			[
+				"z",
+				"att_z"
+			],
+			[
+				"at",
+				"att_y"
+			],
+			[
+				"a",
+				"att_x"
+			],
+			[
+				"en",
+				"entity"
+			],
+			[
+				"att_re",
+				"att_curFrame"
+			],
+			[
+				"att_",
+				"att_texture"
+			],
+			[
+				"S",
+				"SDL_QUIT"
+			],
+			[
+				"att",
+				"att_curFrame"
+			],
+			[
+				"lSDL2",
+				"lSDL2main"
+			],
+			[
 				"de",
 				"destination"
 			],
@@ -22,10 +74,6 @@
 			[
 				"Disp",
 				"DisplayMode"
-			],
-			[
-				"en",
-				"endif"
 			],
 			[
 				"inc",
@@ -129,10 +177,6 @@
 			],
 			[
 				"attd",
-				"att_dateBirth"
-			],
-			[
-				"att",
 				"att_dateBirth"
 			],
 			[
@@ -256,20 +300,22 @@
 	"buffers":
 	[
 		{
+			"contents": "#ifndef RV_ZD_SDL_H\n#define RV_ZD_SDL_H\n#include <SDL2/SDL.h>\n#endif\n\n#ifndef RV_ZD_SDL_IMAGE_H\n#define RV_ZD_SDL_IMAGE_H\n#include <SDL2/SDL_image.h> //Image gestion?\n#endif\n\n#ifndef RV_ZD_SDL_MIXER_H\n#define RV_ZD_SDL_MIXER_H\n#include <SDL2/SDL_mixer.h> //Sound gestion/creation(?)?\n#endif\n\n#ifndef RV_ZD_SDL_TTF_H\n#define RV_ZD_SDL_TTF_H\n#include <SDL2/SDL_ttf.h> //Displaying text\n#endif\n\n#ifndef RV_ZD_IOSTREAM\n#define RV_ZD_IOSTREAM\n#include <iostream>\n#endif\n\n#ifndef RV_ZD_VECTOR\n#define RV_ZD_VECTOR\n#include <vector>\n#endif\n\n#ifndef RV_ZD_Render_H //Let's make sure we don't write same thing multiple times\n#define RV_ZD_Render_H //Equivalent to #pragma once? Thought pragma worked only on Windows and not the others...\n#include \"Render.hh\"\n#endif\n\n#ifndef RV_ZD_ENTITY_H\n#define RV_ZD_ENTITY_H\n#include \"Entity.hh\"\n#endif\n\n#ifndef RV_ZD_UTILITY_H\n#define RV_ZD_UTILITY_H\n#include \"Utility.hh\"\n#endif\n\n\n\nint main(int argc, char* argv[]) {\n\tif (SDL_Init(SDL_INIT_VIDEO)) {\n\t\tstd :: cerr << \"Failed initialising: \" << SDL_GetError() << \"\\n\";\n\t\tthrow \"Failed initialising \\n\";\n\t\treturn 1;\n\t}\n\n\tif (!IMG_Init(IMG_INIT_PNG)) {\n\t\tstd :: cerr << \"Failed initialising PNG: \" << SDL_GetError() << \"\\n\";\n\t\tthrow \"Failed initialising PNG\\n\";\n\t\treturn 1;\n\t}\n\n\tSDL_DisplayMode DisplayMode; //Will allow to get resolution, in theory\n\tSDL_GetCurrentDisplayMode(0, &DisplayMode); //Stocking datas in DisplayMode\n\n\tRender window(\"Best_Game v0.0\", DisplayMode.w, DisplayMode.h); //Creating window having the right size(?) and located on coordinated 0,0 (wherever that is)\n\t//If those don't do perfect job, getDisplayBounds should do the work (need to know the number of monitor? => NOW I KNOW IT! Render, getRefreshRate() has it)\n\n\tint refreshRate = window.getRefreshRate();\n\n\tstd :: cout << refreshRate << std :: endl; //I get 30... issue on my side?\n\n//\tSDL_Texture *imaginaryTexture = window.loadTexture(\"../res/img/someImage.png\");\n\n\tstd::vector<Entity> entities; //Needs textures\n/*\n\t{\n\t\tEntity platform0(Vector3f(100, 0, 0), imaginaryTexture);\n\t\tentities.push_back(platform0);\n\t} //Adding those creat a scope, ensuring platform0 gets deleted afterwards. Same than entities.pushback(Entity(Vector3f(100, 0, 0), imaginaryTexture))?\n*/\n\tbool isRunning = true;\n\tconst float timeStep(0.01f); //FPS = 100\n\tfloat accumulator(0.0f);\n\tfloat currentTime(utility :: timeInSeconds());\n/*\n\tconst int FPS(100);\n\tunsigned int currentTime(0); //FPS regulation\n*/\n\tunsigned int currentTimeTick(0); //FPS regulation\n\n\tSDL_Event event;\n\n\twhile (isRunning) {\n\t\tcurrentTimeTick = SDL_GetTicks();\n\t\tfloat newTime = utility :: timeInSeconds();\n\t\tfloat frameTime = newTime - currentTime;\n\t\tcurrentTime = newTime;\n\t\taccumulator += frameTime;\n\n\t\twhile (accumulator >= timeStep) {\n\t\t\twhile (SDL_PollEvent(&event))\n\t\t\t\tswitch (event.type) {\n\t\t\t\t\tcase SDL_QUIT :\n\t\t\t\t\tisRunning = false;\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\taccumulator -= timeStep; \n\t\t}\n\n\t\tconst float alpha = accumulator / timeStep; //Percent of how much we need to go until \n\n\t\twindow.clear();\n\t\tfor (Entity &someone : entities)\n\t\t\twindow.render(someone);\n//\t\twindow.render(platform0);\n\t\twindow.display();\n\n\t\tif (1000/refreshRate > SDL_GetTicks() - currentTimeTick)\n\t\t\tSDL_Delay(1000/refreshRate - (SDL_GetTicks() - currentTimeTick)); //FPS regulation based on how fast monitor can go\n\n\t}\n\n\twindow.cleanUp();\n\tSDL_Quit();\n\n\treturn 0;\t\t\n}",
 			"file": "src/main.cc",
+			"file_size": 3341,
+			"file_write_time": 132518542735926843,
 			"settings":
 			{
-				"buffer_size": 1732,
+				"buffer_size": 3358,
 				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "#include <SDL2/SDL.h>"
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "include/Render.hh",
 			"settings":
 			{
-				"buffer_size": 757,
+				"buffer_size": 830,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -278,20 +324,16 @@
 			"file": "src/Render.cc",
 			"settings":
 			{
-				"buffer_size": 1359,
+				"buffer_size": 1728,
 				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "#include \"Render.hh\""
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "#ifndef RV_ZD_SDL_H\n#define RV_ZD_SDL_H\n#include <SDL2/SDL.h>\n#endif\n\n#ifndef RV_ZD_SDL_IMAGE_H\n#define RV_ZD_SDL_IMAGE_H\n#include <SDL2/SDL_image.h>\n#endif\n\n#ifndef RV_ZD_SDL_MIXER_H\n#define RV_ZD_SDL_MIXER_H\n#include <SDL2/SDL_mixer.h>\n#endif\n\n#ifndef RV_ZD_SDL_TTF_H\n#define RV_ZD_SDL_TTF_H\n#include <SDL2/SDL_ttf.h>\n#endif\n\n#ifndef RV_ZD_IOSTREAM\n#define RV_ZD_IOSTREAM\n#include <iostream>\n#endif\n\n#ifndef RV_ZD_STRING\n#define RV_ZD_STRING\n#include <string>\n#endif\n\n\nclass Entity {\n\tdouble att_x;\n\tdouble att_y;\n\tdouble att_z;\n\tSDL_Rect att_curFrame;\npublic:\n\tEntity(double x, double y, double z);\n};",
 			"file": "include/Entity.hh",
-			"file_size": 566,
-			"file_write_time": 132518076134306999,
 			"settings":
 			{
-				"buffer_size": 604,
+				"buffer_size": 866,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -300,7 +342,43 @@
 			"file": "src/Entity.cc",
 			"settings":
 			{
-				"buffer_size": 75,
+				"buffer_size": 573,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Math.hh",
+			"settings":
+			{
+				"buffer_size": 461,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Math.cc",
+			"settings":
+			{
+				"buffer_size": 68,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Utility.hh",
+			"settings":
+			{
+				"buffer_size": 180,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Utility.cc",
+			"settings":
+			{
+				"buffer_size": 78,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -309,7 +387,7 @@
 			"file": "reminder.txt",
 			"settings":
 			{
-				"buffer_size": 672,
+				"buffer_size": 895,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -359,11 +437,18 @@
 	},
 	"expanded_folders":
 	[
-		"/home/victor/Desktop/Post-world"
+		"/home/victor/Desktop/Post-world",
+		"/home/victor/Desktop/Post-world/res"
 	],
 	"file_history":
 	[
+		"/home/victor/Desktop/Post-world/src/Utility",
+		"/home/victor/Desktop/Post-world/reminder.txt",
 		"/home/victor/Desktop/Post-world/Project.sublime-project",
+		"/timeshift/snapshots/2020-12-07_18-00-01/localhost/usr/local/lib/libSDL2main.la",
+		"/home/victor/Desktop/#include \"Render.hh\"",
+		"/home/victor/Desktop/segesgseg",
+		"/home/victor/Desktop/Post-world/Other",
 		"/home/victor/.config/sublime-text-3/Packages/Default/exec.py",
 		"/home/victor/Desktop/MyTP/Debugger.cpp",
 		"/home/victor/Desktop/Post-world/SDL2-2.0.12/include/SDL_config.h.cmake",
@@ -418,7 +503,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -433,6 +518,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Utili",
+			"double",
+			"lib",
 			"endif",
 			"int main(",
 			"main"
@@ -443,6 +531,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"float"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -453,7 +542,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -462,27 +551,27 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1732,
+						"buffer_size": 3358,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								763,
-								763
+								2995,
+								2995
 							]
 						],
 						"settings":
 						{
-							"auto_name": "#include <SDL2/SDL.h>",
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 1145.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -491,15 +580,72 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 757,
+						"buffer_size": 830,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								469,
-								469
+								748,
+								748
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Render.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								719,
+								719
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "include/Entity.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								746,
+								746
 							]
 						],
 						"settings":
@@ -514,49 +660,132 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "src/Render.cc",
+					"buffer": 4,
+					"file": "src/Entity.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1359,
+						"buffer_size": 573,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1114,
-								1114
+								345,
+								345
 							]
 						],
 						"settings":
 						{
-							"auto_name": "#include \"Render.hh\"",
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "include/Entity.hh",
+					"buffer": 5,
+					"file": "include/Math.hh",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 604,
+						"buffer_size": 461,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								599,
-								599
+								461,
+								461
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/Math.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 68,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "include/Utility.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								175,
+								175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/Utility.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 78,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -571,48 +800,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/Entity.cc",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 75,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 9,
 					"file": "reminder.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 672,
+						"buffer_size": 895,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								817,
+								817
 							]
 						],
 						"settings":
@@ -620,10 +821,10 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -672,7 +873,7 @@
 	"project": "Project.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":

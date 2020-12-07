@@ -28,6 +28,11 @@
 #include <string>
 #endif
 
+#ifndef RV_ZD_ENTITY_H
+#define RV_ZD_ENTITY_H
+#include "Entity.hh"
+#endif
+
 
 
 class Render {
@@ -36,8 +41,11 @@ class Render {
 public:
 	Render(const char *title, int width, int height);
 	SDL_Texture* loadTexture(const char* filePath);
+
+	int getRefreshRate();
+
 	void cleanUp();
-	inline void clear();
-	inline void render(SDL_Texture *texture);
-	inline void display();
+	void clear();
+	void render(Entity &entity);
+	void display();
 };

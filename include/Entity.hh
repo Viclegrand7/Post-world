@@ -28,12 +28,21 @@
 #include <string>
 #endif
 
+#ifndef RV_ZD_MATH_H
+#define RV_ZD_MATH_H
+#include "Math.hh"
+#endif
+
 
 class Entity {
-	double att_x;
-	double att_y;
-	double att_z;
+	Vector3f att_vector;
 	SDL_Rect att_curFrame;
+	SDL_Texture *att_texture;
 public:
-	Entity(double x, double y, double z);
+//	Entity(float x, float y);
+	Entity(float x, float y, float z, SDL_Texture *texture);
+	Entity(Vector3f vector, SDL_Texture *texture);
+	Vector3f &getVector() {return att_vector;}
+	SDL_Texture *getTex();
+	SDL_Rect getCurFrame();
 };

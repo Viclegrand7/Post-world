@@ -18,26 +18,38 @@ SDL_Texture* Render :: loadTexture(const char* filePath) {
 	return texture;
 }
 
+
+int Render :: getRefreshRate() {
+	int whichScreen = SDL_GetWindowDisplayIndex(att_window);
+
+	SDL_DisplayMode mode;
+
+	SDL_GetDisplayMode(whichScreen, 0, &mode);
+
+	return mode.refresh_rate;
+}
+
+
 void Render :: cleanUp() {
 	SDL_DestroyWindow(att_window);
 }
 
-inline void Render :: clear() {
+void Render :: clear() {
 	SDL_RenderClear(att_renderer); //Currently hating this, better call the function everytime
 }
 
-inline void Render :: render(SDL_Texture *texture) {
+void Render :: render(Entity &entity) {
 	SDL_Rect source;
-	source.x = 0; source.y = 0; //Starting at top left of the image 
-	source.w = 32; source.h = 32; //Using some size
+	source.x = entity.getCurFrame().x; source.y = entity.getCurFrame().y; //Starting at top left of the image 
+	source.w = entity.getCurFrame().w; source.h = entity.getCurFrame().h; //Using some size
 
 	SDL_Rect destination;
-	destination.x = 0; destination.y = 0; //Starts top left
-	destination.w = 32; destination.h = 32; //Where it ends
+	destination.x = entity.getVector().att_x; destination.y = entity.getVector().att_y; //Starts where we wanted it to be
+	destination.w = entity.getCurFrame().w; destination.h = entity.getCurFrame().h; //Where it ends (its size later)
 
-	SDL_RenderCopy(att_renderer, texture, &source, &destination); //Last 2 pointers: How gig source is, destination (transformations)
+	SDL_RenderCopy(att_renderer, entity.getTex(), &source, &destination); //Last 2 pointers: How big source is, destination (transformations)
 }
 
-inline void Render :: display() {
-	SDL_RenderPresent(att_renderer); //Same
+void Render :: display() {
+	SDL_RenderPresent(att_renderer);
 }

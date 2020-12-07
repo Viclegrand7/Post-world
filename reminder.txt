@@ -47,3 +47,14 @@
 #define RV_ZD_ENTITY_H
 #include "Entity.hh"
 #endif
+
+#ifndef RV_ZD_MATH_H
+#define RV_ZD_MATH_H
+#include "Math.hh"
+#endif
+
+#ifndef RV_ZD_UTILITY_H
+#define RV_ZD_UTILITY_H
+#include "Utility.hh"
+#endif
+
