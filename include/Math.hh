@@ -3,6 +3,10 @@
 #include <iostream>
 #endif
 
+#ifndef RV_ZD_CMATH
+#define RV_ZD_CMATH
+#include <cmath>
+#endif
 
 
 struct Vector3f { //All public, let's get it by default
@@ -12,4 +16,29 @@ struct Vector3f { //All public, let's get it by default
 	void print() {
 		std :: cout << '(' <<  att_x << ", " << att_y << ", " << att_z << ")\n";
 	}
+	float dotProduct(const Vector3f &other) const;
+	Vector3f crossProduct(const Vector3f &other) const;
+	float length() const;
+	void normalize();
+
+	Vector3f &operator=(const Vector3f &other);
+	
+	Vector3f operator+(const Vector3f &other) const;
+	Vector3f operator-(const Vector3f &other) const;
+	Vector3f operator*(const float &value) const;
+	friend Vector3f operator*(const float &value, const Vector3f &vect);
+	Vector3f operator/(const float &value) const;
+	friend Vector3f operator/(const float &value, const Vector3f &vect);
+
+	Vector3f &operator+=(const Vector3f &other);
+	Vector3f &operator-=(const Vector3f &other);
+	Vector3f &operator*=(const float &value);
+	Vector3f &operator/=(const float &value);
+
+	bool operator==(const Vector3f &other) const;
+	bool operator!=(const Vector3f &other) const;
+
+	Vector3f operator-() const;
+
+	friend std :: ostream &operator<<(std :: ostream &out, const Vector3f &someone);
 };

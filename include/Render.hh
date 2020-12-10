@@ -48,4 +48,5 @@ public:
 	void clear();
 	void render(Entity &entity);
 	void display();
+	~Render();
 };

@@ -71,6 +71,9 @@ int main(int argc, char* argv[]) {
 //	SDL_Texture *imaginaryTexture = window.loadTexture("../res/img/someImage.png");
 
 	std::vector<Entity> entities; //Needs textures
+
+	SDL_Texture *background = window.loadTexture("../res/img/Background.png");
+	entities.push_back(Entity(Vector3f(0,0,0), background));
 /*
 	{
 		Entity platform0(Vector3f(100, 0, 0), imaginaryTexture);
@@ -106,7 +109,7 @@ int main(int argc, char* argv[]) {
 			accumulator -= timeStep; 
 		}
 
-		const float alpha = accumulator / timeStep; //Percent of how much we 
+		const float alpha = accumulator / timeStep; //Percent of how much we need to go until 
 
 		window.clear();
 		for (Entity &someone : entities)
@@ -114,7 +117,7 @@ int main(int argc, char* argv[]) {
 //		window.render(platform0);
 		window.display();
 
-		if (1000/refreshRate > SDL_GetTicks() - currentTimeTick)
+		if (1000./refreshRate > SDL_GetTicks() - currentTimeTick)
 			SDL_Delay(1000/refreshRate - (SDL_GetTicks() - currentTimeTick)); //FPS regulation based on how fast monitor can go
 
 	}

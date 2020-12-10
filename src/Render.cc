@@ -2,7 +2,7 @@
 
 Render :: Render(const char *title, int width, int height) : att_window(NULL) {
 
-	if (!(att_window = SDL_CreateWindow(title, 0, 0, width, height, SDL_WINDOW_SHOWN))) {
+	if (!(att_window = SDL_CreateWindow(title, 0, 0, width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED))) {
 		std :: cerr << "Failed creating window: " << SDL_GetError() << "\n";
 		throw "Failed creating window \n";
 	}
@@ -45,11 +45,20 @@ void Render :: render(Entity &entity) {
 
 	SDL_Rect destination;
 	destination.x = entity.getVector().att_x; destination.y = entity.getVector().att_y; //Starts where we wanted it to be
-	destination.w = entity.getCurFrame().w; destination.h = entity.getCurFrame().h; //Where it ends (its size later)
+//	destination.w = entity.getCurFrame().w * 10; destination.h = entity.getCurFrame().h * 10; //Where it ends (its size later)
+	SDL_GetWindowSize(att_window, &destination.w, &destination.h); //Allows to draw a background. Need to save and reuse somewhere
+	//Entities could be inheriting in few classes: Background, objects and particles? (Particles useful for fire, blood, water,... May not be Entities though)
+	//Particles don't have gravity/physic applying to it, may need to do it some other way
+
 
 	SDL_RenderCopy(att_renderer, entity.getTex(), &source, &destination); //Last 2 pointers: How big source is, destination (transformations)
 }
 
 void Render :: display() {
 	SDL_RenderPresent(att_renderer);
+}
+
+Render :: ~Render() {
+	if (att_renderer)
+		SDL_DestroyRenderer(att_renderer);
 }
