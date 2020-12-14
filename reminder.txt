@@ -18,6 +18,16 @@
 #include <SDL2/SDL_ttf.h> 
 #endif
 
+#ifndef RV_ZD_GL_H
+#define RV_ZD_GL_H
+#include <GL/gl.h>
+#endif
+
+#ifndef RV_ZD_GLU_H
+#define RV_ZD_GLU_H
+#include <GL/glu.h>
+#endif
+
 #ifndef RV_ZD_IOSTREAM
 #define RV_ZD_IOSTREAM
 #include <iostream>
@@ -38,8 +48,23 @@
 #include <string>
 #endif
 
-#ifndef RV_ZD_Render_H
-#define RV_ZD_Render_H
+#ifndef RV_ZD_CMATH
+#define RV_ZD_CMATH
+#include <cmath>
+#endif
+
+#ifndef RV_ZD_FSTREAM
+#define RV_ZD_FSTREAM
+#include <fstream>
+#endif
+
+#ifndef RV_ZD_ALGORITHM
+#define RV_ZD_ALGORITHM
+#include <algorithm>
+#endif
+
+#ifndef RV_ZD_RENDER_H
+#define RV_ZD_RENDER_H
 #include "Render.hh"
 #endif
 
@@ -56,5 +81,35 @@
 #ifndef RV_ZD_UTILITY_H
 #define RV_ZD_UTILITY_H
 #include "Utility.hh"
+#endif
+
+#ifndef RV_ZD_CAMERA_H
+#define RV_ZD_CAMERA_H
+#include "Camera.hh"
+#endif
+
+#ifndef RV_ZD_COLLISION
+#define RV_ZD_COLLISION
+#include "Collision.hh"
+#endif
+
+#ifndef RV_ZD_LOADER_H
+#define RV_ZD_LOADER_H
+#include "Loader.hh"
+#endif
+
+#ifndef RV_ZD_GAME_H
+#define RV_ZD_GAME_H
+#include "Game.hh"
+#endif
+
+#ifndef RV_ZD_LEVEL_H
+#define RV_ZD_LEVEL_H
+#include "Level.hh"
+#endif
+
+#ifndef RV_ZD_PLAYER_H
+#define RV_ZD_PLAYER_H
+#include "Player.hh"
 #endif
 

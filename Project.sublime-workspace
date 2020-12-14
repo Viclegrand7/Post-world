@@ -4,80 +4,156 @@
 		"selected_items":
 		[
 			[
-				"SDL",
-				"SDL_Texture"
+				"cam",
+				"att_camPitch"
 			],
 			[
-				"ti",
-				"timeStep"
-			],
-			[
-				"time",
-				"timeStep"
-			],
-			[
-				"tim",
-				"timeInSeconds"
-			],
-			[
-				"util",
-				"Utility"
-			],
-			[
-				"z",
-				"att_z"
-			],
-			[
-				"at",
-				"att_y"
-			],
-			[
-				"a",
-				"att_x"
-			],
-			[
-				"en",
-				"entity"
-			],
-			[
-				"att_re",
-				"att_curFrame"
-			],
-			[
-				"att_",
-				"att_texture"
-			],
-			[
-				"S",
-				"SDL_QUIT"
+				"ar",
+				"att_camRoll"
 			],
 			[
 				"att",
-				"att_curFrame"
+				"att_camYaw"
 			],
 			[
-				"lSDL2",
-				"lSDL2main"
+				"No",
+				"NO_GRAVITY"
 			],
 			[
-				"de",
-				"destination"
+				"N",
+				"NO_GRAVITY"
 			],
 			[
-				"SD",
-				"SDL_Rect"
-			],
-			[
-				"s",
-				"source"
+				"mov",
+				"moveCameraUp"
 			],
 			[
 				"is",
-				"isRunning"
+				"IS_GRAVITY"
+			],
+			[
+				"mi",
+				"midX"
+			],
+			[
+				"SDLGet",
+				"SDL_GetWindowSize"
+			],
+			[
+				"Mi",
+				"midX"
+			],
+			[
+				"attm",
+				"att_mouseSpeed"
+			],
+			[
+				"tmp",
+				"tmpy"
+			],
+			[
+				"tm",
+				"tmpx"
+			],
+			[
+				"mou",
+				"mouseVelo"
+			],
+			[
+				"mo",
+				"moveVelo"
+			],
+			[
+				"aca",
+				"att_camPitch"
+			],
+			[
+				"c",
+				"att_camYaw"
+			],
+			[
+				"ca",
+				"att_camPitch"
+			],
+			[
+				"atc",
+				"att_camPitch"
+			],
+			[
+				"vec",
+				"Vector3f"
+			],
+			[
+				"lSDL",
+				"lSDL2_mixer"
+			],
+			[
+				"cen",
+				"att_center"
+			],
+			[
+				"sp1",
+				"sphere1"
+			],
+			[
+				"sphe",
+				"sphere2"
+			],
+			[
+				"sph",
+				"sphere1"
+			],
+			[
+				"Co",
+				"Collision"
+			],
+			[
+				"ra",
+				"att_radius"
+			],
+			[
+				"ap",
+				"att_plane"
+			],
+			[
+				"Col",
+				"CollisionPlane"
+			],
+			[
+				"tri",
+				"trianglearea"
+			],
+			[
+				"col",
+				"collisionPoint"
+			],
+			[
+				"an",
+				"att_normal"
+			],
+			[
+				"at",
+				"att_plane"
+			],
+			[
+				"do",
+				"dotProduct"
+			],
+			[
+				"SD",
+				"SDL_Texture"
+			],
+			[
+				"re",
+				"att_renderer"
 			],
 			[
 				"Disp",
 				"DisplayMode"
+			],
+			[
+				"en",
+				"endif"
 			],
 			[
 				"inc",
@@ -256,10 +332,6 @@
 				"classy_pointer"
 			],
 			[
-				"re",
-				"referencing"
-			],
-			[
 				"valu",
 				"value_one"
 			],
@@ -307,7 +379,17 @@
 			"file": "src/main.cc",
 			"settings":
 			{
-				"buffer_size": 3494,
+				"buffer_size": 3697,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include <SDL2/SDL.h>"
+			}
+		},
+		{
+			"file": "Project.sublime-project",
+			"settings":
+			{
+				"buffer_size": 1542,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -316,7 +398,7 @@
 			"file": "include/Render.hh",
 			"settings":
 			{
-				"buffer_size": 830,
+				"buffer_size": 882,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -325,8 +407,103 @@
 			"file": "src/Render.cc",
 			"settings":
 			{
-				"buffer_size": 2140,
+				"buffer_size": 2322,
 				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include \"Render.hh\""
+			}
+		},
+		{
+			"file": "include/Math.hh",
+			"settings":
+			{
+				"buffer_size": 1438,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Math.cc",
+			"settings":
+			{
+				"buffer_size": 2806,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Collision.hh",
+			"settings":
+			{
+				"buffer_size": 1279,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Collision.cc",
+			"settings":
+			{
+				"buffer_size": 5201,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Camera.hh",
+			"settings":
+			{
+				"buffer_size": 1613,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Camera.cc",
+			"settings":
+			{
+				"buffer_size": 4432,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Old/fps/main.cpp",
+			"settings":
+			{
+				"buffer_size": 156,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Old/fps/game.h",
+			"settings":
+			{
+				"buffer_size": 1726,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Old/fps/game.cpp",
+			"settings":
+			{
+				"buffer_size": 15782,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Old/fps/functions.cpp",
+			"settings":
+			{
+				"buffer_size": 11797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Old/fps/functions.h",
+			"settings":
+			{
+				"buffer_size": 1636,
 				"line_ending": "Unix"
 			}
 		},
@@ -344,25 +521,6 @@
 			"settings":
 			{
 				"buffer_size": 606,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "include/Math.hh",
-			"settings":
-			{
-				"buffer_size": 461,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Math.cc",
-			"settings":
-			{
-				"buffer_size": 68,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -371,7 +529,6 @@
 			"settings":
 			{
 				"buffer_size": 180,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -380,7 +537,6 @@
 			"settings":
 			{
 				"buffer_size": 78,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -388,7 +544,7 @@
 			"file": "reminder.txt",
 			"settings":
 			{
-				"buffer_size": 895,
+				"buffer_size": 1035,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -438,19 +594,18 @@
 	},
 	"expanded_folders":
 	[
-		"/home/victor/Desktop/Post-world",
-		"/home/victor/Desktop/Post-world/res",
-		"/home/victor/Desktop/Post-world/res/img"
+		"/home/victor/Desktop/Post-world"
 	],
 	"file_history":
 	[
+		"/home/victor/Desktop/Post-world/Old/fps/collision.cpp",
 		"/home/victor/Desktop/Post-world/Project.sublime-project",
-		"/home/victor/Desktop/Post-world/src/Utility",
-		"/home/victor/Desktop/Post-world/reminder.txt",
-		"/timeshift/snapshots/2020-12-07_18-00-01/localhost/usr/local/lib/libSDL2main.la",
-		"/home/victor/Desktop/#include \"Render.hh\"",
-		"/home/victor/Desktop/segesgseg",
-		"/home/victor/Desktop/Post-world/Other",
+		"/home/victor/Downloads/TestCase.cc",
+		"/home/victor/Desktop/Post-world/Old/fps/functions.cpp",
+		"/home/victor/Downloads/matrix.hh",
+		"/home/victor/Downloads/tableau2D.hh",
+		"/home/victor/Downloads/graillat.txt",
+		"/home/victor/Desktop/Cpp/tp4-Viclegrand7/tests/TestCase.cc",
 		"/home/victor/.config/sublime-text-3/Packages/Default/exec.py",
 		"/home/victor/Desktop/MyTP/Debugger.cpp",
 		"/home/victor/Desktop/Post-world/SDL2-2.0.12/include/SDL_config.h.cmake",
@@ -505,7 +660,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -520,9 +675,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"Utili",
-			"double",
-			"lib",
+			";",
+			" {",
+			"1",
+			"2",
+			"\tstatic float trianglearea(Vector3f &p1,Vector3f &p2,Vector3f &p3);\n",
 			"endif",
 			"int main(",
 			"main"
@@ -533,7 +690,8 @@
 		"regex": false,
 		"replace_history":
 		[
-			"float"
+			"2",
+			"3"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -544,7 +702,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -553,44 +711,73 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3494,
+						"buffer_size": 3697,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2089,
-								2089
+								2727,
+								2727
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"auto_name": "#include <SDL2/SDL.h>",
+							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 675.0,
+						"translation.y": 1305.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "include/Render.hh",
+					"file": "Project.sublime-project",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 830,
+						"buffer_size": 1542,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								748,
-								748
+								1002,
+								1002
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/Render.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 882,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								868,
+								868
 							]
 						],
 						"settings":
@@ -601,24 +788,53 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "src/Render.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2140,
+						"buffer_size": 2322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1933,
-								1933
+								2238,
+								2238
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include \"Render.hh\"",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "include/Math.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								713,
+								713
 							]
 						],
 						"settings":
@@ -627,27 +843,85 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "include/Entity.hh",
+					"buffer": 5,
+					"file": "src/Math.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 866,
+						"buffer_size": 2806,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								746,
-								746
+								1219,
+								1219
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "include/Collision.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1279,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								95
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/Collision.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5201,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1690,
+								1690
 							]
 						],
 						"settings":
@@ -662,20 +936,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/Entity.cc",
+					"buffer": 8,
+					"file": "include/Camera.hh",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 606,
+						"buffer_size": 1613,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								484,
-								484
+								1092,
+								1092
 							]
 						],
 						"settings":
@@ -683,27 +957,27 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "include/Math.hh",
+					"buffer": 9,
+					"file": "src/Camera.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 461,
+						"buffer_size": 4432,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								461,
-								461
+								3247,
+								3247
 							]
 						],
 						"settings":
@@ -711,19 +985,19 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "src/Math.cc",
+					"buffer": 10,
+					"file": "Old/fps/main.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 68,
+						"buffer_size": 156,
 						"regions":
 						{
 						},
@@ -742,11 +1016,182 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "Old/fps/game.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "Old/fps/game.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 13,
+					"file": "Old/fps/functions.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11797,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2025.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "Old/fps/functions.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1636,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "include/Entity.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								245,
+								245
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "src/Entity.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 606,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
 					"file": "include/Utility.hh",
 					"semi_transient": false,
 					"settings":
@@ -758,8 +1203,8 @@
 						"selection":
 						[
 							[
-								175,
-								175
+								0,
+								0
 							]
 						],
 						"settings":
@@ -770,11 +1215,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 18,
 					"file": "src/Utility.cc",
 					"semi_transient": false,
 					"settings":
@@ -798,24 +1243,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 19,
 					"file": "reminder.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 895,
+						"buffer_size": 1035,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								817,
-								817
+								1024,
+								1024
 							]
 						],
 						"settings":
@@ -826,7 +1271,7 @@
 						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -875,7 +1320,7 @@
 	"project": "Project.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -898,12 +1343,12 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 592.0
 	},
 	"selected_group": 0,
 	"settings":

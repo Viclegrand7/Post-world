@@ -38,15 +38,22 @@
 class Render {
 	SDL_Window *att_window;
 	SDL_Renderer *att_renderer;
+	SDL_PixelFormat *att_format;
 public:
+	Render() {} //All is null, just for game to start it correctly
 	Render(const char *title, int width, int height);
+	
 	SDL_Texture* loadTexture(const char* filePath);
 
-	int getRefreshRate();
+	int getRefreshRate() const;
+	SDL_PixelFormat *getFormat() const;
 
+	bool isFull() const;
 	void cleanUp();
 	void clear();
 	void render(Entity &entity);
 	void display();
+	void getSizes(int &width, int &height) const;
+	SDL_Window *getWindow() const;
 	~Render();
 };
