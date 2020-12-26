@@ -23,6 +23,12 @@
 #include <vector>
 #endif
 
+#ifndef RV_ZD_WEAPON_H
+#define RV_ZD_WEAPON_H
+#include "Weapon.hh"
+#endif
+
+
 
 
 
@@ -34,14 +40,23 @@ class Player {
 	Vector3f att_dir;			//Where player directs. Includes gravity
 	bool att_doesLand, att_isColliding, att_isSprinting;
 	float att_sprintSpeed, att_speed, att_mouseSpeed;
-	float att_stamina;
+	float att_stamina, att_staminaMax;
 	int att_score;				//Do we?
+
+	int att_head;
+
+//	Weapon *att_weapons[3]; //Honestly I oculd just do that right?
+	std :: vector <Weapon *> att_weapons;
+	unsigned int att_curWeapon;
 public:
 	Camera att_cam;					//Will be easier
 
-	Player(const char* n, const CollisionSphere &coll);
+	Player(const char* n, const CollisionSphere &coll, Weapon *weapon);
 	void update(std :: vector <CollisionPlane> &collPlane);
 	void display();
+	void jump();
+	void sprint();
+	void noSprint();
 
 	std :: string &getName();
 	int getHealth();
@@ -51,6 +66,12 @@ public:
 	void addHealth(int h);
 	void addScore(int p);
 	void setPos(const Vector3f &pos);
+
+	void addWeapon(Weapon *weapon);
+	void changeWeapon(unsigned int num);
+	void nextWeapon();
+	void prevWeapon();
+	Weapon *getCurWeapon();
 
 	~Player();
 };

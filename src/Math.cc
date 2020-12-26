@@ -104,6 +104,6 @@ Vector3f Vector3f :: operator-() const { //negative
 
 
 std :: ostream &operator<<(std :: ostream &out, const Vector3f &someone) {
-	out << "(" << someone.att_x << ", " << someone.att_y << ", " << someone.att_z << ")" << std :: endl;
+	out << "(" << someone.att_x << ", " << someone.att_y << ", " << someone.att_z << ")   ";
 	return out;
 }

@@ -8,6 +8,11 @@
 #include <SDL2/SDL_image.h>
 #endif
 
+#ifndef RV_ZD_SDL_MIXER_H
+#define RV_ZD_SDL_MIXER_H
+#include <SDL2/SDL_mixer.h>
+#endif
+
 #ifndef RV_ZD_VECTOR
 #define RV_ZD_VECTOR
 #include <vector>
@@ -53,6 +58,15 @@
 #include "Player.hh"
 #endif
 
+#ifndef RV_ZD_ENNEMY_H
+#define RV_ZD_ENNEMY_H
+#include "Ennemy.hh"
+#endif
+
+#ifndef RV_ZD_ITEM_H
+#define RV_ZD_ITEM_H
+#include "Item.hh"
+#endif
 
 
 
@@ -62,16 +76,17 @@ class Game {
 	Objloader att_obj;
 	Render att_render;
 	std :: vector <Level *> att_levels;
+	std :: vector<Weapon *> att_weapons;
 	int att_fps;
 	std :: vector <Entity> att_entities;
+	std :: vector <Ennemy *> att_ennemies;
 	Player *att_player;
-
-	void initskybox(std :: vector <Entity> &entities, SDL_PixelFormat *);
+	Inventory att_items;
 
 	void update();
 	void display();
-//	unsigned int loadTexture(const char *filename);
-//	void loadAnimation(const std :: vector <unsigned int> &anim, const std :: string &filename, int frames);
+	unsigned int loadTexture(const char* filename);
+	void loadAnimation(std :: vector <unsigned int> &anim, const std :: string &filename, int frames);
 public:
 	Game(SDL_DisplayMode);
 	~Game();

@@ -10,12 +10,13 @@ Uint8 DOWN_Key = SDL_SCANCODE_S;
 Uint8 LEFT_Key = SDL_SCANCODE_A;
 Uint8 RIGHT_Key = SDL_SCANCODE_D;
 
-Uint8 TILT_LEFT_Key = SDLK_a; 	//0 clue yet how to make camera move according to this number
-Uint8 TILT_RIGHT_Key = SDLK_e;	//This one too
+Uint8 TILT_LEFT_Key = SDL_SCANCODE_Q; 	//0 clue yet how to make camera move according to this number
+Uint8 TILT_RIGHT_Key = SDL_SCANCODE_E;	//This one too
 //Might be too lzay to use those tbh
 
+
 //{...}
-bool NO_GRAVITY(false); //If we cheat, it goes to true
+bool NO_GRAVITY(true); //If we cheat, it goes to true
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Find better way to do it, should allow for modifying keys
@@ -30,7 +31,7 @@ void Camera :: lockCamera() {
 void Camera :: moveCamera(const float &dir) {
 	float rad((att_camYaw + dir) * M_PI / 180);
 	att_loc.att_x -= sin(rad) * att_speed;
-	att_loc.att_y -= cos(rad) * att_speed;
+	att_loc.att_z -= cos(rad) * att_speed;
 }
 
 void Camera :: moveCameraUp(const float &dir) {
@@ -62,28 +63,30 @@ void Camera :: control(const Render &window, bool isFullScreen) {
 		std :: cout << "MidX " << midX << " | tmpx " << tmpx << " | MidY " << midY << " | tmpy " << tmpy << std :: endl << getLoc();
 		att_camYaw += att_mouseSpeed * (midX - tmpx);
 		att_camPitch += att_mouseSpeed * (midY - tmpy);
+		std :: cout << "pitch " << att_camPitch << " | Yaw " << att_camYaw << " | roll " << att_camRoll <<  std :: endl;
 		lockCamera();
 		SDL_WarpMouseGlobal(midX, midY); 
 		const Uint8 *state(SDL_GetKeyboardState(NULL)); //Gets all the keys' states (Is_Pressed ? 1 : 0). We can deal with what they do camera-wise
+		att_isMoving = false;
 		if (state[UP_Key]) {
+			att_isMoving = true;
 			moveCamera(0);
 			if (NO_GRAVITY)
 				moveCameraUp(0);
 		}
 		if (state[DOWN_Key]) {
+			att_isMoving = true;
 			moveCamera(180);
 			if (NO_GRAVITY)
 				moveCameraUp(180);
 		}
 		if (state[LEFT_Key]) {
+			att_isMoving = true;
 			moveCamera(90);
-			if (NO_GRAVITY)
-				moveCamera(90);
 		}
 		if (state[RIGHT_Key]) {
+			att_isMoving = true;
 			moveCamera(270);
-			if (NO_GRAVITY)
-				moveCameraUp(270);
 		}
 	}
 	glRotatef(-att_camPitch, 	1, 0, 0);
@@ -128,6 +131,9 @@ bool Camera :: isMouseIn() const {
 	return att_mi;
 }
 
+bool Camera :: isMoving() const {
+	return att_isMoving;
+}
 
 
 void Camera :: setLocation(const Vector3f &vec) { //Move player

@@ -37,7 +37,7 @@ class Camera {
 	float att_camPitch, att_camYaw, att_camRoll; //Yaw = left-right, around Y-axis. Pitch = Up-down, around X-axis. Roll = tilting head, around Z-axis
 	//Might be too lazy to tilt head tbh
 	float att_speed, att_mouseSpeed; //movevel, mousevel
-	bool att_mi; //Inside window or not
+	bool att_mi, att_isMoving; //Inside window or not, moving head or not
 	
 	void lockCamera();
 	void moveCamera(const float &dir);
@@ -45,7 +45,7 @@ class Camera {
 
 public:
 	Camera(const Vector3f &loc = Vector3f(0,0,0), const float &pitch = 0, const float &yaw = 0, const float &moveVelo = 0.2, const float &mouseVelo = 0.2)
-	: att_loc(loc), att_camPitch(pitch), att_camYaw(yaw), att_speed(moveVelo), att_mouseSpeed(mouseVelo), att_mi(true) {}
+	: att_loc(loc), att_camPitch(pitch), att_camYaw(yaw), att_speed(moveVelo), att_mouseSpeed(mouseVelo), att_mi(true), att_isMoving(false) {}
 
 	void control(const Render &, bool);
 	void updateCamera();
@@ -57,6 +57,7 @@ public:
 	float getSpeed() const;
 	float getMouseSpeed() const;
 	bool isMouseIn() const;
+	bool isMoving() const;
 
 	void setLocation(const Vector3f &vec); //Move player
 	void lookAt(const float &pitch, const float &yaw); //Force camera movement

@@ -8,7 +8,7 @@
 struct CollisionSphere {
 	float att_radius;
 	Vector3f att_center;
-	CollisionSphere(Vector3f &center, float radius = 0) : att_radius(radius), att_center(center) {}
+	CollisionSphere(Vector3f center, float radius = 0) : att_radius(radius), att_center(center) {}
 };
 
 

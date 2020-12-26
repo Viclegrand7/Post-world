@@ -113,3 +113,33 @@
 #include "Player.hh"
 #endif
 
+#ifndef RV_ZD_WEAPON_H
+#define RV_ZD_WEAPON_H
+#include "Weapon.hh"
+#endif
+
+#ifndef RV_ZD_ENNEMY_H
+#define RV_ZD_ENNEMY_H
+#include "Ennemy.hh"
+#endif
+
+#ifndef RV_ZD_MAP_H
+#define RV_ZD_MAP_H
+#include "Map.hh"
+#endif
+
+#ifndef RV_ZD_ITEM_H
+#define RV_ZD_ITEM_H
+#include "Item.hh"
+#endif
+
+
+
+
+
+
+
+
+
+
+

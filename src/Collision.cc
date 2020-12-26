@@ -102,4 +102,12 @@ float Collision :: pointDistance(const Vector3f &p1, const Vector3f &p2) {
 	return sqrt((p2 - p1).dotProduct(p2 - p1));
 }
 
+/*
+
+	collisionBox : 
+		Try 2 diagonal quads (corners 1-2-7-8 and corners 3-4-5-6)
+		Try 3 non roof/top quads
+
+*/
+
 //Maybe we should have weight for things to bounce in a smoother way, rather than sphere taking all (Although sphere is camera, and others are walls... uh.)

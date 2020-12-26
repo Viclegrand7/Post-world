@@ -23,7 +23,6 @@ Texcoord :: Texcoord(float a,float b) : att_u(a), att_v(b) {}
 
 
 int Objloader :: load(const std :: string &filename, std :: vector <CollisionPlane> *collisionPlane) {
-/*
 	att_isMaterial = false; 	att_isNormals = false;
 	att_isTexture = false;		att_isVertexNormal = false;
 	std :: ifstream in(filename.c_str());
@@ -32,15 +31,7 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 		return -1;
 	}
 	std :: string path(filename.substr(0, (filename.find_last_of('/') + 1 != std :: string :: npos) ? (filename.find_last_of('/') + 1 ) : 0));
-	att_out << filename << std :: endl;
 	char buf[256];
-*/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,11 +46,8 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 //CAREFUL : He used int to compare with .size(), gotta redo EVERY SINGLE FOR, no matter what
 //Also, wrong names : att_ missing
 
-/*
 	int curmat=0;
 	bool coll=false;
-	int z=0;
-	int h=-1;
 	while(!in.eof())
 	{
 		in.getline(buf,256);
@@ -73,21 +61,21 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 		{
 			float tmpx,tmpy,tmpz;
 			sscanf(att_coord[i]->c_str(),"v %f %f %f",&tmpx,&tmpy,&tmpz);
-			att_vertex.push_back(new coordinate(tmpx,tmpy,tmpz));
+			att_vertex.push_back(new Vector3f(tmpx,tmpy,tmpz));
 			att_out << "v " << tmpx << " " << tmpy << " " << tmpz << std::endl;
 		}else if((*att_coord[i])[0]=='v' && (*att_coord[i])[1]=='n')
 		{
 			float tmpx,tmpy,tmpz;
 			sscanf(att_coord[i]->c_str(),"vn %f %f %f",&tmpx,&tmpy,&tmpz);
-			att_normals.push_back(new coordinate(tmpx,tmpy,tmpz));	
+			att_normals.push_back(new Vector3f(tmpx,tmpy,tmpz));	
 			att_out << "vn " << tmpx << " " << tmpy << " " << tmpz << std::endl;
 		}else if((*att_coord[i])[0]=='f')
 		{
 			int a,b,c,d,e;			
-			if(coll && collplane!=NULL)
+			if(coll && collisionPlane!=NULL)
 			{
 				sscanf(att_coord[i]->c_str(),"f %d//%d %d//%d %d//%d %d//%d",&a,&b,&c,&b,&d,&b,&e,&b);
-				collplane->push_back(CollisionPlane(att_normals[b-1]->x,att_normals[b-1]->y,att_normals[b-1]->z,att_vertex[a-1]->x,att_vertex[a-1]->y,att_vertex[a-1]->z,att_vertex[c-1]->x,att_vertex[c-1]->y,att_vertex[c-1]->z,att_vertex[d-1]->x,att_vertex[d-1]->y,att_vertex[d-1]->z,att_vertex[e-1]->x,att_vertex[e-1]->y,att_vertex[e-1]->z));
+				collisionPlane->push_back(CollisionPlane(Vector3f(att_normals[b-1]->att_x,att_normals[b-1]->att_y,att_normals[b-1]->att_z),Vector3f(att_vertex[a-1]->att_x,att_vertex[a-1]->att_y,att_vertex[a-1]->att_z),Vector3f(att_vertex[c-1]->att_x,att_vertex[c-1]->att_y,att_vertex[c-1]->att_z),Vector3f(att_vertex[d-1]->att_x,att_vertex[d-1]->att_y,att_vertex[d-1]->att_z),Vector3f(att_vertex[e-1]->att_x,att_vertex[e-1]->att_y,att_vertex[e-1]->att_z)));
 			}else
 			{
 				if(count(att_coord[i]->begin(),att_coord[i]->end(),' ')==4)
@@ -95,30 +83,30 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 					if(att_coord[i]->find("//")!=std::string::npos)
 					{
 						sscanf(att_coord[i]->c_str(),"f %d//%d %d//%d %d//%d %d//%d",&a,&b,&c,&b,&d,&b,&e,&b);
-						att_faces.push_back(new face(b,a,c,d,e,0,0,0,0,curmat));
+						att_faces.push_back(new Face(b,a,c,d,e,0,0,0,0,curmat));
 					}else if(att_coord[i]->find("/")!=std::string::npos)
 					{
 						int t[4];
 						sscanf(att_coord[i]->c_str(),"f %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d",&a,&t[0],&b,&c,&t[1],&b,&d,&t[2],&b,&e,&t[3],&b);
 						att_out << t[0] << " " <<t[1] << " " <<t[2] << " " <<t[3] << " " << a << " " << b << " " << c << " " << d << " " << e << std::endl;
-						att_faces.push_back(new face(b,a,c,d,e,t[0],t[1],t[2],t[3],curmat));
+						att_faces.push_back(new Face(b,a,c,d,e,t[0],t[1],t[2],t[3],curmat));
 					}else{
 						sscanf(att_coord[i]->c_str(),"f %d %d %d %d",&a,&b,&c,&d);
-						att_faces.push_back(new face(-1,a,b,c,d,0,0,0,0,curmat));					
+						att_faces.push_back(new Face(-1,a,b,c,d,0,0,0,0,curmat));					
 					}
 				}else{
 						if(att_coord[i]->find("//")!=std::string::npos)
 						{
 							sscanf(att_coord[i]->c_str(),"f %d//%d %d//%d %d//%d",&a,&b,&c,&b,&d,&b);
-							att_faces.push_back(new face(b,a,c,d,0,0,0,curmat));
+							att_faces.push_back(new Face(b,a,c,d,0,0,0,curmat));
 						}else if(att_coord[i]->find("/")!=std::string::npos)
 						{
 							int t[3];
 							sscanf(att_coord[i]->c_str(),"f %d/%d/%d %d/%d/%d %d/%d/%d",&a,&t[0],&b,&c,&t[1],&b,&d,&t[2],&b);
-							att_faces.push_back(new face(b,a,c,d,t[0],t[1],t[2],curmat));
+							att_faces.push_back(new Face(b,a,c,d,t[0],t[1],t[2],curmat));
 						}else{
 							sscanf(att_coord[i]->c_str(),"f %d %d %d",&a,&b,&c);
-							att_faces.push_back(new face(-1,a,b,c,0,0,0,curmat));					
+							att_faces.push_back(new Face(-1,a,b,c,0,0,0,curmat));					
 						}
 				}
 			}
@@ -131,9 +119,9 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 			coll=true;
 		}else{
 			coll=false;
-			for(int i=0;i<att_materials.size();i++)
+			for(unsigned int i=0;i<att_materials.size();i++)
 			{
-				if(strcmp(att_materials[i]->name.c_str(),tmp)==0)
+				if(strcmp(att_materials[i]->att_name.c_str(),tmp)==0)
 				{
 					curmat=i;
 					att_out << "curmat=" << i  << std::endl;
@@ -169,7 +157,7 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 		bool ismat=false;
 		strcpy(filename,"\0");
 //		std::cout << tmp.size() << std::endl;
-		for(int i=0;i<tmp.size();i++)
+		for(unsigned int i=0;i<tmp.size();i++)
 		{
 			if(tmp[i][0]=='#')
 				continue;
@@ -179,10 +167,10 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 				{
 					if(strcmp(filename,"\0")!=0 && strcmp(filename,"collision")!=0)
 					{
-						att_materials.push_back(new material(name,alpha,ns,ni,dif,amb,spec,illum,att_texture));
+						att_materials.push_back(new Material(name,alpha,ns,ni,dif,amb,spec,illum,att_texture));
 						strcpy(filename,"\0");
 					}else{
-							att_materials.push_back(new material(name,alpha,ns,ni,dif,amb,spec,illum,-1));				
+							att_materials.push_back(new Material(name,alpha,ns,ni,dif,amb,spec,illum,-1));				
 					}
 				}
 				ismat=false;
@@ -222,11 +210,11 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 				bool l=0;
 				att_out << "Opening image: " << filename << std::endl;
 				std::string filename2=path+filename;
-				for(int i=0;i<loadedTextures.size();i++)
-					if(loadedTextures[i]==filename2)
+				for(unsigned int i=0;i<att_loadedTextures.size();i++)
+					if(att_loadedTextures[i]==filename2)
 					{
 						att_out << "loading "  << filename2 << std::endl;
-						att_texture=loadedTexturesNum[i];
+						att_texture=att_loadedTexturesNum[i];
 						l=1;
 						break;
 					}
@@ -239,16 +227,16 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 				{
 					if(strcmp(filename,"\0")!=0)
 					{
-						att_materials.push_back(new material(name,alpha,ns,ni,dif,amb,spec,illum,att_texture));
+						att_materials.push_back(new Material(name,alpha,ns,ni,dif,amb,spec,illum,att_texture));
 					}else{
-							att_materials.push_back(new material(name,alpha,ns,ni,dif,amb,spec,illum,-1));				
+							att_materials.push_back(new Material(name,alpha,ns,ni,dif,amb,spec,illum,-1));				
 					}
 				}
 	}else if((*att_coord[i])[0]=='v' && (*att_coord[i])[1]=='t')
 	{
 		float u,v;
 		sscanf(att_coord[i]->c_str(),"vt %f %f",&u,&v);
-		att_textureCoordinate.push_back(new texcoord(u,1-v));
+		att_textureCoordinate.push_back(new Texcoord(u,1-v));
 		att_isTexture=true;
 	}
 }
@@ -259,112 +247,112 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 	att_out << "numvertex :" << att_vertex.size() << " " << att_normals.size() << " " << att_faces.size() << " " << att_materials.size() << std::endl; 
 	//draw
 	if(att_isVertexNormal)
-		smoothnormals();
+		smoothNormals();
 	int num;
 	num=glGenLists(1);
 	glNewList(num,GL_COMPILE);
 	int last=-1;
-	for(int i=0;i<att_faces.size();i++)
+	for(unsigned int i=0;i<att_faces.size();i++)
 	{
-		if(last!=att_faces[i]->mat && att_isMaterial)
+		if(last!=att_faces[i]->att_mat && att_isMaterial)
 		{
-			float diffuse[]={att_materials[att_faces[i]->mat]->dif[0],att_materials[att_faces[i]->mat]->dif[1],att_materials[att_faces[i]->mat]->dif[2],1.0};
-			float ambient[]={att_materials[att_faces[i]->mat]->amb[0],att_materials[att_faces[i]->mat]->amb[1],att_materials[att_faces[i]->mat]->amb[2],1.0};
-			float specular[]={att_materials[att_faces[i]->mat]->spec[0],att_materials[att_faces[i]->mat]->spec[1],att_materials[att_faces[i]->mat]->spec[2],1.0};
+			float diffuse[]={att_materials[att_faces[i]->att_mat]->att_dif[0],att_materials[att_faces[i]->att_mat]->att_dif[1],att_materials[att_faces[i]->att_mat]->att_dif[2],1.0};
+			float ambient[]={att_materials[att_faces[i]->att_mat]->att_amb[0],att_materials[att_faces[i]->att_mat]->att_amb[1],att_materials[att_faces[i]->att_mat]->att_amb[2],1.0};
+			float specular[]={att_materials[att_faces[i]->att_mat]->att_spec[0],att_materials[att_faces[i]->att_mat]->att_spec[1],att_materials[att_faces[i]->att_mat]->att_spec[2],1.0};
 			glMaterialfv(GL_FRONT,GL_DIFFUSE,diffuse);
 			glMaterialfv(GL_FRONT,GL_AMBIENT,ambient);
 			glMaterialfv(GL_FRONT,GL_SPECULAR,specular);
-			glMaterialf(GL_FRONT,GL_SHININESS,att_materials[att_faces[i]->mat]->ns);
+			glMaterialf(GL_FRONT,GL_SHININESS,att_materials[att_faces[i]->att_mat]->att_ns);
 			glColor3f(diffuse[0],diffuse[1],diffuse[2]);
-			last=att_faces[i]->mat;
+			last=att_faces[i]->att_mat;
 			att_out << "1....." << std::endl;
-			if(att_materials[att_faces[i]->mat]->att_texture==-1)
+			if(att_materials[att_faces[i]->att_mat]->att_texture==-1)
 				glDisable(GL_TEXTURE_2D);
 			else{
 				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D,att_materials[att_faces[i]->mat]->att_texture);
+				glBindTexture(GL_TEXTURE_2D,att_materials[att_faces[i]->att_mat]->att_texture);
 			}
 		}
-		if(att_faces[i]->texcoord[0]==0)
+		if(att_faces[i]->att_texcoord[0]==0)
 			att_isTexture=false;
 		else
 			att_isTexture=true;
 		att_out << "2....." << std::endl;
 		att_isNormals=false;
-		if(att_faces[i]->four)
+		if(att_faces[i]->att_four)
 		{
 			glBegin(GL_QUADS);
-				att_out << "att_faces[i]->texcoord[0]-1 " << att_faces[i]->facenum-1 << std::endl;
+				att_out << "att_faces[i]->texcoord[0]-1 " << att_faces[i]->att_facenum-1 << std::endl;
 				if(att_isNormals)
-					glNormal3f(att_normals[att_faces[i]->facenum-1]->x,att_normals[att_faces[i]->facenum-1]->y,att_normals[att_faces[i]->facenum-1]->z);
+					glNormal3f(att_normals[att_faces[i]->att_facenum-1]->att_x,att_normals[att_faces[i]->att_facenum-1]->att_y,att_normals[att_faces[i]->att_facenum-1]->att_z);
 				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[0]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[0]-1]->v);
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[0]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[0]-1]->att_v);
 
 				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[0]-1]->x,att_vertexNormals[att_faces[i]->att_faces[0]-1]->y,att_vertexNormals[att_faces[i]->att_faces[0]-1]->z);
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_z);
 
 				
 				att_out << "att_faces[i]->att_faces[0]-1: " << att_faces[i]->att_faces[0]-1 << " " << att_faces[i]->att_faces[1]-1 << " " << att_faces[i]->att_faces[2]-1 << " " << att_faces[i]->att_faces[3]-1 << " "  << std::endl;
-				glVertex3f(att_vertex[att_faces[i]->att_faces[0]-1]->x,att_vertex[att_faces[i]->att_faces[0]-1]->y,att_vertex[att_faces[i]->att_faces[0]-1]->z);
+				glVertex3f(att_vertex[att_faces[i]->att_faces[0]-1]->att_x,att_vertex[att_faces[i]->att_faces[0]-1]->att_y,att_vertex[att_faces[i]->att_faces[0]-1]->att_z);
 				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[1]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[1]-1]->v);
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[1]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[1]-1]->att_v);
 
 
 				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[1]-1]->x,att_vertexNormals[att_faces[i]->att_faces[1]-1]->y,att_vertexNormals[att_faces[i]->att_faces[1]-1]->z);
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_z);
 				
-				glVertex3f(att_vertex[att_faces[i]->att_faces[1]-1]->x,att_vertex[att_faces[i]->att_faces[1]-1]->y,att_vertex[att_faces[i]->att_faces[1]-1]->z);
+				glVertex3f(att_vertex[att_faces[i]->att_faces[1]-1]->att_x,att_vertex[att_faces[i]->att_faces[1]-1]->att_y,att_vertex[att_faces[i]->att_faces[1]-1]->att_z);
 				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[2]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[2]-1]->v);
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[2]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[2]-1]->att_v);
 
 				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[2]-1]->x,att_vertexNormals[att_faces[i]->att_faces[2]-1]->y,att_vertexNormals[att_faces[i]->att_faces[2]-1]->z);
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_z);
 
-				glVertex3f(att_vertex[att_faces[i]->att_faces[2]-1]->x,att_vertex[att_faces[i]->att_faces[2]-1]->y,att_vertex[att_faces[i]->att_faces[2]-1]->z);
+				glVertex3f(att_vertex[att_faces[i]->att_faces[2]-1]->att_x,att_vertex[att_faces[i]->att_faces[2]-1]->att_y,att_vertex[att_faces[i]->att_faces[2]-1]->att_z);
 				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[3]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[3]-1]->v);
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[3]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[3]-1]->att_v);
 
 				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[3]-1]->x,att_vertexNormals[att_faces[i]->att_faces[3]-1]->y,att_vertexNormals[att_faces[i]->att_faces[3]-1]->z);
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[3]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[3]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[3]-1]->att_z);
 			
-				glVertex3f(att_vertex[att_faces[i]->att_faces[3]-1]->x,att_vertex[att_faces[i]->att_faces[3]-1]->y,att_vertex[att_faces[i]->att_faces[3]-1]->z);
+				glVertex3f(att_vertex[att_faces[i]->att_faces[3]-1]->att_x,att_vertex[att_faces[i]->att_faces[3]-1]->att_y,att_vertex[att_faces[i]->att_faces[3]-1]->att_z);
 			glEnd();
 		}else{
 			glBegin(GL_TRIANGLES);
 				if(att_isNormals)
-					glNormal3f(att_normals[att_faces[i]->facenum-1]->x,att_normals[att_faces[i]->facenum-1]->y,att_normals[att_faces[i]->facenum-1]->z);
+					glNormal3f(att_normals[att_faces[i]->att_facenum-1]->att_x,att_normals[att_faces[i]->att_facenum-1]->att_y,att_normals[att_faces[i]->att_facenum-1]->att_z);
 
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[0]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[0]-1]->v);
-
-				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[0]-1]->x,att_vertexNormals[att_faces[i]->att_faces[0]-1]->y,att_vertexNormals[att_faces[i]->att_faces[0]-1]->z);
-
-
-				glVertex3f(att_vertex[att_faces[i]->att_faces[0]-1]->x,att_vertex[att_faces[i]->att_faces[0]-1]->y,att_vertex[att_faces[i]->att_faces[0]-1]->z);
-				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[1]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[1]-1]->v);
-				
-				
-				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[1]-1]->x,att_vertexNormals[att_faces[i]->att_faces[1]-1]->y,att_vertexNormals[att_faces[i]->att_faces[1]-1]->z);
-				
-				glVertex3f(att_vertex[att_faces[i]->att_faces[1]-1]->x,att_vertex[att_faces[i]->att_faces[1]-1]->y,att_vertex[att_faces[i]->att_faces[1]-1]->z);
-				
-				
-				if(att_isTexture && att_materials[att_faces[i]->mat]->att_texture!=-1)
-					glTexCoord2f(att_textureCoordinate[att_faces[i]->texcoord[2]-1]->u,att_textureCoordinate[att_faces[i]->texcoord[2]-1]->v);
-
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[0]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[0]-1]->att_v);
 
 				if(att_isVertexNormal)
-					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[2]-1]->x,att_vertexNormals[att_faces[i]->att_faces[2]-1]->y,att_vertexNormals[att_faces[i]->att_faces[2]-1]->z);
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[0]-1]->att_z);
+
+
+				glVertex3f(att_vertex[att_faces[i]->att_faces[0]-1]->att_x,att_vertex[att_faces[i]->att_faces[0]-1]->att_y,att_vertex[att_faces[i]->att_faces[0]-1]->att_z);
+				
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[1]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[1]-1]->att_v);
+				
+				
+				if(att_isVertexNormal)
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[1]-1]->att_z);
+				
+				glVertex3f(att_vertex[att_faces[i]->att_faces[1]-1]->att_x,att_vertex[att_faces[i]->att_faces[1]-1]->att_y,att_vertex[att_faces[i]->att_faces[1]-1]->att_z);
+				
+				
+				if(att_isTexture && att_materials[att_faces[i]->att_mat]->att_texture!=-1)
+					glTexCoord2f(att_textureCoordinate[att_faces[i]->att_texcoord[2]-1]->att_u,att_textureCoordinate[att_faces[i]->att_texcoord[2]-1]->att_v);
+
+
+				if(att_isVertexNormal)
+					glNormal3f(att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_x,att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_y,att_vertexNormals[att_faces[i]->att_faces[2]-1]->att_z);
 		
-				glVertex3f(att_vertex[att_faces[i]->att_faces[2]-1]->x,att_vertex[att_faces[i]->att_faces[2]-1]->y,att_vertex[att_faces[i]->att_faces[2]-1]->z);
+				glVertex3f(att_vertex[att_faces[i]->att_faces[2]-1]->att_x,att_vertex[att_faces[i]->att_faces[2]-1]->att_y,att_vertex[att_faces[i]->att_faces[2]-1]->att_z);
 			glEnd();
 		}
 	}
@@ -373,8 +361,6 @@ int Objloader :: load(const std :: string &filename, std :: vector <CollisionPla
 	clean();
 	att_lists.push_back(num);
 	return num;
-	*/
-	return 0; //Was too bored to do it xD
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -434,7 +420,7 @@ unsigned int Objloader :: loadTexture(const char* filename) {
 	return num;
 }
 
-Objloader :: Objloader() : att_isMaterial(false), att_isNormals(false), att_isTexture(false), att_isVertexNormal(false), att_out("objReport.txt") {} //Maybe I should have inheritance rather than tons of bools
+Objloader :: Objloader() : att_isMaterial(false), att_isNormals(false), att_isTexture(false), att_isVertexNormal(false), att_out("errorLog.txt") {} //Maybe I should have inheritance rather than tons of bools
 
 void Objloader :: smoothNormals() {
 	for (unsigned int i = 1 ; i < att_vertex.size() + 1 ; ++i) {

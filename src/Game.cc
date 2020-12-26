@@ -25,10 +25,24 @@
 		att_render.display();
 
 */
+/*
+	entities.clear();
+	{
+		SDL_Texture *background = att_render.loadTexture("../res/img/Background.png");
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
+	}
+*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 unsigned int skybox[6];
 
-unsigned int loadTexture(const char* filename, SDL_PixelFormat *format)	//load the filename named texture
+unsigned int Game :: loadTexture(const char* filename)	//load the filename named texture
 {
 
 	unsigned int num;	//the id for the texture
@@ -61,23 +75,6 @@ unsigned int loadTexture(const char* filename, SDL_PixelFormat *format)	//load t
 */
 }
 
-
-void killSkyBox() {
-	glDeleteTextures(6, &skybox[0]);
-}
-
-
-void Game :: initskybox(std :: vector <Entity> &entities, SDL_PixelFormat *format)
-{
-
-	skybox[0]=loadTexture("../res/img/back.bmp", format);
-	skybox[1]=loadTexture("../res/img/left.bmp", format);
-	skybox[2]=loadTexture("../res/img/front.bmp", format);
-	skybox[3]=loadTexture("../res/img/right.bmp", format);
-	skybox[4]=loadTexture("../res/img/top.bmp", format);
-	skybox[5]=loadTexture("../res/img/bottom.bmp", format);
-
-
 /*
 	int size = 50;
 
@@ -100,109 +97,6 @@ void Game :: initskybox(std :: vector <Entity> &entities, SDL_PixelFormat *forma
 
 */
 
-/*
-	entities.clear();
-	{
-		SDL_Texture *background = att_render.loadTexture("../res/img/Background.png");
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-		entities.push_back(Entity(Vector3f(0.0f, 0.0f, 0.0f), background));
-	}
-*/
-}
-
-void drawSkybox(float size)
-{
-	bool b1=glIsEnabled(GL_TEXTURE_2D);	//new, we left the textures turned on, if it was turned on
-	bool b2=glIsEnabled(GL_LIGHTING);
-	glDisable(GL_LIGHTING);	//turn off lighting, when making the skybox
-	glDisable(GL_DEPTH_TEST);	//turn off depth texting
-	glEnable(GL_TEXTURE_2D);	//and turn on texturing
-	glColor3f(1,1,1);
-	glBindTexture(GL_TEXTURE_2D,skybox[0]);	//use the texture we want
-	glBegin(GL_QUADS);	//and draw a face
-		//back face
-		glTexCoord2f(0,0);	//use the correct texture vector3d
-		glVertex3f(size/2,size/2,size/2);	//and a vertex
-		glTexCoord2f(1,0);	//and repeat it...
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(-size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(size/2,-size/2,size/2);
-	glEnd();
-	glBindTexture(GL_TEXTURE_2D,skybox[1]);
-	glBegin(GL_QUADS);	
-		//left face
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,size/2);
-	glEnd();
-	glBindTexture(GL_TEXTURE_2D,skybox[2]);
-	glBegin(GL_QUADS);	
-		//front face
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,-size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
-	glBindTexture(GL_TEXTURE_2D,skybox[3]);	
-	glBegin(GL_QUADS);	
-		//right face
-		glTexCoord2f(0,0);
-		glVertex3f(size/2,size/2,-size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
-	glBindTexture(GL_TEXTURE_2D,skybox[4]);		
-	glBegin(GL_QUADS);			//top face
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,size/2,-size/2);
-	glEnd();
-	glBindTexture(GL_TEXTURE_2D,skybox[5]);		
-	glBegin(GL_QUADS);	
-		//bottom face
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
-	glEnable(GL_DEPTH_TEST);
-	if(!b1)
-		glDisable(GL_TEXTURE_2D);
-	if(b2)
-		glEnable(GL_LIGHTING);	//turn everything back, which we turned on, and turn everything off, which we have turned on.
-	//	std::cout << "called" << std::endl;
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -213,8 +107,6 @@ void drawSkybox(float size)
 
 
 
-
-#define MAX_OBJ_NUMBER 5
 
 Game :: Game(SDL_DisplayMode DM) : att_render("Best_Game v0.0", DM.w, DM.h) {
 	att_fps = DM.refresh_rate;
@@ -228,23 +120,53 @@ Game :: Game(SDL_DisplayMode DM) : att_render("Best_Game v0.0", DM.w, DM.h) {
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_DEPTH_TEST);
 
-	initskybox(att_entities, att_render.getFormat());
-
 	std :: vector <CollisionPlane> tmp_cp;
 	std :: vector <Vector3f> tmp_sp;
 	tmp_sp.push_back(Vector3f(3.0f, 4.0f, 5.0f)); //Ennemies spawns
-	unsigned int map = att_obj.load("../res/obj/map.obj", &tmp_cp);
+	unsigned int lvl = att_obj.load("../res/obj/map/map.obj", &tmp_cp);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	att_levels.push_back(new Level("name", map, tmp_cp, tmp_sp));
 
-	Vector3f tmp_pos(10.0f, 1000.0f, 10.0f);
-	att_player = new Player("User", CollisionSphere(tmp_pos, 3.0f));
+	unsigned int left(loadTexture("../res/img/left.bmp"));
+	unsigned int back(loadTexture("../res/img/back.bmp"));
+	unsigned int right(loadTexture("../res/img/right.bmp"));
+	unsigned int front(loadTexture("../res/img/front.bmp"));
+	unsigned int roof(loadTexture("../res/img/top.bmp"));
+	unsigned int floor(loadTexture("../res/img/bottom.bmp"));
+
+	att_levels.emplace_back(new Level("name", lvl, tmp_cp, tmp_sp, back, left, front, right, roof, floor, 500));
+
+	std :: vector <unsigned int> anim;
+	loadAnimation(anim, "../res/obj/weapons/chair-back_column3", 1); //Default weapon = Puck (don't ask)
+	//Last number = number of frames (total)
+
+	att_weapons.emplace_back(new Weapon(anim, anim[0], 1, 0, 0, false, Vector3f(0.5f, -0.5f, -1.5f), Vector3f(0.0f, -80.0f, 0.0f), 
+		Vector3f(-0.25f, -0.75f, -1.75f), Vector3f(0.0f, -90.0f, 0.0f),	90, 100, 10, 8, 120, 10, "Puck"));
+/*
+	Reminder:
+	Weapon(std :: vector <unsigned int> &animation, unsigned int look, unsigned int normal, unsigned int fire, unsigned int reload, bool isAuto, Vector3f pos, 
+		Vector3f rot, Vector3f aimPos, Vector3f aimRot, float prec, float aimPrec, unsigned int dmg, unsigned int maxB, unsigned int allB, unsigned int speed, std :: string &name);
+*/
+
+
+//	anim.clear();
+//	loadAnimation(anim, "../res/obj/ennemy", 60);
+//	att_ennemies.emplace_back(new Ennemy(anim, 30, 20, 10, 40, 30, 0.1, CollisionSphere(Vector3f(5.0f, 10.0f, 0.0f), 1.5)));
+/*
+	Reminder:
+	Ennemy(const std :: vector <unsigned int> &anim, unsigned int walk, unsigned int attack, unsigned int death, int health, int damage, float speed, const CollisionSphere &cs);
+*/
+
+	Vector3f tmp_pos(10.0f, 10.0f, 10.0f);
+	att_player = new Player("User", CollisionSphere(tmp_pos, 1.5f), att_weapons[0]);
 }
 
 Game :: ~Game() {
 	for (unsigned int i = 0 ; i < att_levels.size() ; ++i)
 		delete att_levels[i];
-	killSkyBox();
+	for (unsigned int i = 0 ; i < att_weapons.size() ; ++i)
+		delete att_weapons[i];
+	for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i)
+		delete att_ennemies[i];
 	att_render.cleanUp();
 	SDL_Quit();
 }
@@ -270,6 +192,9 @@ void Game :: run() {
 
 	SDL_Event event;
 
+	Vector3f dir;
+	bool LMB_down(false);
+
 	while (isRunning) {
 		currentTimeTick = SDL_GetTicks();
 	
@@ -278,14 +203,61 @@ void Game :: run() {
 				case SDL_QUIT :
 					isRunning = false;
 				break;
+				case SDL_MOUSEWHEEL:
+					if (event.wheel.y > 0) {
+						att_player->nextWeapon();
+					}
+					if (event.wheel.y < 0) {
+						att_player->prevWeapon();
+					}
+				break;
 				case SDL_MOUSEBUTTONDOWN :
+					if (event.button.button == SDL_BUTTON_LEFT && att_player->att_cam.isMouseIn()) {
+						LMB_down = true;
+					}
+					else if (event.button.button == SDL_BUTTON_RIGHT && att_player->att_cam.isMouseIn())
+						att_player->getCurWeapon()->aim();
 					att_player->att_cam.mouseIn(true);
 //					if (inOptions) {
 //						//Do stuff
 //					}
 //					else
-						SDL_ShowCursor(SDL_ENABLE);
-//						SDL_ShowCursor(SDL_DISABLE);
+//						SDL_ShowCursor(SDL_ENABLE);
+						SDL_ShowCursor(SDL_DISABLE);
+				break;
+				case SDL_KEYDOWN:
+					switch (event.key.keysym.scancode) {
+						case SDL_SCANCODE_1:
+							att_player->changeWeapon(0);
+						break;
+						case SDL_SCANCODE_2:
+							att_player->changeWeapon(1);
+						break;
+						case SDL_SCANCODE_3:
+							att_player->changeWeapon(2);
+						break;
+						case SDL_SCANCODE_R:
+							att_player->getCurWeapon()->reload();
+						break;
+						case SDL_SCANCODE_SPACE:
+							att_player->jump();
+						break;
+						case SDL_SCANCODE_LSHIFT:
+							att_player->sprint();
+						break;
+						default:
+						break;
+					}
+				case SDL_KEYUP:
+					if (event.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+						att_player->noSprint();
+				break;
+				case SDL_MOUSEBUTTONUP: {
+					if (event.button.button == SDL_BUTTON_LEFT) {
+						att_player->getCurWeapon()->stopFire();
+						LMB_down = false;
+					}
+				}
 				break;
 // 				case SDL_MOUSEMOTION:
 // //					if (inOptions) {
@@ -294,6 +266,16 @@ void Game :: run() {
 // 					att_cam.control(att_render);
 // 				break;
 			}
+
+		if (LMB_down) {
+			if (att_player->getCurWeapon()->fire(dir, att_player->att_cam.getVec())) //If we can shoot
+				for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i) {
+					if (Collision :: raySphere(att_player->att_cam.getLoc(), att_player->att_cam.getVec(), att_ennemies[i]->getCollSphere()))
+						att_ennemies[i]->getHit(att_player->getCurWeapon()->getDmg());
+//Atm we hit every single ennemy, even through walls
+
+			}
+		}
 
 		update();
 		display();
@@ -320,6 +302,19 @@ void Game :: run() {
 void Game :: update() {
 	for (unsigned int i = 0 ; i < att_levels.size() ; ++i) 
 		att_levels[i]->update();
+	for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i) {
+		if (att_ennemies[i]->update(att_levels[0]->getColl(), att_player->getSphere().att_center)) {//Died
+			att_items.add(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), att_ennemies[i]->getCollSphere(), 0, att_weapons[1]->getLook()); //He drops weapon n°1 everytime
+			delete att_ennemies[i];
+			att_ennemies.erase(att_ennemies.begin() + i--); //We get to prev, delete next, let the for go to next
+		}
+		else if (att_ennemies[i]->setAttack(att_player->getSphere())) { //Attacking player
+			att_player->addHealth(- att_ennemies[i]->getDamage());
+		}
+	}
+	int tmp(att_items.update(att_player->getSphere()));
+	if (tmp != -1)
+		att_player->addWeapon(att_weapons[tmp]); //Change so it is an actual swap
 	att_player->update(att_levels[0]->getColl());
 }
 
@@ -328,9 +323,32 @@ void Game :: display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	att_render.isFull() ? att_player->att_cam.control(att_render, true) : att_player->att_cam.control(att_render, false);
-	drawSkybox(50.0f);
+	att_levels[0]->getMap()->drawMap();
 	att_player->att_cam.updateCamera();
 	for (unsigned int i = 0 ; i < att_levels.size() ; ++i) //Probably should just display and update the level we're in
 		att_levels[i]->display();
+	for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i) //Deal with distance to know if auto death?
+		att_ennemies[i]->display();
+	att_items.display();
 	att_player->display();
+}
+
+void Game :: loadAnimation(std :: vector <unsigned int> &anim, const std :: string &filename, int frames) {
+	std :: string tmp("");
+	for (int i = 0 ; i < frames ;) {
+		if (i++ < 10)
+			tmp = "_00000" + std :: to_string(i);
+		else if (i < 100)
+			tmp = "_0000" + std :: to_string(i);
+		else if (i < 1000)
+			tmp = "_000" + std :: to_string(i);
+		else if (i < 10000)
+			tmp = "_00" + std :: to_string(i);
+		else if (i < 100000)
+			tmp = "_0" + std :: to_string(i);
+		else if (i < 1000000)
+			tmp = "_" + std :: to_string(i);
+		tmp = filename + tmp + ".obj";
+		anim.push_back(att_obj.load(tmp, NULL)); //Need to add a way to load animations
+	}
 }
