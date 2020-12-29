@@ -1,0 +1,41 @@
+{
+	"folders":
+	[
+		{
+			"path": "bin/..",
+			"file_exclude_pattersn": ["*.sublime-project", "*.sublime-workspace"]
+		}
+	],
+
+	"build_systems":
+	[
+		{
+			"name": "Test Debug",
+			"working_dir": "${project_path}",
+			"cmd": "make testDebug",
+			"selector": "source.c++",
+			"shell": true
+		},
+		{
+			"name": "Test Release",
+			"working_dir": "${project_path}",
+			"cmd": "make testRelease",
+			"selector": "source.c++",
+			"shell": true
+		},
+		{
+			"name": "Build Debug",
+			"working_dir": "${project_path}",
+			"cmd": "make debug",
+			"selector": "source.c++",
+			"shell": true
+		},
+		{
+			"name": "Build Release",
+			"working_dir": "${project_path}",
+			"cmd": "make",
+			"selector": "source.c++",
+			"shell": true
+		}
+	]
+}

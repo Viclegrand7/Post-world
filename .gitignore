@@ -1,3 +1,11 @@
 Old/fps/
-obj/
-debug/main
+Old/tryFps/obj/
+Game/Engines/GraphicsEngine/obj/
+Game/Engines/PhysicsEngine/obj/
+Game/Engines/GameEngine/obj/
+Game/obj/
+Old/tryFps/debug/main
+Game/Engines/GraphicsEngine/debug/main
+Game/Engines/PhysicsEngine/debug/main
+Game/Engines/GameEngine/debug/main
+Game/debug/main
