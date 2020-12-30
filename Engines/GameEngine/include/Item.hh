@@ -7,8 +7,8 @@ class Item{
     std::string name;
   public:
   //Constructor
-    Item();
+    Item(std::string name){name = name;}
   //Methods
-    virtual int use();
-    virtual std::string giveName();
+    virtual int use()=0;
+    virtual std::string giveName()=0;
 };

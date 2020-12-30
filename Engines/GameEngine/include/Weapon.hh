@@ -9,7 +9,7 @@ class Weapon : public Item{
     int attackDownTime;
   public:
   //Constructor
-    Weapon();
+    Weapon(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime);
   //Methods
     int getDamage();
     bool isAuto();

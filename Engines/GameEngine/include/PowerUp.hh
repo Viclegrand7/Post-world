@@ -6,6 +6,6 @@ class PowerUp : public Item{
     int id;
   public:
   //Constructor
-    PowerUp();
+    PowerUp(std::string name, int id) : Item(name){id=id;}
   //Methods
 };
