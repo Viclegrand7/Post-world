@@ -9,3 +9,4 @@ Game/Engines/GraphicsEngine/debug/main
 Game/Engines/PhysicsEngine/debug/main
 Game/Engines/GameEngine/debug/main
 Game/debug/main
+*/.DS_Store
