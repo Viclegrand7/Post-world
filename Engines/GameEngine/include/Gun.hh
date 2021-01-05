@@ -20,4 +20,6 @@ class Gun : public Weapon{
     int getCurBull();
     void addBullet(int value);
     void reload();
+    bool attack();
+    void stopAttack();
 };

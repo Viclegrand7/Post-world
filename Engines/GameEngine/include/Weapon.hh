@@ -2,7 +2,7 @@
 #include "Item.hh"
 
 class Weapon : public Item{
-  private:
+  protected:
     int damage;
     bool isAuto;
     int timeBeforeAttack;
@@ -13,8 +13,8 @@ class Weapon : public Item{
   //Methods
     int getDamage();
     bool isAuto();
-    bool attack();
-    void stopAttack();
+    virtual bool attack();
+    virtual void stopAttack();
     virtual int getCurMag();
     virtual int getCurBull();
     virtual void addBullet(int value);

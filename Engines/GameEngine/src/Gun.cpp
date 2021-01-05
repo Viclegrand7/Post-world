@@ -35,3 +35,17 @@ void Gun::reload(){
     isReloading = false;
     precision = precision;
 }
+
+bool Gun::attack(){
+    
+    timeBeforeAttack += attackDownTime;
+    for (std::size_t i=0; i<attackDownTime; i++){
+        sleep(1000);
+        timeBeforeAttack--;
+    }
+    return (timeBeforeAttack==0);   
+}
+
+void Gun::stopAttack(){
+
+}

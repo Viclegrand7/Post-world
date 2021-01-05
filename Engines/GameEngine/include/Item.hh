@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 class Item{
-  private:
+  protected:
     std::string name;
   public:
   //Constructor

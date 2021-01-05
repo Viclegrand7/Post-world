@@ -15,10 +15,8 @@ bool Weapon::isAuto(){
     return isAuto;
 }
 
-bool attack(){
- //To complete   
-}
 
-void stopAttack(){
-    //To complete
+
+void Weapon::stopAttack(){
+    
 }

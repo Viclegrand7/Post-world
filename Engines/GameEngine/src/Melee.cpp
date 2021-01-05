@@ -11,5 +11,5 @@ float Melee::getRange(){
 }
 
 bool Melee::secondary(){
-    
+    //to complete
 }
