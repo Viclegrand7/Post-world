@@ -1,6 +1,22 @@
 #include "GrE_Gun.hh"
 
-void Graphic :: Gun :: draw() {
+void Graphic :: Gun :: draw(const Vector3f &position) {
+	glPushMatrix(); //Saves previous Matrix
+
+	glLoadIdentity();							//To get the right position, independant of where we were
+	glTranslatef(position.att_x, position.att_y, position.att_z); 	//Get to right position
+	glRotatef(att_curRotation.att_x,	1.0f, 0.0f, 0.0f);
+	glRotatef(att_curRotation.att_y,	0.0f, 1.0f, 0.0f);								//Rotations
+	glRotatef(att_curRotation.att_z,	0.0f, 0.0f, 1.0f);
+	glCallList(att_currentFrame < att_frames.size() ? att_frames[att_currentFrame] : att_outerLook); //Draws
+	//We draw the current frame. If we are passed the size of our frames, then that means the weapon is not equipped and we need to use outerLook
+
+	glPopMatrix(); //Back to the saved Matrix
+}
+
+void Graphic :: Gun :: draw(bool isInHands) {
+	if (!isInHands)
+		return;
 	glPushMatrix(); //Saves previous Matrix
 
 	glLoadIdentity();							//To get the right position, independant of where we were
@@ -20,7 +36,7 @@ void Graphic :: Gun :: attack() {
 
 void Graphic :: Gun :: reload() {
 	att_currentFrame = att_normalAnimation + att_attackAnimation; //For the gun, this is reload animation
-	att_curPosition = att_position;
+	att_curPosition = att_defPosition;
 	att_curRotation = att_rotation;
 }
 
@@ -30,7 +46,7 @@ bool Graphic :: Gun :: update(bool isAutoAndShooting) { //Will return true when 
 		att_curRotation = (att_aimRotation + att_curRotation) / 2;
 	}
 	else {
-		att_curPosition = (att_position + att_curPosition) / 2;
+		att_curPosition = (att_defPosition + att_curPosition) / 2;
 		att_curRotation = (att_rotation + att_curRotation) / 2;
 	}
 	++att_currentFrame;

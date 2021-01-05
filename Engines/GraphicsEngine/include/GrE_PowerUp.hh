@@ -12,16 +12,15 @@ namespace Graphic {
 		std :: vector <GLuint> att_activationLook;
 		unsigned int att_currentFrame;
 	public:
-		PowerUp(const std :: vector<GLuint> &activation, const Vector3f &position = {0.0f, 0.0f, 0.0f}, 
-			const Vector3f &rotation = {0.0f, 0.0f, 0.0f}, unsigned int cFrame = -1)
-		: Item(activation[0], position, rotation), att_activationLook(activation), att_currentFrame(cFrame) 
+		PowerUp(const std :: vector<GLuint> &activation, const Vector3f &rotation = {0.0f, 0.0f, 0.0f}, unsigned int cFrame = -1)
+		: Item(activation[0], rotation), att_activationLook(activation), att_currentFrame(cFrame) 
 		{
 			if (att_currentFrame >= att_activationLook.size()) 
 				att_currentFrame = att_activationLook.size();
 		}
-		PowerUp(const PowerUp *other) : Item(other->att_outerLook, other->att_position, other->att_rotation),
+		PowerUp(const PowerUp *other) : Item(other->att_outerLook, other->att_rotation),
 			att_activationLook(other->att_activationLook), att_currentFrame(other->att_currentFrame) {}
-		void draw();
+		void draw(const Vector3f &position);
 		bool update(bool isPickedUp);
 		~PowerUp() {}
 	};

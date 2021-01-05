@@ -12,13 +12,9 @@
 // 	glPopMatrix(); //Back to the saved Matrix
 // }
 
-Graphic :: Item :: Item(GLuint look, const Vector3f &position, const Vector3f &rotation) 
-		: att_outerLook(look), att_position(position), att_rotation(rotation) {}
+Graphic :: Item :: Item(GLuint look, const Vector3f &rotation) 
+		: att_outerLook(look), att_rotation(rotation) {}
 
-
-void Graphic :: Item :: setLocation(const Vector3f &pos) {
-	att_position = pos;
-}
 
 void Graphic :: Item :: setRotation(const Vector3f &rot) {
 	att_rotation = rot;

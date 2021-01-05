@@ -28,7 +28,7 @@ bool Graphic :: Player :: update(int width, int height, bool isFullScreen, bool 
 }
 
 void Graphic :: Player :: draw(Weapon *weapon) {
-	weapon->draw();
+	weapon->draw(true);
 }
 
 void Graphic :: Player :: attack(Weapon *weapon) {

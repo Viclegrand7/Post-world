@@ -23,7 +23,8 @@ namespace Graphic {
 		void attack();
 		void secondary();
 		void reload();
-		void draw();
+		void draw(const Vector3f &);	//Not in hands
+		void draw(bool);				//In hands
 		bool update(bool isAutoAndShooting);
 		~Gun() {}
 	};

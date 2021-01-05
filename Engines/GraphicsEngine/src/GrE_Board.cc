@@ -86,12 +86,11 @@ void Graphic :: Board :: readAllFromFile(std :: ifstream &myFile) {
 }
 
 void Graphic :: Board :: spawnEnnemy() {
-	att_ennemies.emplace_back(new Ennemy(att_ennemies[0]));	//New ennemy
+	att_ennemies.emplace_back(new Ennemy(att_ennemies[0]));	//New ennemy. Position is in physics
 }
 
-void Graphic :: Board :: spawnItem(const Vector3f &position, unsigned int id) {
+void Graphic :: Board :: spawnItem(unsigned int id) {
 	att_displayedItems.emplace_back(new Item(att_items[id])); //New item
-	att_displayedItems[att_displayedItems.size() - 1]->setLocation(position); //Moving that item to our desired pos
 }
 
 void Graphic :: Board :: changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber) {

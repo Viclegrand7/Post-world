@@ -37,7 +37,7 @@ namespace Graphic {
 		virtual void update() = 0; //Honestly can't do it here. It checks if ennemies die, if items are used,... Those information interest gameEngine
 		//They also require information like if they attack, die, get used,...
 		void spawnEnnemy();
-		void spawnItem(const Vector3f &position, unsigned int id);
+		void spawnItem(unsigned int id);
 		void changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber);
 		virtual ~Board();
 	};

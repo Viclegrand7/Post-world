@@ -1,9 +1,9 @@
 #include "GrE_PowerUp.hh"
 
-void Graphic :: PowerUp :: draw() {
+void Graphic :: PowerUp :: draw(const Vector3f &position) {
 	glPushMatrix(); //Saves previous Matrix
 
-	glTranslatef(att_position.att_x, att_position.att_y, att_position.att_z);
+	glTranslatef(position.att_x, position.att_y, position.att_z);
 	glRotatef(att_rotation.att_x,	1.0f, 0.0f, 0.0f);
 	glRotatef(att_rotation.att_y,	0.0f, 1.0f, 0.0f);
 	glRotatef(att_rotation.att_z,	0.0f, 0.0f, 1.0f);

@@ -1,10 +1,26 @@
 #include "GrE_Weapon.hh"
 
-void Graphic :: Weapon :: draw() {
+void Graphic :: Weapon :: draw(bool isInHands) {
+	if (!isInHands)
+		return;
 	glPushMatrix(); //Saves previous Matrix
 
 	glLoadIdentity();							//To get the right position, independant of where we were
-	glTranslatef(att_position.att_x, att_position.att_y, att_position.att_z); 	//Get to right position
+	glTranslatef(att_defPosition.att_x, att_defPosition.att_y, att_defPosition.att_z); 	//Get to right position
+	glRotatef(att_rotation.att_x,	1.0f, 0.0f, 0.0f);
+	glRotatef(att_rotation.att_y,	0.0f, 1.0f, 0.0f);							//Rotations
+	glRotatef(att_rotation.att_z,	0.0f, 0.0f, 1.0f);
+	glCallList(att_currentFrame < att_frames.size() ? att_frames[att_currentFrame] : att_outerLook); //Draws
+	//We draw the current frame. If we are passed the size of our frames, then that means the weapon is not equipped and we need to use outerLook
+
+	glPopMatrix(); //Back to the saved Matrix
+}
+
+void Graphic :: Weapon :: draw(const Vector3f &position) {
+	glPushMatrix(); //Saves previous Matrix
+
+	glLoadIdentity();							//To get the right position, independant of where we were
+	glTranslatef(position.att_x, position.att_y, position.att_z); 	//Get to right position
 	glRotatef(att_rotation.att_x,	1.0f, 0.0f, 0.0f);
 	glRotatef(att_rotation.att_y,	0.0f, 1.0f, 0.0f);							//Rotations
 	glRotatef(att_rotation.att_z,	0.0f, 0.0f, 1.0f);
