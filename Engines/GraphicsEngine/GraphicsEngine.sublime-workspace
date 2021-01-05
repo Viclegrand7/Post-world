@@ -523,16 +523,33 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 6,
+				"buffer_size": 2603,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "{\n\t\"folders\":\n\t[\n\t\t{\n\t\t\t\"path\": \"bin/..\",\n\t\t\t\"file_exclude_pattersn\": [\"*.sublime-project\"]\n\t\t}\n\t],\n\n\t\"build_systems\":\n\t[\n\t\t{\n\t\t\t\"name\": \"Build Debug\",\n\t\t\t\"working_dir\": \"${project_path}\",\n\t\t\t\"cmd\": \"cd obj && g++ -c ../src/*.cc -std=c++14 -g -Wall -m64 -I ../include -I ../SDL2 && cd .. && g++ ./obj/*.o -o debug/main -lGL -lGLU -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net\",\n//\t\t\t\"cmd\": \"cd obj && g++ -c ../src/*.cc -std=c++14 -g -Wall -m64 -I ../include -I ../SDL2 && cd .. && g++ ./obj/*.o -o debug/main -L ./SDL2/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_net\", //Does not work for some reason when adding libs where they're supposed to be\n//Also.... could not -lSDL2main because it does not exist on my computer :)\n\t\t\t\"selector\": \"source.c++\",\n\t\t\t\"shell\": true\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Build Release\",\n\t\t\t\"working_dir\": \"${project_path}\",\n\t\t\t\"cmd\": \"cd obj && g++ -c ../src/*.cc -std=c++14 -m64 -O3 -Wall -I ../include -I ../SDL2 -DNDEBUG && cd .. && g++ ./obj/*.o -o bin/main -s -lGL -lGLU -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -DNDEBUG\",\n//\t\t\t\"cmd\": \"cd obj && g++ -c ../src/*.cc -std=c++14 -m64 -O3 -Wall -I ../include -I ../SDL2 && cd .. && g++ ./obj/*.o -o bin/main -s -L ./SDL2/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_net\", // Does not work for some reason when adding libs where they're supposed to be\n//Reason seems to be it needs a lot of other libs that exist by default and which I do not want to add too because heck, I don't know what they are\n\t\t\t\"selector\": \"source.c++\",\n\t\t\t\"shell\": true\n\t\t}\n\t]\n}",
+			"file": "/home/victor/Desktop/Post-world/.gitignore",
 			"settings":
 			{
-				"buffer_size": 1542,
+				"buffer_size": 290,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "res/pistol/pistolet_000001.mtl",
+			"settings":
+			{
+				"buffer_size": 838,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "GraphicsEngine.sublime-project",
+			"settings":
+			{
+				"buffer_size": 752,
 				"line_ending": "Unix"
 			}
 		}
@@ -747,7 +764,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -756,15 +773,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6,
+						"buffer_size": 2603,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6,
-								6
+								0,
+								0
 							]
 						],
 						"settings":
@@ -775,23 +792,80 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "/home/victor/Desktop/Post-world/.gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1542,
+						"buffer_size": 290,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1542,
-								1542
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "res/pistol/pistolet_000001.mtl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "GraphicsEngine.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -803,7 +877,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -848,7 +922,7 @@
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "Build Debug",
+	"pinned_build_system": "Test Debug",
 	"project": "GraphicsEngine.sublime-project",
 	"replace":
 	{

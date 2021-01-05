@@ -5,10 +5,10 @@ RLSOPT := 1
 
 
 CC := g++
-CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wdouble-promotion -Wunreachable-code \
--Wuninitialized -Wfloat-equal -Weffc++ -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
--I $(INCDIR)
-RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR)
+CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
+-Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
+-I $(INCDIR) -I /usr/include
+RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I /usr/include
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
@@ -22,11 +22,12 @@ endif
 
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
-###############################################################################################################""
-OBJ := test.o
+###############################################################################################################
+GCH := GrE_Camera.gch GrE_Player.gch Vector3f.gch GrE_Item.gch GrE_Weapon.gch GrE_Gun.gch GrE_PowerUp.gch \
+GrE_Particule.gch GrE_Loader.gch GrE_Level.gch GrE_Board.gch GrE_Ennemy.gch
 
-GCH := test.gch
-###############################################################################################################""
+OBJ := $(patsubst %.gch, %.o, $(GCH))
+###############################################################################################################
 
 INCDIR := include
 OBJDIR := obj
@@ -42,27 +43,28 @@ POSTINCLUDE = mv -f $(GCHDEPDIR)/$*.Td $(GCHDEPDIR)/$*.d && touch $@
 COMPILE = $(CC) $(DEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 COMPINC = $(CC) $(GCHDEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 
+OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
-
-all : $(GCHDIR)/$(GCH) $(OBJDIR)/$(OBJ) 
+all : $(GCHS) $(OBJS)
 ifeq (0, $(RLSOPT))
 all : $(DBGDIR)/$(BIN)
 endif
 
-$(RLSDIR)/$(BIN) : $(OBJDIR)/$(OBJ) $(DEPDIR)/$(DEPFILES)
-	$(CC) $(REALFLAGS) $(OBJDIR)/$(OBJ) $(LDLIBS) -o $(RLSDIR)/$(BIN)
+$(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
 
-$(DBGDIR)/$(BIN) : $(OBJDIR)/$(OBJ) $(DEPDIR)/$(DEPFILES)
-	$(CC) $(REALFLAGS) $(OBJDIR)/$(OBJ) $(LDLIBS) -o $(DBGDIR)/$(BIN)
+$(DBGDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
 
-
-$(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
-	$(COMPINC) $(OUTPUT_OPTION) $<
-	$(POSTINCLUDE)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cc $(DEPDIR)/%.d | $(DEPDIR)
-	$(COMPILE) $(OUTPUT_OPTION) $<
+	$(COMPILE) -o $@ $<
 	$(POSTCOMPILE)
+
+$(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
+	$(COMPINC) -o $@ $<
+	$(POSTINCLUDE)
 
 $(DEPDIR) : ; @mkdir -p $@
 $(GCHDIR) : ; @mkdir -p $@
@@ -70,12 +72,12 @@ $(GCHDEPDIR) : ; @mkdir -p $@
 
 DEPFILES := $(OBJ:%.o=$(DEPDIR)/%.d) $(GCH:%.gch=$(GCHDEPDIR)/%.d)
 $(DEPFILES):
-sinclude $(wildcard $(DEPFILES))
+include $(wildcard $(DEPFILES))
 
 
 .PHONY : clean testDebug testRelease nsfw love all
 clean : 
-	rm $(BIN) $(OBJDIR)/$(OBJ) $(GCHDIR)/$(GCH)
+	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
 testDebug : REALFLAGS = $(CFLAGS)
 testDebug : all $(DBGDIR)/$(BIN)

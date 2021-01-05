@@ -12,14 +12,14 @@
 		{
 			"name": "Test Debug",
 			"working_dir": "${project_path}",
-			"cmd": "make testDebug",
+			"cmd": "make testDebug && ./debug/test",
 			"selector": "source.c++",
 			"shell": true
 		},
 		{
 			"name": "Test Release",
 			"working_dir": "${project_path}",
-			"cmd": "make testRelease",
+			"cmd": "make testRelease && ./bin/test",
 			"selector": "source.c++",
 			"shell": true
 		},

@@ -91,7 +91,7 @@ void Camera :: control(const Render &window, bool isFullScreen) {
 	}
 	glRotatef(-att_camPitch, 	1, 0, 0);
 	glRotatef(-att_camYaw, 		0, 1, 0);	//In OPENGL, Y is up-down
-	glRotatef(-att_camRoll, 	0, 0, 1); //I think?
+	glRotatef(-att_camRoll, 	0, 0, 1); 	//I think?
 }
 
 void Camera :: updateCamera() {
