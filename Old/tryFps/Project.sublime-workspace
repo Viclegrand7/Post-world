@@ -324,10 +324,27 @@
 	"buffers":
 	[
 		{
-			"file": "Other",
+			"file": "include/Game.hh",
 			"settings":
 			{
-				"buffer_size": 81,
+				"buffer_size": 1554,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Game.cc",
+			"settings":
+			{
+				"buffer_size": 12822,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Camera.hh",
+			"settings":
+			{
+				"buffer_size": 1792,
 				"line_ending": "Unix"
 			}
 		}
@@ -376,12 +393,17 @@
 	},
 	"expanded_folders":
 	[
-		"/home/victor/Desktop/Post-world",
-		"/home/victor/Desktop/Post-world/res",
-		"/home/victor/Desktop/Post-world/res/img"
+		"/home/victor/Desktop/Post-world/Old/tryFps",
+		"/home/victor/Desktop/Post-world/Old/tryFps/bin",
+		"/home/victor/Desktop/Post-world/Old/tryFps/debug",
+		"/home/victor/Desktop/Post-world/Old/tryFps/include",
+		"/home/victor/Desktop/Post-world/Old/tryFps/src"
 	],
 	"file_history":
 	[
+		"/home/victor/Desktop/Post-world/Old/tryFps/include/Camera.hh",
+		"/home/victor/Desktop/Post-world/Old/tryFps/Project.sublime-project",
+		"/home/victor/Desktop/Post-world/Old/tryFps/Other",
 		"/home/victor/Desktop/Post-world/reminder.txt",
 		"/home/victor/Desktop/Post-world/src/Utility.cc",
 		"/home/victor/Desktop/Post-world/include/Utility.hh",
@@ -462,7 +484,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -505,16 +527,16 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Other",
+					"file": "include/Game.hh",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 81,
+						"buffer_size": 1554,
 						"regions":
 						{
 						},
@@ -527,7 +549,66 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 855.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Game.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 684.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/Camera.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -541,7 +622,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -582,7 +663,7 @@
 	"project": "Project.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
