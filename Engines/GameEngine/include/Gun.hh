@@ -14,7 +14,7 @@ class Gun : public Weapon{
 
   public:
   //Conctructor
-    Gun(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime, int maxMagazine, int maxBullet, float precision;
+    Gun(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime, int maxMagazine, int maxBullet, float precision);
   //Methods
     int getCurMag();
     int getCurBull();

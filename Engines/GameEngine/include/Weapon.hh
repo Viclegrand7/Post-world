@@ -4,7 +4,7 @@
 class Weapon : public Item{
   protected:
     int damage;
-    bool isAuto;
+    bool _isAuto;
     int timeBeforeAttack;
     int attackDownTime;
   public:

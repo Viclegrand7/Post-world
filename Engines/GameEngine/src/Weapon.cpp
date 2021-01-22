@@ -2,7 +2,7 @@
 
 Weapon::Weapon(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime) : Item(name){
     damage = damage;
-    isAuto = isAuto;
+    _isAuto = isAuto;
     timeBeforeAttack = timeBeforeAttack;
     attackDownTime = attackDownTime;
 }
@@ -13,10 +13,4 @@ int Weapon::getDamage(){
 
 bool Weapon::isAuto(){
     return isAuto;
-}
-
-
-
-void Weapon::stopAttack(){
-    
 }

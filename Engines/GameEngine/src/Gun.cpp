@@ -37,7 +37,6 @@ void Gun::reload(){
 }
 
 bool Gun::attack(){
-    
     timeBeforeAttack += attackDownTime;
     for (std::size_t i=0; i<attackDownTime; i++){
         sleep(1000);

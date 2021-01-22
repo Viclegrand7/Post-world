@@ -60,7 +60,7 @@ $(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
 	$(COMPINC) $(OUTPUT_OPTION) $<
 	$(POSTINCLUDE)
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.cc $(DEPDIR)/%.d | $(DEPDIR)
+$(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(DEPDIR)/%.d | $(DEPDIR)
 	$(COMPILE) $(OUTPUT_OPTION) $<
 	$(POSTCOMPILE)
 

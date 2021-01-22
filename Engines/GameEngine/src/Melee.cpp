@@ -11,5 +11,10 @@ float Melee::getRange(){
 }
 
 bool Melee::secondary(){
-    //to complete
+    timeBeforeAttack += secondaryDownTime;
+    for (std::size_t i=0; i<secondaryDownTime; i++){
+        sleep(1000);
+        timeBeforeAttack--;
+    }
+    return (timeBeforeAttack==0);   
 }
