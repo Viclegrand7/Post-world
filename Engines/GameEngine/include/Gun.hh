@@ -1,5 +1,6 @@
 #pragma once
 #include "Weapon.hh"
+#include "Character.hh"
 
 class Gun : public Weapon{
   private:
@@ -22,4 +23,5 @@ class Gun : public Weapon{
     void reload();
     bool attack();
     void stopAttack();
+    bool secondary();
 };

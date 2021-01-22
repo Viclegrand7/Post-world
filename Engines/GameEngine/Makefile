@@ -23,9 +23,9 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := PhE_Collision.gch
+GCH := PhE_Collision.hh
 
-OBJ := $(patsubst %.gch, %.o, $(GCH))
+OBJ := $(patsubst %.hh, %.o, $(GCH))
 ###############################################################################################################
 
 GAMEINCDIR := ../../Game/include
@@ -35,7 +35,7 @@ SRCDIR := src
 
 DEPDIR := $(OBJDIR)/.deps
 GCHDEPDIR := $(INCDIR)/.deps
-GCHDIR := $(INCDIR)/.gch
+GCHDIR := $(INCDIR)/.hh
 
 POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d && touch $@
 POSTINCLUDE = mv -f $(GCHDEPDIR)/$*.Td $(GCHDEPDIR)/$*.d && touch $@
@@ -44,7 +44,7 @@ COMPILE = $(CC) $(DEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 COMPINC = $(CC) $(GCHDEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 
 OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
-GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
+GCHS := $(patsubst %.hh, $(GCHDIR)/%.hh, $(GCH))
 
 all : $(GCHS) $(OBJS)
 ifeq (0, $(RLSOPT))
@@ -62,7 +62,7 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(DEPDIR)/%.d | $(DEPDIR)
 	$(COMPILE) -o $@ $<
 	$(POSTCOMPILE)
 
-$(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
+$(GCHDIR)/%.hh : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
 	$(COMPINC) -o $@ $<
 	$(POSTINCLUDE)
 
@@ -70,14 +70,14 @@ $(DEPDIR) : ; @mkdir -p $@
 $(GCHDIR) : ; @mkdir -p $@
 $(GCHDEPDIR) : ; @mkdir -p $@
 
-DEPFILES := $(OBJ:%.o=$(DEPDIR)/%.d) $(GCH:%.gch=$(GCHDEPDIR)/%.d)
+DEPFILES := $(OBJ:%.o=$(DEPDIR)/%.d) $(GCH:%.hh=$(GCHDEPDIR)/%.d)
 $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 
 .PHONY : clean testDebug testRelease nsfw love all
 clean : 
-	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
+	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.hh, $(GCHDIR)/%.hh, $(GCH))
 
 testDebug : REALFLAGS = $(CFLAGS)
 testDebug : all $(DBGDIR)/$(BIN)
