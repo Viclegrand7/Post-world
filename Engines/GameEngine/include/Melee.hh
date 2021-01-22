@@ -9,7 +9,7 @@ class Melee : public Weapon{
 
   public:
   //Conctructor
-    Melee(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime, float range, int secondaryDownTime, int secondaryCost);
+    Melee(std::string name, int damage, bool isAuto, int timeBeforeAttack, int attackDownTime, float range, int secondaryDownTime);
   //Methods
     float getRange();
     bool secondary();
