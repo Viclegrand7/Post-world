@@ -39,6 +39,7 @@ namespace Graphic {
 		void spawnEnnemy();
 		void spawnItem(unsigned int id);
 		void changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber);
+		void drawUI(int nbMags, int nbBullets, unsigned int HP);
 		virtual ~Board();
 	};
 }

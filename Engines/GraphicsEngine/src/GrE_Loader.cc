@@ -260,7 +260,11 @@ std :: vector <GLuint> Graphic :: Loader :: loadAnimation(const std :: string &n
 	std :: string tmpName;
 	std :: ifstream myFile;
 	for (int i = 1 ; i < 1000000 ; ++i) {//We get every single possibility
+#ifndef NSFW
+		tmpName = "." + name;
+#else
 		tmpName = name; //Refreshes the name
+#endif
 		if (i < 10)
 			tmpName += "_00000" + std :: to_string(i) + ".obj";
 		else if (i < 100)

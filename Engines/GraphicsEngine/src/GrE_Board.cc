@@ -117,6 +117,18 @@ void Graphic :: Board :: draw() { //This cannot work because we don't know posit
 }
 */
 
+void Graphic :: Board :: drawUI(int nbMags, int nbBullets, unsigned int HP) {
+	glPushMatrix(); //Saves previous Matrix
+
+	glLoadIdentity();							//To get the right position, independant of where we were
+	glTranslatef(1.f, -1.f, -1.f); 	//Get to right position |||||||||||||||||||||-EXPERIMENTAL
+//	if (nbMags < 0) //Infinite bullets
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	glPopMatrix(); //Back to the saved Matrix
+}
+
 Graphic :: Board :: ~Board() {
 	for (std :: map <std :: string, GLuint> :: iterator it = att_textures.begin() ; it != att_textures.end() ; ++it)
 		glDeleteTextures(1, &it->second);

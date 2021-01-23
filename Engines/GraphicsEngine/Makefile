@@ -7,7 +7,7 @@ RLSOPT := 1
 CC := g++
 CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
 -Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
--I $(INCDIR) -I /usr/include
+-I $(INCDIR) -I /usr/include -I $(GAMEINCDIR)
 RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I /usr/include
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
@@ -29,6 +29,7 @@ GrE_Particule.gch GrE_Loader.gch GrE_Level.gch GrE_Board.gch GrE_Ennemy.gch
 OBJ := $(patsubst %.gch, %.o, $(GCH))
 ###############################################################################################################
 
+GAMEINCDIR := ../../Game/include
 INCDIR := include
 OBJDIR := obj
 SRCDIR := src
@@ -88,8 +89,10 @@ testRelease : all $(RLSDIR)/$(BIN)
 debug : REALFLAGS = $(CFLAGS)
 debug : all
 
-nsfw :
+nsfw : clean
 	@echo "That was possibly the worst idea you could have..."
+nsfw : REALFLAGS += -DNSFW
+nsfw : all
 
 love : 
 	@echo "not war"
