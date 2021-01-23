@@ -9,6 +9,7 @@
 
 namespace Graphic {
 	class Gun : public Weapon {
+	protected:
 		Vector3f att_aimPosition; //Where to place the gun when aiming
 		Vector3f att_curPosition; //Basically: Are we aiming or not?
 		Vector3f att_aimRotation; //How to rotate the gun when aiming

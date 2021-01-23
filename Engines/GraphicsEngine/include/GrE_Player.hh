@@ -6,9 +6,10 @@
 #include "GrE_Weapon.hh"
 
 namespace Graphic {
-	class Weapon;
+//	class Weapon;
 
 	class Player {
+	protected:
 		float att_head; //Make some head movement while we walk
 		float att_speed;
 		float att_sprintSpeed;

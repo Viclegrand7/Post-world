@@ -519,6 +519,31 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "include/GrE_Weapon.hh",
+			"settings":
+			{
+				"buffer_size": 1793,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/GrE_Weapon.cc",
+			"settings":
+			{
+				"buffer_size": 3019,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/GrE_PowerUp.cc",
+			"settings":
+			{
+				"buffer_size": 1122,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -564,11 +589,37 @@
 	},
 	"expanded_folders":
 	[
-		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine",
-		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/src"
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/obj",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/src"
 	],
 	"file_history":
 	[
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Board.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Camera.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Ennemy.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Gun.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Item.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Level.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Loader.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Particule.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Player.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/Vector3f.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GameEngine/Makefile",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/Makefile",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/PhysicsEngine/src/PhE_Player.cc",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/PhysicsEngine/include/PhE_Player.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/PhysicsEngine/include/PhE_Board.hh",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/PhysicsEngine/src/PhE_Board.cc",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/src/GrE_Camera.cc",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/src/GrE_Player.cc",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/src/GrE_Board.cc",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/obj/make",
+		"/home/victor/Desktop/NPost-world/Post-world/Game/clean",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/GraphicsEngine.sublime-project",
+		"/home/victor/Desktop/NPost-world/Post-world/Engines/PhysicsEngine/Makefile",
+		"/home/victor/Desktop/NPost-world/Post-world/Game/FPS.sublime-project",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/Makefile",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/src/GrE_Loader.cc",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/src/GrE_Ennemy.cc",
@@ -672,35 +723,11 @@
 		"/home/victor/Desktop/Post-world/Old/fps/text.cpp",
 		"/home/victor/Desktop/Post-world/Old/fps/functions.cpp",
 		"/home/victor/Downloads/message (2).txt",
-		"/home/victor/Desktop/Post-world/Old/fps/functions.h",
-		"/home/victor/Desktop/Post-world/Old/fps/main.cpp",
-		"/home/victor/Downloads/TestCase.cc",
-		"/home/victor/Downloads/matrix.hh",
-		"/home/victor/Downloads/tableau2D.hh",
-		"/home/victor/Downloads/graillat.txt",
-		"/home/victor/Desktop/Cpp/tp4-Viclegrand7/tests/TestCase.cc",
-		"/home/victor/.config/sublime-text-3/Packages/Default/exec.py",
-		"/home/victor/Desktop/MyTP/Debugger.cpp",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/include/SDL_config.h.cmake",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/CMakeLists.txt",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/SDL2Config.cmake",
-		"/home/victor/Downloads/SDL2-2.0.12.tar.gz.sig",
-		"/home/victor/Desktop/DB/meReminder.txt",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/include/test_hs_operator.h",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.out",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.bak",
-		"/home/victor/Downloads/MyTP/tests/TestCase.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/test_hs_operator_V2.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/nrpyramid.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/include/nrpyramid.h",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/test_hs_operator.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/search_alpha.cpp",
-		"/home/victor/Downloads/Debugger.cpp",
-		"/home/victor/Desktop/Lea/Test.svg"
+		"/home/victor/Desktop/Post-world/Old/fps/functions.h"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -731,8 +758,96 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "include/GrE_Weapon.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1793,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/GrE_Weapon.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3018,
+								3018
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 741.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/GrE_PowerUp.cc",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 30.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -779,7 +894,7 @@
 	"project": "GraphicsEngine.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 66.0
 	},
 	"save_all_on_build": true,
 	"select_file":

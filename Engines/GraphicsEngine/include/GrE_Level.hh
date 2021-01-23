@@ -8,6 +8,7 @@
 
 namespace Graphic {
 	class Level {
+	protected:
 		std :: vector <GLuint> att_setup;			//Background, obstacles,...
 		std :: vector <Particule *> att_particules;		//Possible particles
 		std :: vector <Particule *> att_curParticules;	//Current Particles

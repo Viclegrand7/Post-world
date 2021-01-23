@@ -12,6 +12,7 @@
 
 namespace Physic {
 	class Board {
+	protected:
 		Player *att_player;
 		std :: vector <Ennemy *> att_ennemies;
 		std :: vector <Item *> att_items;

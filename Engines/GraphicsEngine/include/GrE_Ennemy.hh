@@ -7,6 +7,7 @@
 
 namespace Graphic {
 	class Ennemy {
+	protected:
 		std :: vector <GLuint> att_frames;
 		unsigned int att_walkAnimation; //Length of walking animation
 		unsigned int att_attackAnimation; //Length of attackAnimation

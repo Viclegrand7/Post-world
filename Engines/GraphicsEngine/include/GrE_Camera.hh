@@ -6,6 +6,7 @@
 
 namespace Graphic {
 	class Camera {
+	protected:
 		float att_pitch;
 		float att_yaw;
 		float att_roll;
