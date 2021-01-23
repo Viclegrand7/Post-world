@@ -14,7 +14,7 @@ class Character {
   //Constructors
     Character();
     Character(std::string name);
-    Character(std::string name, int health);
+    Character(std::string name, int health); //A single constructor is required with default values
   //Methods
     int getHealth();
     void getHit(int Value);

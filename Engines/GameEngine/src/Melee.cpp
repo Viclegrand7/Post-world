@@ -11,7 +11,7 @@ float Melee::getRange(){
 
 bool Melee::secondary(){
     timeBeforeAttack += secondaryDownTime;
-    for (std::size_t i=0; i<secondaryDownTime; i++){
+    for (std::size_t i=0; i<secondaryDownTime; i++){ //Same as Weapon and Gun
         sleep(1000);
         timeBeforeAttack--;
     }

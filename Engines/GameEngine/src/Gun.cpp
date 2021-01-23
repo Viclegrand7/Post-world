@@ -25,21 +25,21 @@ void Gun::addBullet(int value){
         curBullet = maxBullet;
 }
 
-void Gun::reload(){
-    curMagazine = maxMagazine;
-    maxMagazine = maxMagazine;
+void Gun::reload(){             //This function should reload the weapon, aka change the magazine
+    curMagazine = maxMagazine;  
+    maxMagazine = maxMagazine;  //Why?
     curBullet = maxBullet;
-    maxBullet = maxBullet;
+    maxBullet = maxBullet;      //Why?
     isAiming = false;
     isShooting = false;
-    isReloading = false;
+    isReloading = false;        //Should be true I think
     precision = precision;
 }
 
 bool Gun::attack(){
     isShooting = true;  
     timeBeforeAttack += attackDownTime;
-    for (std::size_t i=0; i<attackDownTime; i++){
+    for (std::size_t i=0; i<attackDownTime; i++){   //Same as Weapon, something is off here
         sleep(1000);
         timeBeforeAttack--;
     }

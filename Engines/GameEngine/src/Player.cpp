@@ -36,8 +36,8 @@ void Player::prevWeapon(){
     else if (currentWeapon == 1)
         currentWeapon = weapons.size();
     else
-        currentWeapon --;
-    changeWeapon(currentWeapon);
+        currentWeapon --;           //Both weapon 0 and 2 go to Weapon 1
+    changeWeapon(currentWeapon);    //You already did it
 }
 
 void Player::nextWeapon(){
@@ -51,8 +51,9 @@ void Player::nextWeapon(){
 }
 
 bool Player::dropWeapon(){
-    weapons.erase(weapons.begin()+currentWeapon-1);
+    weapons.erase(weapons.begin()+currentWeapon-1); //Should not be able to drop the knife. Maybe it's better if it returns a Weapon* actually, so it goes on the floor. Not sure
     currentWeapon = 0;
+    //Missing a return
 }
 
 int Player::getCurMag(){
@@ -80,7 +81,7 @@ void Player::reload(){
 }
 
 void Player::attack(){
-    while (weapons[currentWeapon]->isAuto()){
+    while (weapons[currentWeapon]->isAuto()){ //Error, while(1)
         weapons[currentWeapon]->attack();
     }
 }
