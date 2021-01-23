@@ -27,12 +27,10 @@ void Gun::addBullet(int value){
 
 void Gun::reload(){             //This function should reload the weapon, aka change the magazine
     curMagazine = maxMagazine;  
-    maxMagazine = maxMagazine;  //Why?
     curBullet = maxBullet;
-    maxBullet = maxBullet;      //Why?
     isAiming = false;
     isShooting = false;
-    isReloading = false;        //Should be true I think
+    isReloading = true;        //Should be true I think
     precision = precision;
 }
 

@@ -11,13 +11,11 @@ bool Ennemy::isDead(){
 }
 
 Item Ennemy::randomDrop(){
-    int ind = rand() % 3;   //Should return an unsigned int between 0 and Board.att_itemsList.size() or something
-    Item& I();              //Why?
+    unsigned int ind = rand() % 3;   //Should return an unsigned int between 0 and Board.att_itemsList.size() or something
     switch (ind)
     {
     case 0:
         Melee M();          //Creates the default melee, may not be what we want
-        I = M;
         break;
     case 1:
         Gun G();

@@ -81,7 +81,7 @@ void Player::reload(){
 }
 
 void Player::attack(){
-    while (weapons[currentWeapon]->isAuto()){ //Error, while(1)
+    while (1){ 
         weapons[currentWeapon]->attack();
     }
 }

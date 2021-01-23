@@ -8,8 +8,8 @@
 
 class Character {
   private:
-    std::string name; //= "Generic Character" by default
-    int health; //=100 by default
+    std::string _name; //= "Generic Character" by default
+    int _health; //=100 by default
   public:
   //Constructors
     Character();
