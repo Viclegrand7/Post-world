@@ -10,11 +10,11 @@ class Player : public Character{
     bool isSprinting;
     std::vector<Weapon *>  weapons;
     Melee* knife;
-    unsigned int currentWeapon;
+    unsigned int currentWeapon=0; // knife
 
   public:
   //Constructor
-    Player();
+    Player(std::string);
   //Methods
     int getMaxHealth();
     int getStamina();
@@ -31,7 +31,5 @@ class Player : public Character{
     void use(Item& object);
     bool secondary();
     void reload();
-    int getHealth();
-    void getHit(int value);
     void attack();
 };

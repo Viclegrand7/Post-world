@@ -15,7 +15,5 @@ class Ennemy : public Character{
     int getDamage();
     bool isDead();
     Item randomDrop();
-    int getHealth();
-    void getHit(int value);
     void attack();
 };

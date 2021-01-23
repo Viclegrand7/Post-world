@@ -1,4 +1,9 @@
 #include "Character.hh"
+#include "Player.hh"
+#include "Ennemy.hh"
+#include "Gun.hh"
+#include "Melee.hh"
+#include "PowerUp.hh"
 
 int main(){
     Character c;

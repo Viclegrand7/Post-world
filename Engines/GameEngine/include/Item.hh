@@ -10,6 +10,10 @@ class Item{
   //Constructor
     Item(std::string name){name = name;}
   //Methods
-    virtual int use()=0;
-    virtual std::string giveName()=0;
+    int use(){
+      return 1;
+    };
+    std::string giveName(){
+      return name;
+    }
 };

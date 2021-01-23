@@ -37,14 +37,20 @@ void Gun::reload(){
 }
 
 bool Gun::attack(){
+    isShooting = true;  
     timeBeforeAttack += attackDownTime;
     for (std::size_t i=0; i<attackDownTime; i++){
         sleep(1000);
         timeBeforeAttack--;
     }
-    return (timeBeforeAttack==0);   
+    return isShooting;
 }
 
 void Gun::stopAttack(){
+    isShooting = false;
+}
 
+bool Gun::secondary(){
+    isAiming = !isAiming;
+    return isAiming;
 }
