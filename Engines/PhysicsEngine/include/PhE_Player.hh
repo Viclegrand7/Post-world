@@ -16,8 +16,9 @@ namespace Physic {
 		void testCollisionWalls(std :: vector <CollisionBox *> wallList); //Physics, bump into them
 	public:
 		Player(const CollisionSphere &sphere) : att_hitBox(sphere) {}
-		void attack(const Vector3f &pos, const Vector3f &dir, std :: vector <Ennemy *> ennemyList, std :: vector <Obstacle *> wallList);
-		void update(std :: vector <Item *> itemList, std :: vector <Ennemy *> ennemyList, std :: vector <Obstacle *> wallList);
+		const Vector3f &givePos() const {return att_hitBox.att_center;}
+		void setPos(const Vector3f &pos);
+		unsigned int update(std :: vector <Item *> itemList, std :: vector <Ennemy *> ennemyList, std :: vector <CollisionBox *> wallList);
 	};
 }
 

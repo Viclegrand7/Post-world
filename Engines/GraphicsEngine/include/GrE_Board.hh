@@ -38,7 +38,7 @@ namespace Graphic {
 		//They also require information like if they attack, die, get used,...
 		void spawnEnnemy();
 		void spawnItem(unsigned int id);
-		void changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber);
+		void changeLevel(float spawnPitch, float spawnYaw, unsigned int levelNumber);
 		void drawUI(int nbMags, int nbBullets, unsigned int HP);
 		virtual ~Board();
 	};
