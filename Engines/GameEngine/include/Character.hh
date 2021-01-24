@@ -17,5 +17,5 @@ class Character {
   //Methods
     int getHealth();
     void getHit(int Value);
-    virtual void toattack()=0;
+    virtual void toAttack()=0;
 };

@@ -49,8 +49,8 @@ void Player::nextWeapon(){
         currentWeapon ++;
 }
 
-Item* Player::dropWeapon(){
-    Item* drop;
+Weapon* Player::dropWeapon(){
+    Weapon* drop;
     if (currentWeapon != 0){
         drop = weapons[currentWeapon-1];
         weapons.erase(weapons.begin()+(currentWeapon-1)); //Should not be able to drop the knife. Maybe it's better if it returns a Weapon* actually, so it goes on the floor. Not sure
@@ -74,8 +74,8 @@ int Player::getCurBull(){
     return 0;
 }
 
-Item* Player::use(Item& object){
-    Item* drop = NULL;
+Weapon* Player::use(Item& object){
+    Weapon* drop = NULL;
     int type = object.use();
     if (type >= 0){
         switch (type)
@@ -92,18 +92,18 @@ Item* Player::use(Item& object){
     }
     else{
         if (type == -2 && knife == NULL){
-            knife = &object;
+            knife = (Melee* )&object;
             currentWeapon = 0;
         }
         else{
             if (weapons.size()<2){
-                weapons.push_back(&object);
+                weapons.push_back((Weapon*)&object);
                 currentWeapon = weapons.size();
             }
             else
             {
                 drop = weapons[currentWeapon-1];
-                weapons[currentWeapon-1] = &object;
+                weapons[currentWeapon-1] = (Weapon*)&object;
             }
         }
     }
@@ -118,7 +118,7 @@ void Player::reload(){
     weapons[currentWeapon]->reload();
 }
 
-void Player::toattack(){
+void Player::toAttack(){
     while (1){ 
         weapons[currentWeapon]->attack();
     }

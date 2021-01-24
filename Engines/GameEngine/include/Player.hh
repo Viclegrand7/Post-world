@@ -8,8 +8,8 @@ class Player : public Character{
     int maxStamina;
     int score;
     bool isSprinting;
-    std::vector<Item *>  weapons; 
-    Item* knife; //
+    std::vector<Weapon *>  weapons; 
+    Melee* knife; //
     unsigned int currentWeapon; // knife: 0
 
   public:
@@ -28,12 +28,12 @@ class Player : public Character{
     void changeWeapon(unsigned int num); //num between 0 to 2
     void prevWeapon();
     void nextWeapon();
-    Item* dropWeapon();
+    Weapon* dropWeapon();
     int getCurMag();
     int getCurBull();
-    Item* use(Item& object); 
+    Weapon* use(Item& object); 
     bool secondary();
     void reload();
-    void toattack();
+    void toAttack();
     int getWeaponDamage();
 };
