@@ -93,9 +93,8 @@ void Graphic :: Board :: spawnItem(unsigned int id) {
 	att_displayedItems.emplace_back(new Item(att_items[id])); //New item
 }
 
-void Graphic :: Board :: changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber) {
+void Graphic :: Board :: changeLevel(float spawnPitch, float spawnYaw, unsigned int levelNumber) {
 	att_currentLevel = levelNumber;						//Changing level
-	att_player->att_camera.setLocation(spawnPosition);	//Changing position
 	att_player->att_camera.lookAt(spawnPitch, spawnYaw);//Changing where the player looks
 }
 
@@ -122,7 +121,12 @@ void Graphic :: Board :: drawUI(int nbMags, int nbBullets, unsigned int HP) {
 
 	glLoadIdentity();							//To get the right position, independant of where we were
 	glTranslatef(1.f, -1.f, -1.f); 	//Get to right position |||||||||||||||||||||-EXPERIMENTAL
-//	if (nbMags < 0) //Infinite bullets
+	if (nbMags < 0) //Infinite bullets
+		std :: cout << "Infinity" << std :: endl;
+	else {
+		std :: cout << nbMags << "  |  " << nbBullets << std :: endl;
+	}
+	std :: cout << HP << std :: endl;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

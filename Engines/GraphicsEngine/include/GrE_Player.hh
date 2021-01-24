@@ -6,9 +6,10 @@
 #include "GrE_Weapon.hh"
 
 namespace Graphic {
-	class Weapon;
+//	class Weapon;
 
 	class Player {
+	protected:
 		float att_head; //Make some head movement while we walk
 		float att_speed;
 		float att_sprintSpeed;
@@ -17,7 +18,7 @@ namespace Graphic {
 
 		Player(Camera cam = Camera(), float speed = 0.2, float sprintSpeed = 0.5)
 		: att_head(0), att_speed(speed), att_sprintSpeed(sprintSpeed), att_camera(cam) {}
-		bool update(int width, int height, bool isFullScreen, bool isRunning, float gravity);
+		bool update(Vector3f &location, int width, int height, bool isFullScreen, bool isRunning, float gravity);
 		void draw(Weapon *weapon);
 		void attack(Weapon *weapon);
 		void secondary(Weapon *weapon);

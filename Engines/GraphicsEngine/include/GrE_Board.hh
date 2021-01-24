@@ -14,7 +14,7 @@
 
 namespace Graphic {
 	class Board : public Loader { //So he is a loader, so he knows the textures, drawings, without needing useless getters
-	private:
+	protected:
 		SDL_Window *att_window;						//Our window
 		Player *att_player;							//The player we have
 		std :: vector <Ennemy *> att_ennemies; 		//A way to make ennemies, and the list of living. We don't use number 0, he is a "template"
@@ -38,7 +38,7 @@ namespace Graphic {
 		//They also require information like if they attack, die, get used,...
 		void spawnEnnemy();
 		void spawnItem(unsigned int id);
-		void changeLevel(const Vector3f &spawnPosition, float spawnPitch, float spawnYaw, unsigned int levelNumber);
+		void changeLevel(float spawnPitch, float spawnYaw, unsigned int levelNumber);
 		void drawUI(int nbMags, int nbBullets, unsigned int HP);
 		virtual ~Board();
 	};

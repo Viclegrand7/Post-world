@@ -1,17 +1,13 @@
-BIN := test
+BIN := RVZD
 DBGDIR := debug
 RLSDIR := bin
-RLSOPT := 1
 
-GRAPHDIR := ../Engines/GraphicsEngine/
-GAMEDIR := ../Engines/GameEngine/
-PHYSDIR := ../Engines/PhysicsEngine/
 
 CC := g++
-CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wdouble-promotion -Wunreachable-code \
--Wuninitialized -Wfloat-equal -Weffc++ -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
--I $(INCDIR)
-RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR)
+CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
+-Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
+-I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
+RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR) -I /usr/include
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
@@ -25,11 +21,25 @@ endif
 
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
-###############################################################################################################""
-OBJ := test.o
+###############################################################################################################
+GCH := 
 
-GCH := test.gch
-###############################################################################################################""
+OBJ := 
+###############################################################################################################
+
+PHYSENGOBJ = $(wildcard $(PHYSENGDIR)/obj/*.o)  
+GAMEENGOBJ = $(wildcard $(GAMEENGDIR)/obj/*.o) 
+GRAPHENGOBJ = $(wildcard $(GRAPHENGDIR)/obj/*.o) 
+#CHECK WHICH IS BETTER. IF NOT NEEDED, SECOND OPTION IS PREFERRED
+ENGOBJ = $(wildcard $(PHYSENGDIR)/obj/*.o) $(wildcard $(GAMEENGDIR)/obj/*.o) $(wildcard $(GRAPHENGDIR)/obj/*.o) 
+
+
+PHYSENGDIR := ../Engines/PhysicsEngine
+GAMEENGDIR := ../Engines/GameEngine
+GRAPHENGDIR := ../Engines/GraphicsEngine
+PHYSENGINCDIR := $(PHYSENGDIR)/include
+GAMEENGINCDIR := $(GAMEENGDIR)/include
+GRAPHENGINCDIR := $(GRAPHENGDIR)/include
 
 INCDIR := include
 OBJDIR := obj
@@ -45,82 +55,42 @@ POSTINCLUDE = mv -f $(GCHDEPDIR)/$*.Td $(GCHDEPDIR)/$*.d && touch $@
 COMPILE = $(CC) $(DEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 COMPINC = $(CC) $(GCHDEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 
+OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
-all : Graphics Game Physics
-	g++ #ADD THE COMMAND TO LINK THE .O
-	#Fusion
-###########################################
+all : $(GCHS) $(OBJS) tmpall
+all : $(RLSDIR)/$(BIN) #Does it work?
 
-Graphics : 
-	cd GRAPHDIR && make
-Game : 
-	cd GAMEDIR && make
-Physics : 
-	cd PHYSDIR && make
-
-testDebug : GraphTestDebug GameTestDebug PhysTestDebug
-GraphTestDebug : 
-	cd GRAPHDIR && make testDebug
-GameTestDebug : 
-	cd GAMEDIR && make testDebug
-PhysTestDebug : 
-	cd PHYSDIR && make testDebug
-
-testRelease : GraphTestRelease GameTestRelease PhysTestRelease
-GraphTestRelease : 
-	cd GRAPHDIR && make testRelease
-GameTestRelease :
-	cd GAMEDIR && make testRelease
-PhysTestRelease : 
-	cd PHYSDIR && make testRelease
-
-debug : GraphDebug GameDebug PhysDebug
-GraphDebug : 
-	cd GRAPHDIR && make debug
-GameDebug :
-	cd GAMEDIR && make debug
-PhysDebug : 
-	cd PHYSDIR && make debug
+tmpall :
+	@cd $(PHYSENGDIR) && make
+	@cd $(GAMEENGDIR) && make
+	@cd $(GRAPHENGDIR) && make
 
 
-.PHONY : clean testDebug testRelease nsfw love all Graphics Game Physics testDebug \
-GraphTestDebug GameTestDebug PhysTestDebug testRelease GraphTestRelease GameTestRelease \
-PhysTestRelease debug GraphDebug GameDebug PhysDebug
+debug : REALFLAGS = $(CFLAGS) 
+debug : $(GCHS) $(OBJS) tmpdebug
+debug : $(DBGDIR)/$(BIN)
+
+tmpdebug : 
+	@cd $(PHYSENGDIR) && make debug
+	@cd $(GAMEENGDIR) && make debug
+	@cd $(GRAPHENGDIR) && make debug
 
 
-clean : 
-	cd GRAPHDIR && make clean
-	cd GAMEDIR && make clean
-	cd PHYSDIR && make clean
+$(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(ENGOBJ)
+	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
 
-nsfw :
-	@echo "That was possibly the worst idea you could have..."
+$(DBGDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(ENGOBJ)
+	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
 
-love : 
-	@echo "not war"
-###########################################
-#Fusion actually
-
-
-all : $(GCHDIR)/$(GCH) $(OBJDIR)/$(OBJ) 
-ifeq (0, $(RLSOPT))
-all : $(DBGDIR)/$(BIN)
-endif
-
-$(RLSDIR)/$(BIN) : $(OBJDIR)/$(OBJ) $(DEPDIR)/$(DEPFILES)
-	$(CC) $(REALFLAGS) $(OBJDIR)/$(OBJ) $(LDLIBS) -o $(RLSDIR)/$(BIN)
-
-$(DBGDIR)/$(BIN) : $(OBJDIR)/$(OBJ) $(DEPDIR)/$(DEPFILES)
-	$(CC) $(REALFLAGS) $(OBJDIR)/$(OBJ) $(LDLIBS) -o $(DBGDIR)/$(BIN)
-
-
-$(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
-	$(COMPINC) $(OUTPUT_OPTION) $<
-	$(POSTINCLUDE)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cc $(DEPDIR)/%.d | $(DEPDIR)
-	$(COMPILE) $(OUTPUT_OPTION) $<
+	$(COMPILE) -o $@ $<
 	$(POSTCOMPILE)
+
+$(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
+	$(COMPINC) -o $@ $<
+	$(POSTINCLUDE)
 
 $(DEPDIR) : ; @mkdir -p $@
 $(GCHDIR) : ; @mkdir -p $@
@@ -128,24 +98,15 @@ $(GCHDEPDIR) : ; @mkdir -p $@
 
 DEPFILES := $(OBJ:%.o=$(DEPDIR)/%.d) $(GCH:%.gch=$(GCHDEPDIR)/%.d)
 $(DEPFILES):
-sinclude $(wildcard $(DEPFILES))
+include $(wildcard $(DEPFILES))
 
 
-.PHONY : clean testDebug testRelease nsfw love all
+.PHONY : clean debug love all
 clean : 
-	rm $(BIN) $(OBJDIR)/$(OBJ) $(GCHDIR)/$(GCH)
-
-testDebug : REALFLAGS = $(CFLAGS)
-testDebug : all $(DBGDIR)/$(BIN)
-
-testRelease : REALFLAGS = $(RLSFLAGS)
-testRelease : all $(RLSDIR)/$(BIN)
-
-debug : REALFLAGS = $(CFLAGS)
-debug : all
-
-nsfw :
-	@echo "That was possibly the worst idea you could have..."
+	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
+	@cd $(PHYSENGDIR) && make clean
+	@cd $(GAMEENGDIR) && make clean
+	@cd $(GRAPHENGDIR) && make clean
 
 love : 
 	@echo "not war"

@@ -10,6 +10,7 @@
 
 namespace Graphic {
 	class Particule {
+	protected:
 		GLuint att_visual; //The glList to call
 		Vector3f att_position; //Where the particule is
 		Vector3f att_direction; //Where it goes

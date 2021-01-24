@@ -8,7 +8,7 @@ CC := g++
 CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
 -Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
 -I $(INCDIR) -I /usr/include -I $(GAMEINCDIR)
-RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I /usr/include
+RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I$(GAMEINCDIR) -I /usr/include
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
@@ -23,7 +23,7 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := PhE_Collision.gch
+GCH := PhE_Board.gch PhE_Collision.gch PhE_CollisionBox.gch PhE_CollisionQuad.gch PhE_CollisionSphere.gch PhE_Ennemy.gch PhE_Item.gch PhE_Player.gch 
 
 OBJ := $(patsubst %.gch, %.o, $(GCH))
 ###############################################################################################################
@@ -75,7 +75,7 @@ $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 
-.PHONY : clean testDebug testRelease nsfw love all
+.PHONY : clean testDebug testRelease debug love all
 clean : 
 	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 

@@ -5,7 +5,7 @@
 #include "PhE_CollisionQuad.hh"
 
 namespace Physic {
-	struct CollisionBox : public Obstacle { //Everything is public, let's gain some time
+	struct CollisionBox { //Everything is public, let's gain some time
 		CollisionQuad att_diagonals[2]; //I feel like you can get off with checking collision with 2 boxes only
 		
 		CollisionBox(const CollisionQuad &first, const CollisionQuad &second) : att_diagonals{first, second} {}
@@ -18,10 +18,7 @@ namespace Physic {
 			float x8, float y8, float z8, float xn2, float yn2, float zn2)
 		: att_diagonals{{x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4, xn1, yn1, zn1}, 
 						{x5, y5, z5, x6, y6, z6, x7, y7, z7, x8, y8, z8, xn2, yn2, zn2}} {}
-		CollisionBox &operator-=(const Vector3f &other) const {
-			att_diagonals[0] -= other;
-			att_diagonals[1] -= other;
-		}
+		CollisionBox &operator-=(const Vector3f &other);
 	};
 }
 

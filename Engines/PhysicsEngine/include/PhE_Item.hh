@@ -8,7 +8,7 @@ namespace Physic {
 		CollisionSphere att_hitBox;
 	public:
 		Item(const CollisionSphere &hb) : att_hitBox(hb) {}
-		CollisionSphere &giveSphere() const {return att_hitBox;}
+		const CollisionSphere &giveSphere() const;
 	};
 }
 

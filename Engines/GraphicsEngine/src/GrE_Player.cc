@@ -1,12 +1,12 @@
 #include "GrE_Player.hh"
 
 
-bool Graphic :: Player :: update(int width, int height, bool isFullScreen, bool isRunning, float gravity) {
+bool Graphic :: Player :: update(Vector3f &location, int width, int height, bool isFullScreen, bool isRunning, float gravity) {
 	bool doneJumping(false);
 	if (isRunning)
-		doneJumping = att_camera.control(width, height, isFullScreen, att_sprintSpeed, gravity);
+		doneJumping = att_camera.control(location, width, height, isFullScreen, att_sprintSpeed, gravity);
 	else 
-		doneJumping = att_camera.control(width, height, isFullScreen, att_speed, gravity);
+		doneJumping = att_camera.control(location, width, height, isFullScreen, att_speed, gravity);
 	if (att_camera.isMoving()) {
 		att_head = att_head < 40 ? att_head + 1 : 0;
 

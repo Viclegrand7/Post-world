@@ -8,6 +8,7 @@
 
 namespace Physic {
 	class Collision {
+	protected:
 		//float att_weight;	//Future update, to know if things bounce back or what?
 
 		static float weirdTriangleArea(const Vector3f &p1, const Vector3f &p2, const Vector3f &p3); //To know if a point is in a triangle or not (useful for quads too)

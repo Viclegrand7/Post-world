@@ -23,7 +23,7 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := PhE_Collision.hh
+GCH := 
 
 OBJ := $(patsubst %.hh, %.o, $(GCH))
 ###############################################################################################################
@@ -75,7 +75,7 @@ $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 
-.PHONY : clean testDebug testRelease nsfw love all
+.PHONY : clean testDebug testRelease debug love all
 clean : 
 	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.hh, $(GCHDIR)/%.hh, $(GCH))
 
