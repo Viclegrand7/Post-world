@@ -3,14 +3,11 @@
 
 class PowerUp : public Item{
   private:
-    static int cpt;
-    int _id;
+    int _id; //Each id match to one functionnality
   public:
   //Constructor
-    PowerUp() : Item(), _id(cpt){cpt++;}
+    PowerUp(int id) : Item(), _id(id){}
     PowerUp(std::string name, int id) : Item(){_id=id; _name = "Power Up Potion";}
   //Methods
-    int use(){return 2;}
+    int use(){return _id;}
 };
-
-int PowerUp::cpt=0;

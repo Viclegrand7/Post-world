@@ -53,7 +53,3 @@ bool Gun::secondary(){
     _isAiming = !_isAiming;
     return _isAiming;
 }
-
-int Gun::use(){
-    return 1;
-}

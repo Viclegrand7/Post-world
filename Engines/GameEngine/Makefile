@@ -58,7 +58,7 @@ $(DBGDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
 
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(DEPDIR)/%.d | $(DEPDIR)
+$(OBJDIR)/%.o : $(SRCDIR)/%.cc $(DEPDIR)/%.d | $(DEPDIR)
 	$(COMPILE) -o $@ $<
 	$(POSTCOMPILE)
 

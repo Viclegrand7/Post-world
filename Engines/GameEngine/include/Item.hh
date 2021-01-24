@@ -11,7 +11,7 @@ class Item{
     Item(): _name("Generic item"){}
     virtual ~Item(){}
   //Methods
-    virtual int use()=0;  //0:Melee  1:Gun   2:PowerUp
+    virtual int use()=0;  //-1:Weapon  >0: PowerUp1:Gun
     std::string giveName(){
       return _name;
     }

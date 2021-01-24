@@ -19,10 +19,6 @@ bool Melee::secondary(){
     return attack;  
 }
 
-int Melee::use(){
-    return 0;
-}
-
 bool Melee::attack(){
     return this->secondary();
 }
