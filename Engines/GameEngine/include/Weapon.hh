@@ -7,6 +7,7 @@ class Weapon : public Item{
     bool _isAuto;
     int _timeBeforeAttack;
     int _attackDownTime;
+    bool _isShooting;
   public:
   //Constructor
     Weapon();
@@ -17,6 +18,7 @@ class Weapon : public Item{
     bool isAuto();
     void upgrade(int added_damage);
     void countDown();
+    bool isShooting(){return _isShooting;}
     virtual int use()=0;
     virtual bool attack()=0;
     virtual void stopAttack()=0;
