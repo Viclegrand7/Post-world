@@ -9,7 +9,6 @@ class Gun : public Weapon{
     int _curBullet;
     int _maxBullet;
     bool _isAiming;
-    bool _isShooting;
     bool _isReloading;
     float _precision;
 

@@ -14,6 +14,7 @@ TEST_CASE("1: Gun"){
   REQUIRE(g.getCurMag() == 20);
   REQUIRE(g.getCurBull() == 20);
   REQUIRE(g.attack() == true);
+  REQUIRE(g.isShooting() == true);
   REQUIRE(g.getCurBull() == 19);
   g.countDown();
   REQUIRE(g.attack() == false);

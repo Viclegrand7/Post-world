@@ -22,6 +22,7 @@ bool Melee::secondary(){
 bool Melee::attack(){
     bool attack = false;
     if (_timeBeforeAttack == 0){
+        _isShooting = true;
         attack = true;
         _timeBeforeAttack += _attackDownTime;
     }
