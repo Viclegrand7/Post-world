@@ -496,7 +496,7 @@
 											"top": 465,
 											"width": 245.7128143310547,
 											"height": 13,
-											"text": "-weapons: vector<Item *>",
+											"text": "-weapons: vector<Weapon *>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -513,7 +513,7 @@
 											"top": 480,
 											"width": 245.7128143310547,
 											"height": 13,
-											"text": "-knife: Item*",
+											"text": "-knife: Melee*",
 											"horizontalAlignment": 0
 										},
 										{
@@ -785,7 +785,7 @@
 											"top": 713,
 											"width": 245.7128143310547,
 											"height": 13,
-											"text": "+dropWeapon(): Iteam*",
+											"text": "+dropWeapon(): Weapon*",
 											"horizontalAlignment": 0
 										},
 										{
@@ -836,7 +836,7 @@
 											"top": 758,
 											"width": 245.7128143310547,
 											"height": 13,
-											"text": "+use(Item& object): Item*",
+											"text": "+use(Item& object): Weapon*",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4265,7 +4265,7 @@
 							},
 							"name": "weapons",
 							"visibility": "private",
-							"type": "vector<Item *>"
+							"type": "vector<Weapon *>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4275,7 +4275,7 @@
 							},
 							"name": "knife",
 							"visibility": "private",
-							"type": "Item*"
+							"type": "Melee*"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4569,7 +4569,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF3NS1CqVdXlr8="
 									},
-									"type": "Iteam*",
+									"type": "Weapon*",
 									"direction": "return"
 								}
 							]
@@ -4626,8 +4626,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF3NS25iVe6sJ8="
 									},
-									"name": "Item& object",
-									"type": ""
+									"name": "Item& object"
 								},
 								{
 									"_type": "UMLParameter",
@@ -4635,7 +4634,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF3NS25iVe6sJ8="
 									},
-									"type": "Item*",
+									"type": "Weapon*",
 									"direction": "return"
 								}
 							]
