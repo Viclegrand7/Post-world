@@ -21,9 +21,9 @@ namespace Graphic {
 			unsigned int na = 0, unsigned int aa = 0, unsigned int sa = 0)
 		: Weapon(frames, na, aa, sa, position, rotation), att_aimPosition(aimPos), att_curPosition(position), att_aimRotation(aimRot), 
 			att_curRotation(rotation), isAiming(false) {}
-		void attack();
-		void secondary();
-		void reload();
+		bool Grattack();
+		bool Grsecondary();
+		bool Grreload();
 		void draw(const Vector3f &);	//Not in hands
 		void draw(bool);				//In hands
 		bool update(bool isAutoAndShooting);

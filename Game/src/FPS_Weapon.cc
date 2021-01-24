@@ -1,24 +1,28 @@
 #include "FPS_Weapon.hh"
 
-bool attack() {
-	if (Game :: Weapon :: attack()) {
-		Graphic :: Weapon :: attack();
+bool FPS :: Weapon :: update() {
+	return update(_isAuto && _isShooting);
+}
+
+bool FPS :: Weapon :: FPSattack() {
+	if (attack()) {
+		Grattack();
 		return true;
 	}
 	return false;
 }
 
-bool secondary() {
-	if (Game :: Weapon :: secondary()) {
-		Graphic :: Weapon :: secondary();
+bool FPS :: Weapon :: FPSsecondary() {
+	if (secondary()) {
+		Grsecondary();
 		return true;
 	}
 	return false;
 }
 
-void reload() {
-	if (Game :: Weapon :: reload()) {
-		Graphic :: Weapon :: reload();
+bool FPS :: Weapon :: FPSreload() {
+	if (Grreload()) {
+		reload();
 		return true;
 	}
 	return false;

@@ -30,14 +30,22 @@ void Graphic :: Gun :: draw(bool isInHands) {
 	glPopMatrix(); //Back to the saved Matrix
 }
 
-void Graphic :: Gun :: attack() {
-	att_currentFrame = att_normalAnimation; //Beginning of attack animation
+bool Graphic :: Gun :: Grattack() {
+	if (!att_currentFrame){
+		att_currentFrame = att_normalAnimation; //Beginning of attack animation
+		return true;
+	}
+	return false;
 }
 
-void Graphic :: Gun :: reload() {
-	att_currentFrame = att_normalAnimation + att_attackAnimation; //For the gun, this is reload animation
-	att_curPosition = att_defPosition;
-	att_curRotation = att_rotation;
+bool Graphic :: Gun :: Grreload() {
+	if (!att_currentFrame) {
+		att_currentFrame = att_normalAnimation + att_attackAnimation; //For the gun, this is reload animation
+		att_curPosition = att_defPosition;
+		att_curRotation = att_rotation;
+		return true;
+	}
+	return false;
 }
 
 bool Graphic :: Gun :: update(bool isAutoAndShooting) { //Will return true when is done with an animation
@@ -72,8 +80,7 @@ bool Graphic :: Gun :: update(bool isAutoAndShooting) { //Will return true when 
 	return false;
 }
 
-
-
-void Graphic :: Gun :: secondary() {//Naming is weird. Here we aim
+bool Graphic :: Gun :: Grsecondary() {//Naming is weird. Here we aim
 	isAiming = !isAiming;
+	return true;
 }
