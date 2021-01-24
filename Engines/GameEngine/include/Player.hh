@@ -8,29 +8,32 @@ class Player : public Character{
     int maxStamina;
     int score;
     bool isSprinting;
-    std::vector<Weapon *>  weapons;
-    Melee* knife;
-    unsigned int currentWeapon=0; // knife
+    std::vector<Item *>  weapons; 
+    Item* knife; //
+    unsigned int currentWeapon; // knife: 0
 
   public:
   //Constructor
     Player();
     ~Player();
   //Methods
+    int getCurrentWeapon(){return currentWeapon;}
     int getMaxHealth();
     int getStamina();
     int getMaxStamina();
     void sprint();
     void stopSprint();
+    void addScore(int value){score += value;}
     int getScore();
-    void changeWeapon(unsigned int num);
+    void changeWeapon(unsigned int num); //num between 0 to 2
     void prevWeapon();
     void nextWeapon();
-    Weapon* dropWeapon();
+    Item* dropWeapon();
     int getCurMag();
     int getCurBull();
-    void use(Item& object);
+    Item* use(Item& object); 
     bool secondary();
     void reload();
     void toattack();
+    int getWeaponDamage();
 };

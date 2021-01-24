@@ -9,3 +9,12 @@ int Weapon::getDamage(){
 bool Weapon::isAuto(){
     return _isAuto;
 }
+
+void Weapon::upgrade(int added_damage){
+    _damage += added_damage;
+}
+
+void Weapon::countDown(){
+    if (_timeBeforeAttack != 0)
+        _timeBeforeAttack--;
+}

@@ -11,6 +11,7 @@ class Melee : public Weapon{
     Melee();
     Melee(int damage, int attackDownTime, float range, int secondaryDownTime);
   //Methods
+    int use(){return -2;}
     float getRange();
     bool secondary();
     bool attack();

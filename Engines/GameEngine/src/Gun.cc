@@ -2,6 +2,8 @@
 
 Gun::Gun() : Weapon(), _curMagazine(20), _maxMagazine(20), _curBullet(20), _maxBullet(20), _isAiming(false), _isShooting(false), _isReloading(false), _precision(0){} 
 
+Gun::Gun(int damage, bool isAuto, int attackDownTime) : Weapon(isAuto, damage, attackDownTime), _curMagazine(20), _maxMagazine(20), _curBullet(20), _maxBullet(20), _isAiming(false), _isShooting(false), _isReloading(false), _precision(0){} 
+
 Gun::Gun(int damage, bool isAuto,int attackDownTime, int maxMagazine, int maxBullet, float precision) : Weapon(isAuto, damage, attackDownTime){
     _curMagazine = maxMagazine;
     _maxMagazine = maxMagazine;
@@ -42,6 +44,11 @@ bool Gun::attack(){
         _curBullet--;
         _curMagazine--;
     }
+    else
+    {
+        _isShooting = false;
+    }
+    
     return _isShooting;
 }
 

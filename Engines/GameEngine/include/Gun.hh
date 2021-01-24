@@ -16,8 +16,10 @@ class Gun : public Weapon{
   public:
   //Conctructor
     Gun();
+    Gun(int damage, bool isAuto, int attackDownTime);
     Gun(int damage, bool isAuto, int attackDownTime, int maxMagazine, int maxBullet, float precision);
   //Methods
+    int use(){return -1;}
     int getCurMag();
     int getCurBull();
     void addBullet(int value);

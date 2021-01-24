@@ -15,7 +15,9 @@ class Weapon : public Item{
   //Methods
     int getDamage();
     bool isAuto();
-    int use(){return -1;}
+    void upgrade(int added_damage);
+    void countDown();
+    virtual int use()=0;
     virtual bool attack()=0;
     virtual void stopAttack()=0;
     virtual int getCurMag()=0;

@@ -1,6 +1,6 @@
 #include "Character.hh"
 
-Character :: Character() : _name("Generic character"), _health(100){}
+Character :: Character() : _name("Generic character"), _health(20){}
 
 Character :: ~Character() {}
 

@@ -18,3 +18,8 @@ void Ennemy::toattack(){
         _timeBeforeAttack += _attackDownTime;
     }                     
 }
+
+void Ennemy::upgrade(){
+    if (_timeBeforeAttack != 0)
+        _timeBeforeAttack--;
+}

@@ -20,5 +20,10 @@ bool Melee::secondary(){
 }
 
 bool Melee::attack(){
-    return this->secondary();
+    bool attack = false;
+    if (_timeBeforeAttack == 0){
+        attack = true;
+        _timeBeforeAttack += _attackDownTime;
+    }
+    return attack;
 }

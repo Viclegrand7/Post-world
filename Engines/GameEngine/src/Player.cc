@@ -1,6 +1,6 @@
 #include "Player.hh"
 
-Player::Player() : Character(){}
+Player::Player() : Character(), maxHealth(20), stamina(5), maxStamina(5), score(0), isSprinting(false), knife(NULL), currentWeapon(-1){}
 
 Player::~Player(){
     weapons.clear();
@@ -31,7 +31,8 @@ int Player::getScore(){
 }
 
 void Player::changeWeapon(unsigned int num){
-    currentWeapon = num;
+    if (num < weapons.size())
+        currentWeapon = num;
 }
 
 void Player::prevWeapon(){
@@ -48,11 +49,11 @@ void Player::nextWeapon(){
         currentWeapon ++;
 }
 
-Weapon* Player::dropWeapon(){
-    Weapon* drop;
+Item* Player::dropWeapon(){
+    Item* drop;
     if (currentWeapon != 0){
-        drop = weapons[currentWeapon];
-        weapons.erase(weapons.begin()+currentWeapon); //Should not be able to drop the knife. Maybe it's better if it returns a Weapon* actually, so it goes on the floor. Not sure
+        drop = weapons[currentWeapon-1];
+        weapons.erase(weapons.begin()+(currentWeapon-1)); //Should not be able to drop the knife. Maybe it's better if it returns a Weapon* actually, so it goes on the floor. Not sure
         currentWeapon = 0;
     }
     else
@@ -63,18 +64,50 @@ Weapon* Player::dropWeapon(){
 
 int Player::getCurMag(){
     if (currentWeapon != 0)
-        return weapons[currentWeapon]->getCurMag();
+        return weapons[currentWeapon-1]->getCurMag();
     return 0;
 }
 
 int Player::getCurBull(){
     if (currentWeapon != 0)
-        return weapons[currentWeapon]->getCurBull();
+        return weapons[currentWeapon-1]->getCurBull();
     return 0;
 }
 
-void Player::use(Item& object){
-    object.use();
+Item* Player::use(Item& object){
+    Item* drop = NULL;
+    int type = object.use();
+    if (type >= 0){
+        switch (type)
+        {
+        case 0:
+            maxStamina += 10;
+            break;
+        case 1:
+            weapons[currentWeapon-1]->upgrade(5);
+            break;
+        default:
+            break;
+        }
+    }
+    else{
+        if (type == -2 && knife == NULL){
+            knife = &object;
+            currentWeapon = 0;
+        }
+        else{
+            if (weapons.size()<2){
+                weapons.push_back(&object);
+                currentWeapon = weapons.size();
+            }
+            else
+            {
+                drop = weapons[currentWeapon-1];
+                weapons[currentWeapon-1] = &object;
+            }
+        }
+    }
+    return drop;
 }
 
 bool Player::secondary(){
@@ -91,3 +124,11 @@ void Player::toattack(){
     }
 }
 
+int Player::getWeaponDamage(){
+    int dam;
+    if (currentWeapon == 0)
+        dam = knife->getDamage();
+    else
+        dam = weapons[currentWeapon -1]->getDamage();
+    return dam;
+}
