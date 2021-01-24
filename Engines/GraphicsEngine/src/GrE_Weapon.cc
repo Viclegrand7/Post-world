@@ -30,9 +30,8 @@ void Graphic :: Weapon :: draw(const Vector3f &position) {
 	glPopMatrix(); //Back to the saved Matrix
 }
 
-bool Graphic :: Weapon :: update(bool isAutoAndAttacking) { //Will return true when is done with an animation
+bool Graphic :: Weapon :: Grupdate(bool isAutoAndAttacking) { //Will return true when is done with an animation
 	++att_currentFrame;
-	std :: cout << "att_currentFrame: " << att_currentFrame << std :: endl;
 	if (att_currentFrame == att_normalAnimation) {//End of normal animation
 		att_currentFrame = 0; 	//We get to the beginning of normal animation
 		return true;
@@ -55,12 +54,20 @@ bool Graphic :: Weapon :: update(bool isAutoAndAttacking) { //Will return true w
 	return false;
 }
 
-void Graphic :: Weapon :: attack() {
-	att_currentFrame = att_normalAnimation; //Beginning of attack animation
+bool Graphic :: Weapon :: Grattack() {
+	if (!att_currentFrame) {
+		att_currentFrame = att_normalAnimation; //Beginning of attack animation
+		return true;
+	}
+	return false;
 }
 
-void Graphic :: Weapon :: reload() {}//Gun knows how to reload. We pretend being melee: NOTHING to be done
+bool Graphic :: Weapon :: Grreload() {return false;}//Gun knows how to reload. We pretend being melee: NOTHING to be done
 
-void Graphic :: Weapon :: secondary() {//Gun knows how to aim. We pretend being melee: Strong attack
-	att_currentFrame = att_normalAnimation + att_normalAnimation;
+bool Graphic :: Weapon :: Grsecondary() {//Gun knows how to aim. We pretend being melee: Strong attack
+	if (!att_currentFrame) {
+		att_currentFrame = att_normalAnimation + att_normalAnimation;
+		return true;
+	}
+	return false;
 }

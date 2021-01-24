@@ -32,15 +32,15 @@ void Graphic :: Player :: draw(Weapon *weapon) {
 }
 
 void Graphic :: Player :: attack(Weapon *weapon) {
-	weapon->attack();
+	weapon->Grattack();
 }
 
 void Graphic :: Player :: secondary(Weapon *weapon) {
-	weapon->secondary();
+	weapon->Grsecondary();
 }
 
 void Graphic :: Player :: reload(Weapon *weapon) {
-	weapon->reload();
+	weapon->Grreload();
 }
 
 void Graphic :: Player :: jump() {

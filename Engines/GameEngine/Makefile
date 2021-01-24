@@ -23,9 +23,9 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := 
+GCH = $(filter-out main.hh, $(patsubst $(INCDIR)/%.hh, %.gch, $(wildcard $(INCDIR)/*.hh)))
 
-OBJ := $(patsubst %.hh, %.o, $(GCH))
+OBJ = $(filter-out main.cc, $(patsubst $(SRCDIR)/%.cc, %.o, $(wildcard $(SRCDIR)/*.cc)))
 ###############################################################################################################
 
 GAMEINCDIR := ../../Game/include

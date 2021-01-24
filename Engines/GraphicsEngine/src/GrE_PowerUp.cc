@@ -12,7 +12,7 @@ void Graphic :: PowerUp :: draw(const Vector3f &position) {
 	glPopMatrix(); //Back to the saved Matrix
 }
 
-bool Graphic :: PowerUp :: update(bool isPickedUp) {
+bool Graphic :: PowerUp :: Grupdate(bool isPickedUp) {
 	if (isPickedUp) {
 		if (att_currentFrame++ == att_activationLook.size()) 	//We were displaying outerLook
 			att_currentFrame = 0;								//Start the animation
@@ -21,7 +21,7 @@ bool Graphic :: PowerUp :: update(bool isPickedUp) {
 	}
 	else {
 		att_rotation.att_y += att_rotation.att_y > 360.0f ? -360.0f : 1.0f; //Rotations
-/*//*/	att_currentFrame = att_activationLook.size();  //When the bool returned will be taken into account (to stop displaying, for instance, no need to go to 0)
+//	att_currentFrame = att_activationLook.size();  //When the bool returned will be taken into account (to stop displaying, for instance, no need to go to 0)
 	}
 	return false;
 }

@@ -9,8 +9,8 @@ CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
 -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
 RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR) -I /usr/include
 
-DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
-GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
+GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
 
 ifeq (0, $(RLSOPT))
 REALFLAGS = $(CFLAGS)
@@ -22,16 +22,14 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := 
+GCH = $(patsubst $(INCDIR)/%.hh, %.gch, $(wildcard $(INCDIR)/*.hh))
 
-OBJ := 
+OBJ = $(patsubst $(SRCDIR)/%.cc, %.o, $(wildcard $(SRCDIR)/*.cc))
 ###############################################################################################################
 
-PHYSENGOBJ = $(wildcard $(PHYSENGDIR)/obj/*.o)  
-GAMEENGOBJ = $(wildcard $(GAMEENGDIR)/obj/*.o) 
-GRAPHENGOBJ = $(wildcard $(GRAPHENGDIR)/obj/*.o) 
-#CHECK WHICH IS BETTER. IF NOT NEEDED, SECOND OPTION IS PREFERRED
-ENGOBJ = $(wildcard $(PHYSENGDIR)/obj/*.o) $(wildcard $(GAMEENGDIR)/obj/*.o) $(wildcard $(GRAPHENGDIR)/obj/*.o) 
+ENGOBJ  = $(filter-out $(PHYSENGDIR)/obj/main.o, $(patsubst $(PHYSENGDIR)/src/%.cc, $(PHYSENGDIR)/obj/%.o, $(wildcard $(PHYSENGDIR)/src/*.cc)))
+ENGOBJ += $(filter-out $(GAMEENGDIR)/obj/main.o, $(patsubst $(GAMEENGDIR)/src/%.cc, $(GAMEENGDIR)/obj/%.o, $(wildcard $(GAMEENGDIR)/src/*.cc))) 
+ENGOBJ += $(filter-out $(GRAPHENGDIR)/obj/main.o, $(patsubst $(GRAPHENGDIR)/src/%.cc, $(GRAPHENGDIR)/obj/%.o, $(wildcard $(GRAPHENGDIR)/src/*.cc)))
 
 
 PHYSENGDIR := ../Engines/PhysicsEngine
@@ -58,7 +56,7 @@ COMPINC = $(CC) $(GCHDEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
-all : $(GCHS) $(OBJS) tmpall
+all : tmpall $(GCHS) $(OBJS)
 all : $(RLSDIR)/$(BIN) #Does it work?
 
 tmpall :
@@ -77,11 +75,11 @@ tmpdebug :
 	@cd $(GRAPHENGDIR) && make debug
 
 
-$(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(ENGOBJ)
-	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
+$(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+	$(CC) $(REALFLAGS) $^ $(ENGOBJ) $(LDLIBS) -o $@
 
-$(DBGDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(ENGOBJ)
-	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
+$(DBGDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
+	$(CC) $(REALFLAGS) $^ $(ENGOBJ) $(LDLIBS) -o $@
 
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cc $(DEPDIR)/%.d | $(DEPDIR)

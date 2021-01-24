@@ -23,7 +23,7 @@ endif
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 
 ###############################################################################################################
-GCH := GrE_Camera.gch GrE_Player.gch Vector3f.gch GrE_Item.gch GrE_Weapon.gch GrE_Gun.gch GrE_PowerUp.gch \
+GCH := GrE_Camera.gch GrE_Player.gch GrE_Item.gch GrE_Weapon.gch GrE_Gun.gch GrE_PowerUp.gch \
 GrE_Particule.gch GrE_Loader.gch GrE_Level.gch GrE_Board.gch GrE_Ennemy.gch
 
 OBJ := $(patsubst %.gch, %.o, $(GCH))

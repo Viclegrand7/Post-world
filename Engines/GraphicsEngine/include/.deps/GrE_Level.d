@@ -1,6 +1,6 @@
-include/.gch/GrE_Level.gch: include/GrE_Level.hh include/Vector3f.hh \
- include/GrE_Particule.hh
+include/.gch/GrE_Level.gch: include/GrE_Level.hh \
+ ../../Game/include/Vector3f.hh include/GrE_Particule.hh
 
-include/Vector3f.hh:
+../../Game/include/Vector3f.hh:
 
 include/GrE_Particule.hh:

@@ -2,14 +2,16 @@
 #define RV_ZD_FPSWEAPON
 
 #include "GrE_Weapon.hh"
-#include "Weapon.hpp"
+#include "Weapon.hh"
+#include "FPS_Item.hh"
 
 namespace FPS {
-	class Weapon : public Graphic :: Weapon, Game :: Weapon {
+	class Weapon : public Graphic :: Weapon, ::Weapon, FPS :: Item {
 	public:
-		virtual bool attack();
-		virtual bool secondary();
-		virtual void reload();
+		bool update();
+		virtual bool FPSattack();
+		virtual bool FPSsecondary();
+		virtual bool FPSreload();
 	};
 }
 

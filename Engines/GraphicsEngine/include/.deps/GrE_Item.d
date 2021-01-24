@@ -1,3 +1,4 @@
-include/.gch/GrE_Item.gch: include/GrE_Item.hh include/Vector3f.hh
+include/.gch/GrE_Item.gch: include/GrE_Item.hh \
+ ../../Game/include/Vector3f.hh
 
-include/Vector3f.hh:
+../../Game/include/Vector3f.hh:
