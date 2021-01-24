@@ -5,15 +5,14 @@
 
 class Item{
   protected:
-    std::string name;
+    std::string _name;
   public:
   //Constructor
-    Item(std::string name){name = name;}
+    Item(): _name("Generic item"){}
+    virtual ~Item(){}
   //Methods
-    int use(){
-      return 1;
-    };
+    virtual int use()=0;  //0:Melee  1:Gun   2:PowerUp
     std::string giveName(){
-      return name;
+      return _name;
     }
 };

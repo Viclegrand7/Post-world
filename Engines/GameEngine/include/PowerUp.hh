@@ -3,9 +3,14 @@
 
 class PowerUp : public Item{
   private:
-    int id;
+    static int cpt;
+    int _id;
   public:
   //Constructor
-    PowerUp(std::string name, int id) : Item(name){id=id;}
+    PowerUp() : Item(), _id(cpt){cpt++;}
+    PowerUp(std::string name, int id) : Item(){_id=id; _name = "Power Up Potion";}
   //Methods
+    int use(){return 2;}
 };
+
+int PowerUp::cpt=0;

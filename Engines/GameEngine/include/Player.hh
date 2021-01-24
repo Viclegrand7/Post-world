@@ -14,7 +14,8 @@ class Player : public Character{
 
   public:
   //Constructor
-    Player(std::string);
+    Player();
+    ~Player();
   //Methods
     int getMaxHealth();
     int getStamina();
@@ -25,11 +26,11 @@ class Player : public Character{
     void changeWeapon(unsigned int num);
     void prevWeapon();
     void nextWeapon();
-    bool dropWeapon();
+    Weapon* dropWeapon();
     int getCurMag();
     int getCurBull();
     void use(Item& object);
     bool secondary();
     void reload();
-    void attack();
+    void toattack();
 };
