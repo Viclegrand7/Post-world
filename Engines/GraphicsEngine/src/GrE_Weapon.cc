@@ -30,7 +30,7 @@ void Graphic :: Weapon :: draw(const Vector3f &position) {
 	glPopMatrix(); //Back to the saved Matrix
 }
 
-bool Graphic :: Weapon :: update(bool isAutoAndAttacking) { //Will return true when is done with an animation
+bool Graphic :: Weapon :: Grupdate(bool isAutoAndAttacking) { //Will return true when is done with an animation
 	++att_currentFrame;
 	if (att_currentFrame == att_normalAnimation) {//End of normal animation
 		att_currentFrame = 0; 	//We get to the beginning of normal animation

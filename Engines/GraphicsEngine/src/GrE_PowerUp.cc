@@ -12,7 +12,7 @@ void Graphic :: PowerUp :: draw(const Vector3f &position) {
 	glPopMatrix(); //Back to the saved Matrix
 }
 
-bool Graphic :: PowerUp :: update(bool isPickedUp) {
+bool Graphic :: PowerUp :: Grupdate(bool isPickedUp) {
 	if (isPickedUp) {
 		if (att_currentFrame++ == att_activationLook.size()) 	//We were displaying outerLook
 			att_currentFrame = 0;								//Start the animation

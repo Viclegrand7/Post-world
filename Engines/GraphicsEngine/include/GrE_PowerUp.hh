@@ -21,7 +21,7 @@ namespace Graphic {
 		PowerUp(const PowerUp *other) : Item(other->att_outerLook, other->att_rotation),
 			att_activationLook(other->att_activationLook), att_currentFrame(other->att_currentFrame) {}
 		void draw(const Vector3f &position);
-		bool update(bool isPickedUp);
+		bool Grupdate(bool isPickedUp);
 		~PowerUp() {}
 	};
 }

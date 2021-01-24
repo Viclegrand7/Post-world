@@ -48,7 +48,7 @@ bool Graphic :: Gun :: Grreload() {
 	return false;
 }
 
-bool Graphic :: Gun :: update(bool isAutoAndShooting) { //Will return true when is done with an animation
+bool Graphic :: Gun :: Grupdate(bool isAutoAndShooting) { //Will return true when is done with an animation
 	if (isAiming) {
 		att_curPosition = (att_aimPosition + att_curPosition) / 2;
 		att_curRotation = (att_aimRotation + att_curRotation) / 2;

@@ -19,3 +19,11 @@ Graphic :: Item :: Item(GLuint look, const Vector3f &rotation)
 void Graphic :: Item :: setRotation(const Vector3f &rot) {
 	att_rotation = rot;
 }
+
+bool Graphic :: Item :: Grupdate(bool tmp) {
+	return true;
+}
+
+void Graphic :: Item :: draw(const Vector3f &pos) {
+
+}

@@ -6,7 +6,7 @@
 #include "FPS_Item.hh"
 
 namespace FPS {
-	class Weapon : virtual public Graphic :: Weapon, ::Weapon, FPS :: Item {
+	class Weapon : public Graphic :: Weapon, ::Weapon, FPS :: Item {
 	public:
 		bool update();
 		virtual bool FPSattack();

@@ -25,7 +25,7 @@ namespace Graphic {
 			att_attackAnimation(other->att_attackAnimation), att_secondaryAnimation(other->att_secondaryAnimation), att_currentFrame(other->att_currentFrame) {}
 		virtual void draw(bool);				//When it is in hands
 		virtual void draw(const Vector3f &);	//When not in hands
-		virtual bool update(bool isAutoAndAttacking);
+		virtual bool Grupdate(bool isAutoAndAttacking);
 		virtual bool Grattack();
 		virtual bool Grreload();
 		virtual bool Grsecondary();

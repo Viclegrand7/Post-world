@@ -26,7 +26,7 @@ namespace Graphic {
 		bool Grreload();
 		void draw(const Vector3f &);	//Not in hands
 		void draw(bool);				//In hands
-		bool update(bool isAutoAndShooting);
+		bool Grupdate(bool isAutoAndShooting);
 		~Gun() {}
 	};
 
