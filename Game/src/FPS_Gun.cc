@@ -1,33 +1,33 @@
 #include "FPS_Gun.hh"
 
 bool FPS :: Gun :: update() {
-	att_gameItem->countDown();
-	if (att_graphItem->update(att_gameItem->isAuto() && att_gameItem->isShooting())) {
-		att_gameItem->isReloading() = false; //We are done with an animation
+	att_gameGun->countDown();
+	if (att_graphGun->update(att_gameGun->isAuto() && att_gameGun->isShooting())) {
+		att_gameGun->isReloading() = false; //We are done with an animation
 		return true;
 	}
 	return false;
 }
 
 bool FPS :: Gun :: FPSattack() {
-	if (att_gameItem->attack()) {
-		att_graphItem->attack();
+	if (att_gameGun->attack()) {
+		att_graphGun->attack();
 		return true;
 	}
 	return false;
 }
 
 bool FPS :: Gun :: FPSsecondary() {
-	if (att_gameItem->secondary()) {
-		att_graphItem->secondary();
+	if (att_gameGun->secondary()) {
+		att_graphGun->secondary();
 		return true;
 	}
 	return false;
 }
 
 bool FPS :: Gun :: FPSreload() {
-	if (att_graphItem->reload()) {
-		att_gameItem->reload();
+	if (att_graphGun->reload()) {
+		att_gameGun->reload();
 		return true;
 	}
 	return false;

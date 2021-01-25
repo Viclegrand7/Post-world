@@ -11,14 +11,13 @@
 #include <vector>
 
 namespace Physic {
-	class Board {
-	public:
+	struct Board { //All public
 		unsigned int att_curLevel;
 		std :: vector <Ennemy *> att_ennemies;
 		std :: vector <Item *> att_items;
 		std :: vector <std :: vector <CollisionBox *>> att_levels;
-		std :: vector<Vector3f> playerShoot(const Vector3f &dir);
-		void changeLevel(const Vector3f &spawnPosition, unsigned int level);		
+		void changeLevel(unsigned int level);		
+//		std :: vector<Vector3f> playerShoot(const Vector3f &dir);
 	};
 }
 

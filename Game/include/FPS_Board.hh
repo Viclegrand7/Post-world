@@ -8,7 +8,7 @@
 #include "FPS_Item.hh"
 #include "FPS_Weapon.hh"
 
-#include "vector.hh"
+#include <vector>
 
 namespace FPS {
 	class Board {
@@ -29,6 +29,7 @@ namespace FPS {
 		void spawnEnnemy();
 		void update();
 		void run();
+		void playerShoot(bool);
 	};
 }
 

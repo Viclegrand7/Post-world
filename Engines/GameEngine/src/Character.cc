@@ -8,6 +8,9 @@ int Character::getHealth(){
     return _health;
 }
 
-void Character::getHit(int Value){
+bool Character::getHit(int Value){
     _health = _health - Value;
+    if (_health <= 0)
+    	return true;
+    return false;
 }

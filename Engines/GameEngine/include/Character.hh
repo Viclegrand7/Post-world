@@ -16,6 +16,6 @@ class Character {
     virtual ~Character();
   //Methods
     int getHealth();
-    void getHit(int Value);
-    virtual void toAttack()=0;
+    bool getHit(int Value);
+    virtual bool toAttack()=0;
 };

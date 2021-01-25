@@ -34,8 +34,9 @@ class Player : public Character{
     Weapon* use(Item& object); 
     bool secondary();
     void reload();
-    bool update();
-    void setAttack();
+    void update();
+    bool attack();
+    bool toAttack();
     int getWeaponDamage();
     bool isRunning() {return isSprinting;}
 };

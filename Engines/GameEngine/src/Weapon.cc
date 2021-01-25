@@ -17,6 +17,4 @@ void Weapon::upgrade(int added_damage){
 bool Weapon::countDown(){
     if (_timeBeforeAttack != 0)
         _timeBeforeAttack--;
-    else if (_isShooting)
-    	attack();
 }

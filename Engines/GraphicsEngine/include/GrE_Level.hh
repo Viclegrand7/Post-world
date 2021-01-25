@@ -16,7 +16,7 @@ namespace Graphic {
 		Level(const std :: vector <GLuint> &setup, std :: vector <Particule*> particules) 
 		: att_setup(setup), att_particules(particules), att_curParticules() {}
 		void draw();
-		void spawnParticules(unsigned int particule, const Vector3f &pos, int number = 0);
+		void spawnParticules(unsigned int particule, const Vector3f &pos, int number = 1);
 		void update();
 	};
 }

@@ -15,6 +15,6 @@ class Ennemy : public Character{
   //Methods
     int getDamage();
     bool isDead();
-    void toAttack();
+    bool toAttack();
     void upgrade();
 };

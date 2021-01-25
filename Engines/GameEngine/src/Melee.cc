@@ -11,20 +11,17 @@ float Melee::getRange(){
 }
 
 bool Melee::secondary(){
-    bool attack = false;
     if (_timeBeforeAttack == 0){
-        attack = true;
         _timeBeforeAttack += _secondaryDownTime;
+		return true;
     }
-    return attack;  
+    return false;  
 }
 
 bool Melee::attack(){
-    bool attack = false;
-    if (_timeBeforeAttack == 0){
-        _isShooting = true;
-        attack = true;
+    if (_isShooting && _timeBeforeAttack == 0){
         _timeBeforeAttack += _attackDownTime;
+        return true;
     }
-    return attack;
+    return false;
 }

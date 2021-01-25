@@ -1,7 +1,6 @@
 #ifndef RV_ZD_FPSPLAYER
 #define RV_ZD_FPSPLAYER
 
-#include "FPS_Camera.hh"
 #include "GrE_Player.hh"
 #include "PhE_Player.hh"
 #include "Player.hh"

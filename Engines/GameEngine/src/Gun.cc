@@ -46,14 +46,13 @@ void Gun::reload(){             //This function should reload the weapon, aka ch
 }
 
 bool Gun::attack(){
-    if (_curBullet != 0 && _timeBeforeAttack == 0 && !_isReloading){
+    if (_isShooting && _curBullet != 0 && _timeBeforeAttack == 0 && !_isReloading){
         _timeBeforeAttack += _attackDownTime;
         _curBullet--;
         _curMagazine--;
         return true;
     }
-    _isShooting = false;
-    return false;
+	return false;
 }
 
 void Gun::stopAttack(){
