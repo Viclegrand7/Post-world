@@ -10,6 +10,8 @@ class PowerUp : public Item{
     PowerUp(std::string name, int id) : Item(){_id=id; _name = "Power Up Potion";}
   //Methods
     int use(){return _id;}
+
+  //Methods to avoid class being virtual
     int getDamage(){return 0;}
     bool isAuto(){return false;}
     void upgrade(int added_damage){}

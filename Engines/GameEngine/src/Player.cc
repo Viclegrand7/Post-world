@@ -76,33 +76,33 @@ int Player::getCurBull(){
 
 Weapon* Player::use(Item& object){
     Weapon* drop = NULL;
-    int type = object.use();
-    if (type >= 0){
+    int type = object.use(); //-1 : Gun   -2 : Melee  >0 : PowerUp
+    if (type >= 0){  //object = PowerUp
         switch (type)
         {
-        case 0:
+        case 0:  //PowerUp 0 : update Player's maxStamina
             maxStamina += 10;
             break;
-        case 1:
+        case 1:  //PowerUp 1 : update currentWeapon
             weapons[currentWeapon-1]->upgrade(5);
             break;
         default:
             break;
         }
     }
-    else{
-        if (type == -2 && !currentWeapon){
+    else{ //object = Weapon
+        if (type == -2 && !currentWeapon){ //if object = Melee and Player doesn't have weapon : keep object in knife
 			drop = knife;
             knife = (Melee* )&object;
         }
         else{
-            if (weapons.size()<2){
-                weapons.push_back((Weapon*)&object);
+            if (weapons.size()<2){ //if Player doesn't have 2 weapons (exclus knife)
+                weapons.push_back((Weapon*)&object); //push_back this object and use it
                 currentWeapon = weapons.size();
             }
-            else
+            else //Player already have two weapons
             {
-                drop = weapons[currentWeapon-1];
+                drop = weapons[currentWeapon-1]; //exchange current weapon to object
                 weapons[currentWeapon-1] = (Weapon*)&object;
             }
         }
@@ -115,19 +115,19 @@ bool Player::secondary(){
 }
 
 void Player::reload(){
-    weapons[currentWeapon]->reload();
+    weapons[currentWeapon-1]->reload();
 }
 
 void Player::update(){
-    weapons[currentWeapon]->countDown();
+    weapons[currentWeapon-1]->countDown();
 }
 
 bool Player::attack(){
-    return weapons[currentWeapon]->attack();
+    return weapons[currentWeapon-1]->attack();
 }
 
 bool Player::toAttack(){
-    weapons[currentWeapon]->isShooting() = true;
+    weapons[currentWeapon-1]->isShooting() = true;
     return false;
 }
 

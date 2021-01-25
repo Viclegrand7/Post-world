@@ -4,13 +4,13 @@
 
 class Gun : public Weapon{
   private:
-    int _curMagazine;
-    int _maxMagazine;
-    int _curBullet;
-    int _maxBullet;
-    bool _isAiming;
-    bool _isReloading;
-    float _precision;
+    int _curMagazine; //Magazine Curve : default = 20
+    int _maxMagazine; //default = 20
+    int _curBullet; //default = 20
+    int _maxBullet; //default = 20
+    bool _isAiming; //to tell if is Aiming : default = false
+    bool _isReloading; //to tell if is Reloading : default = false
+    float _precision; //precision of shoot
 
   public:
   //Conctructor

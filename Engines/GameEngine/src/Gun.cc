@@ -29,13 +29,13 @@ void Gun::addBullet(int value){
 }
 
 void Gun::reload(){             //This function should reload the weapon, aka change the magazine
-    if (_isShooting || _isReloading)
+    if (_isShooting || _isReloading)  //we can do nothing if it's shooting or ralready reloading
         return;
-    if (_curMagazine == _maxMagazine || !_curBullet) {
+    if (_curMagazine == _maxMagazine || !_curBullet) { //if Magazine full or don't have bullet
         _isReloading = false;
         return;
     }
-    if (_curBullet + _curMagazine >=_maxMagazine) {
+    if (_curBullet + _curMagazine >=_maxMagazine) { //transfer curBullet to CurMagazine to complete curMagazine to max
         _curBullet -= (_maxMagazine - _curMagazine);
         _curMagazine = _maxMagazine;
         _isReloading = true;
@@ -45,7 +45,7 @@ void Gun::reload(){             //This function should reload the weapon, aka ch
     _isReloading = true;
 }
 
-bool Gun::attack(){
+bool Gun::attack(){ //to tell if is possible to shoot, ie has at least 1 bullet, timeBeforeAttack ==0 and not already shooting or reloading
     if (_isShooting && _curBullet != 0 && _timeBeforeAttack == 0 && !_isReloading){
         _timeBeforeAttack += _attackDownTime;
         _curBullet--;
@@ -59,7 +59,7 @@ void Gun::stopAttack(){
     _isShooting = false;
 }
 
-bool Gun::secondary(){
+bool Gun::secondary(){  //change isAiming
     _isAiming = !_isAiming;
     return _isAiming;
 }
