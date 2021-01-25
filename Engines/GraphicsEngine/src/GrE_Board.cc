@@ -46,7 +46,6 @@ void Graphic :: Board :: readAllFromFile(std :: ifstream &myFile) {
 //	EnnemyFile		moveLength	attackLength	dieLength
 //	MeleeNumber		WeaponFile	normLength	attackLength	secondaryLength	WeaponFile	...	secondaryLength
 //	GunNumber		WeaponFile	normLength	attackLength	reloadLength	aimX aimY aimZ aimRotX aimRotY aimRotZ	WeaponFile	...	aimRotz
-//	DefaultWeapon	PlayerFile
 //	PowerUpNumber	PowerUpFile	PowerUpFile	...	PowerUpFile
 //	ParticuleNumber	ParticuleFile	ParticuleDuration	ParticuleFile	...	ParticuleDuration	Level1
 //	ParticuleNumber	ParticuleFile	ParticuleDuration	ParticuleFile	...	ParticuleDuration	Level2

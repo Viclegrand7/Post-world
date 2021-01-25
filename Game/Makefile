@@ -4,7 +4,7 @@ RLSDIR := bin
 
 
 CC := g++
-CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
+CFLAGS = -std=c++17 -g -Wall -Werror -Wshadow -Wunreachable-code \
 -Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
 -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
 RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR) -I /usr/include
@@ -12,12 +12,8 @@ RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td -I $(INCDIR) -I /usr/include -I $(PHYSENGINCDIR) -I$(GAMEENGINCDIR) -I$(GRAPHENGINCDIR)
 
-ifeq (0, $(RLSOPT))
-REALFLAGS = $(CFLAGS)
-endif
-ifeq (1, $(RLSOPT))
-REALFLAGS = $(RLSFLAGS)
-endif
+DBGFLAG := $(filter test, $(MAKECMDGOALS))
+REALFLAGS = $(if $(DBGFLAG), $(CFLAGS), $(RLSFLAGS))
 
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 

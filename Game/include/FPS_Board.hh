@@ -3,10 +3,8 @@
 
 #include "PhE_Board.hh"
 #include "GrE_Board.hh"
-#include "FPS_Ennemy.hh"
+#include "Ennemy.hh"
 #include "FPS_Player.hh"
-#include "FPS_Item.hh"
-#include "FPS_Weapon.hh"
 
 #include <vector>
 
