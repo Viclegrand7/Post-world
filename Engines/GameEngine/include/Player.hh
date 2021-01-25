@@ -8,13 +8,13 @@ class Player : public Character{
     int maxStamina;
     int score;
     bool isSprinting;
-    std::vector<Weapon *>  weapons; 
-    Melee* knife; //
-    unsigned int currentWeapon; // knife: 0
+    std::vector<Weapon *>  weapons; //Size <= 2
+    Melee* knife; 
+    unsigned int currentWeapon; // knife: 0 ; 1st weapon in weapons : 1
 
   public:
   //Constructor
-    Player();
+    Player(); //
     ~Player();
   //Methods
     int getCurrentWeapon(){return currentWeapon;}

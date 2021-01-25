@@ -5,8 +5,8 @@ class Ennemy : public Character{
   private:
     bool _isDead;
     int _damage;
-    int _attackDownTime;
-    int _timeBeforeAttack;
+    int _attackDownTime; //Time required before next attack
+    int _timeBeforeAttack; //Time before Attack
 
   public:
   //Constructor
@@ -15,6 +15,6 @@ class Ennemy : public Character{
   //Methods
     int getDamage();
     bool isDead();
-    bool toAttack();
-    void upgrade();
+    bool toAttack(); //return True if is possible to attack
+    void upgrade(); //upgrade Ennemy'a speed of attack
 };
