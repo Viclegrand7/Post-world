@@ -3,6 +3,14 @@
 
 #include <iostream>
 
+FPS :: Board :: Board(const char *filename) : att_physBoard(NULL), att_graphBoard(NULL), att_gameEnnemies{}, att_gameItems{}, att_displayedGameItems{}, att_gameWeapons{}, att_player(NULL), att_timeBeforeSpawn(120), att_numberToSpawn(0), att_timeSinceLastSpawn(200) {
+	att_graphBoard = new Graphic :: Board(filename); //He read everything, started the window,filled its attributes,...
+}
+
+FPS :: Board :: ~Board() {
+	delete att_graphBoard;
+}
+
 void FPS :: Board :: draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -43,8 +51,19 @@ void FPS :: Board :: update() {
 			att_player->att_gamePlayer->getHit(att_gameEnnemies[i]->getDamage());
 		}
 	}
-	for (unsigned int i = 0 ; i < att_graphBoard->att_items.size() ; ++i)
-		i == usableItem ? att_graphBoard->att_items[i]->update(true) : att_graphBoard->att_items[i]->update(false);
+	for (unsigned int i = 0 ; i < att_graphBoard->att_items.size() ; ++i) {
+		att_graphBoard->att_items[i]->update(i == usableItem);
+		if (i == usableItem) {
+			if (att_player->att_gamePlayer->use(*att_gameItems[i]))
+				att_graphBoard->att_displayedItems.push_back(att_player->att_gamePlayer->getCurrentWeapon() ? att_player->att_weapons[att_player->att_gamePlayer->getCurrentWeapon() - 1] : att_player->att_knife);
+			if (att_gameItems[i]->use() < 0) {
+				(att_player->att_gamePlayer->getCurrentWeapon() ? att_player->att_weapons[att_player->att_gamePlayer->getCurrentWeapon() - 1] : att_player->att_knife) = (Graphic :: Weapon *) att_gameItems[i];
+				att_graphBoard->att_displayedItems.erase(att_graphBoard->att_displayedItems.begin() + i);
+			}
+		}
+
+
+	}
 
 	if (!--att_timeSinceLastSpawn) {
 		for (unsigned int i = 0 ; i < att_numberToSpawn ; ++i)

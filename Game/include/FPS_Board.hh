@@ -25,6 +25,9 @@ namespace FPS {
 		unsigned int att_numberToSpawn;
 		unsigned int att_timeSinceLastSpawn;
 
+		Board(const char *);
+		~Board();
+
 		void draw();
 		void spawnEnnemy();
 		void update();
