@@ -93,14 +93,13 @@ void Graphic :: Board :: spawnItem(unsigned int id) {
 	att_displayedItems.emplace_back(new Item(att_items[id])); //New item
 }
 
-void Graphic :: Board :: changeLevel(float spawnPitch, float spawnYaw, unsigned int levelNumber) {
+void Graphic :: Board :: changeLevel(unsigned int levelNumber) {
 	att_currentLevel = levelNumber;						//Changing level
-	att_player->att_camera.lookAt(spawnPitch, spawnYaw);//Changing where the player looks
 }
 
-/*
-void Graphic :: Board :: draw() { //This cannot work because we don't know positions of ennemies (PhysicsEngine), the weapon to draw(GameEngine),...
-	float light_pos[] = {att_player->att_camera.giveLocation().att_x, att_player->att_camera.giveLocation().att_y + 2.f, att_player->att_camera.giveLocation().att_z, 1.0f};
+
+void Graphic :: Board :: draw(const Vector3f &position) { //This cannot work because we don't know positions of ennemies (PhysicsEngine), the weapon to draw(GameEngine),...
+	float light_pos[] = {position.att_x, position.att_y + 2.f, position.att_z, 1.0f};
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);	//Modify Light0, positionning it where the player is (above him)
 	float light_diff[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);	//White color
@@ -108,13 +107,8 @@ void Graphic :: Board :: draw() { //This cannot work because we don't know posit
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);	//Ambient light
 
 	att_levels[att_currentLevel]->draw();
-	for (unsigned int i = 0 ; i < att_ennemies ; ++i)
-		att_ennemies[i]->draw(); //Position required
-	for (unsigned int i = 0 ; i < att_displayedItems ; ++i)
-		att_displayedItems[i]->draw(); //Position required
-	
 }
-*/
+
 
 void Graphic :: Board :: drawUI(int nbMags, int nbBullets, unsigned int HP) {
 	glPushMatrix(); //Saves previous Matrix

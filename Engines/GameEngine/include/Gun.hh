@@ -26,5 +26,7 @@ class Gun : public Weapon{
     bool attack();
     void stopAttack();
     bool secondary();
+    bool &isReloading() {return _isReloading;}
+    bool &isAiming() {return _isAiming;}
     float getRange(){return 0;}
 };

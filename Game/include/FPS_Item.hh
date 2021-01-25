@@ -6,9 +6,14 @@
 #include "Item.hh"
 
 namespace FPS {
-	class Item : virtual public Graphic :: Item, ::Item, Physic :: Item {
+	class Item {
 	public:
-		bool update();
+		Graphic :: Item *att_graphItem;
+		Physic :: Item *att_physItem;
+		::Item *att_gameItem;
+
+		virtual bool update();
+		virtual void draw();
 	};
 }
 

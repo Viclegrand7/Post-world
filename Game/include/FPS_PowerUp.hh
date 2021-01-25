@@ -6,10 +6,16 @@
 #include "PowerUp.hh"
 
 namespace FPS {
-	class PowerUp : virtual public Graphic :: PowerUp, ::PowerUp, public Item {
-		bool isUsed;
+	class PowerUp : public Item {
+		bool att_isUsed;
 	public:
+		Graphic :: PowerUp *att_graphPowerUp;
+		::PowerUp *att_gamePowerUp;
+		//Physic :: Item *
+
 		bool update();
+		void draw();
+		bool &isUsed();
 	};
 }
 

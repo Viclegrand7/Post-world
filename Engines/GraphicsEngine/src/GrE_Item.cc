@@ -20,7 +20,7 @@ void Graphic :: Item :: setRotation(const Vector3f &rot) {
 	att_rotation = rot;
 }
 
-bool Graphic :: Item :: Grupdate(bool tmp) {
+bool Graphic :: Item :: update(bool tmp) {
 	return true;
 }
 
