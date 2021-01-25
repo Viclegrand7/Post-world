@@ -1,6 +1,4 @@
-#include "FPS_Board.hh"
-
-int main() {
-	FPS :: Board Game("../res/main");
-	Game.run();
-}
+zombie/collision	60	0	13
+1	pistol/pistolet	1	11	26
+1	pistol/pistolet	1	11	26	-0.01f	-0.4f	-1.3f	1.f	-1.f	0.35f
+0	level/level1/map
