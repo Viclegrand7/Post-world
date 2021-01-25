@@ -91,9 +91,9 @@ Weapon* Player::use(Item& object){
         }
     }
     else{
-        if (type == -2 && knife == NULL){
+        if (type == -2 && !currentWeapon){
+			drop = knife;
             knife = (Melee* )&object;
-            currentWeapon = 0;
         }
         else{
             if (weapons.size()<2){
@@ -118,10 +118,17 @@ void Player::reload(){
     weapons[currentWeapon]->reload();
 }
 
-void Player::toAttack(){
-    while (1){ 
-        weapons[currentWeapon]->attack();
-    }
+void Player::update(){
+    weapons[currentWeapon]->countDown();
+}
+
+bool Player::attack(){
+    return weapons[currentWeapon]->attack();
+}
+
+bool Player::toAttack(){
+    weapons[currentWeapon]->isShooting() = true;
+    return false;
 }
 
 int Player::getWeaponDamage(){

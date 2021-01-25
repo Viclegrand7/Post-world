@@ -13,10 +13,12 @@ bool Ennemy::isDead(){
     return _isDead;
 }
 
-void Ennemy::toAttack(){     
+bool Ennemy::toAttack(){     
     if (!_isDead && _timeBeforeAttack == 0){
         _timeBeforeAttack += _attackDownTime;
-    }                     
+        return true;
+    }
+    return false;
 }
 
 void Ennemy::upgrade(){

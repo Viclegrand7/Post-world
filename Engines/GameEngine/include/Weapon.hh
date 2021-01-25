@@ -17,8 +17,8 @@ class Weapon : public Item{
     int getDamage();
     bool isAuto();
     void upgrade(int added_damage);
-    void countDown();
-    bool isShooting(){return _isShooting;}
+    bool countDown();
+    bool &isShooting(){return _isShooting;}
     virtual int use()=0;
     virtual bool attack()=0;
     virtual void stopAttack()=0;

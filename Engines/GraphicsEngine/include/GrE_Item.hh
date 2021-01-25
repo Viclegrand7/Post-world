@@ -14,7 +14,7 @@ namespace Graphic {
 		Item(GLuint look, const Vector3f &rotation = {0.0f, 0.0f, 0.0f});
 		Item(const Item *other) : att_outerLook(other->att_outerLook), att_rotation(other->att_rotation) {}
 		void setRotation(const Vector3f &rot);
-		virtual bool Grupdate(bool tmp);	//It looks stupid and IS stupid. But otherwhise copy of my displayedItems in Board gets rid of inheritance for 0 good reason
+		virtual bool update(bool tmp);	//It looks stupid and IS stupid. But otherwhise copy of my displayedItems in Board gets rid of inheritance for 0 good reason
 		virtual void draw(const Vector3f &);		//It looks stupid and IS stupid. But otherwhise copy of my displayedItems in Board gets rid of inheritance for 0 good reason. Hence I have to make it non virtual
 		virtual ~Item() {}
 	};

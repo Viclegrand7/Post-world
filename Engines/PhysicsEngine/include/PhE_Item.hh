@@ -9,6 +9,7 @@ namespace Physic {
 	public:
 		Item(const CollisionSphere &hb) : att_hitBox(hb) {}
 		const CollisionSphere &giveSphere() const;
+		Vector3f givePos() {return att_hitBox.att_center;}
 	};
 }
 

@@ -2,7 +2,7 @@
 #include "Character.hh"
 
 class Player : public Character{
-  private:
+  protected:
     int maxHealth;
     int stamina;
     int maxStamina;
@@ -34,6 +34,9 @@ class Player : public Character{
     Weapon* use(Item& object); 
     bool secondary();
     void reload();
-    void toAttack();
+    void update();
+    bool attack();
+    bool toAttack();
     int getWeaponDamage();
+    bool isRunning() {return isSprinting;}
 };

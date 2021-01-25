@@ -6,8 +6,12 @@
 #include "FPS_Weapon.hh"
 
 namespace FPS {
-	class Gun : virtual public Graphic :: Gun, ::Gun, FPS :: Weapon {
+	class Gun : public Weapon {
 	public:
+		Graphic :: Gun *att_graphGun;
+		:: Gun *att_gameGun;
+		
+		bool update();
 		bool FPSattack();
 		bool FPSsecondary();
 		bool FPSreload();

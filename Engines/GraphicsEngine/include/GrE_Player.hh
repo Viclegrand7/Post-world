@@ -24,6 +24,8 @@ namespace Graphic {
 		void secondary(Weapon *weapon);
 		void reload(Weapon *weapon);
 		void jump();
+		float giveSpeed() {return att_speed;}
+		float giveSprintSpeed() {return att_sprintSpeed;}
 	};
 }
 

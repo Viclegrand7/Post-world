@@ -1,7 +1,6 @@
 include/.gch/FPS_Player.gch: include/FPS_Player.hh \
- ../Engines/GraphicsEngine/include/GrE_Camera.hh include/Vector3f.hh \
  ../Engines/GraphicsEngine/include/GrE_Player.hh \
- ../Engines/GraphicsEngine/include/GrE_Camera.hh \
+ ../Engines/GraphicsEngine/include/GrE_Camera.hh include/Vector3f.hh \
  ../Engines/GraphicsEngine/include/GrE_Weapon.hh \
  ../Engines/GraphicsEngine/include/GrE_Item.hh \
  ../Engines/PhysicsEngine/include/PhE_Player.hh \
@@ -19,13 +18,11 @@ include/.gch/FPS_Player.gch: include/FPS_Player.hh \
  ../Engines/GameEngine/include/Melee.hh \
  ../Engines/GameEngine/include/PowerUp.hh
 
-../Engines/GraphicsEngine/include/GrE_Camera.hh:
-
-include/Vector3f.hh:
-
 ../Engines/GraphicsEngine/include/GrE_Player.hh:
 
 ../Engines/GraphicsEngine/include/GrE_Camera.hh:
+
+include/Vector3f.hh:
 
 ../Engines/GraphicsEngine/include/GrE_Weapon.hh:
 
