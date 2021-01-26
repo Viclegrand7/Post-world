@@ -1,5 +1,5 @@
 # Blender MTL File: 'collision.blend'
-# Material Count: 14
+# Material Count: 13
 
 newmtl CollisionBox
 Ns 225.000000
@@ -130,12 +130,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd zombie-skin.bmp
-
-newmtl None
-Ns 500
-Ka 0.8 0.8 0.8
-Kd 0.8 0.8 0.8
-Ks 0.8 0.8 0.8
-d 1
-illum 2
+map_Kd /Users/ruxue/Documents/C++/Projet/Post-world/Collision/zombie-skin.bmp
