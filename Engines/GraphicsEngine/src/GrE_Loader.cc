@@ -168,7 +168,7 @@ void Graphic :: Loader :: readFigure(const std :: string &vertexLine) {
 
 	int posNum(0), texPosNum(0), normNum(0); //v, vt, vn
 	char fake;
-	
+
 	GLuint myList = glGenLists(1); 	//Generating a unique id for the list
 	glNewList(myList, GL_COMPILE); 	//Creating the list. calling it will call all the following
 	glEnable(GL_TEXTURE_2D);				//Make sure it's initialized: We will bind a texture to a 2D shape
@@ -235,11 +235,11 @@ GLuint Graphic :: Loader :: loadFile(const std :: string &filename) {	//Load a .
 		else if (buffer[0] == 'm')		//mtllib
 			readMaterialLib(filename, buffer);
 		else if (buffer[0] == 'u') {	//'usemtl '
-			if (buffer.substr(7, 15) == "collision" || buffer.substr(7, 12) == "(null)") {
+			if (buffer.substr(7, 15) == "collision" || buffer.substr(7, 15) == "Collision" || buffer.substr(7, 12) == "(null)") {
 				unsigned int minus1(-1);
 				att_currentMaterial = minus1;
 			}
-			else if (att_materials.find(buffer.substr(7)) != att_materials.end() && buffer.substr(7, 15) != "collision")
+			else if (att_materials.find(buffer.substr(7)) != att_materials.end())
 				att_currentMaterial = att_materials.find(buffer.substr(7))->second + 1;
 			else 
 				att_currentMaterial = 0; //We use an offset to make sure we have a way to recognize materials with no textures

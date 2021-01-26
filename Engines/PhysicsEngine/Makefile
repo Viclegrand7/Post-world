@@ -5,7 +5,7 @@ RLSOPT := 1
 
 
 CC := g++
-CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code \
+CFLAGS = -std=c++17 -g -Wall -Wextra -Werror -Wshadow -Wunreachable-code -Wno-error=deprecated-copy -Wno-deprecated-copy \
 -Wuninitialized -Wduplicated-cond -Wduplicated-branches -Wpedantic -m64 \
 -I $(INCDIR) -I /usr/include -I $(GAMEINCDIR)
 RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I$(GAMEINCDIR) -I /usr/include

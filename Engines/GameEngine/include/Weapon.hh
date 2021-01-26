@@ -19,6 +19,7 @@ class Weapon : public Item{
     void upgrade(int added_damage); //upgrade weapon's damage
     bool countDown();  //timeBeforeAttack-- until = 0
     bool &isShooting(){return _isShooting;}
+    virtual void reset() {_isShooting = false;}
     virtual int use()=0;
     virtual bool attack()=0;
     virtual void stopAttack()=0;

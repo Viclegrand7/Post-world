@@ -34,14 +34,14 @@ void Graphic :: Camera :: handleMoves(Vector3f &location, float speed) {
 			att_isMoving = true;
 		moveCamera(location, 0, speed);
 //		if (NO_GRAVITY)
-			moveCameraUp(location, 0, speed);
+//			moveCameraUp(location, 0, speed);
 	}
 	if (keyboardState[DOWN_Key]) {
 		if (!keyboardState[UP_Key])
 			att_isMoving = true;
 		moveCamera(location, 180, speed);
 //		if (NO_GRAVITY)
-			moveCameraUp(location, 180, speed);
+//			moveCameraUp(location, 180, speed);
 	}
 	if (keyboardState[LEFT_Key]) {
 		if (!keyboardState[RIGHT_Key])

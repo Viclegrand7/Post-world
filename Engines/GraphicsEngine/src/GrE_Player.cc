@@ -27,6 +27,10 @@ bool Graphic :: Player :: update(Vector3f &location, int width, int height, bool
 	return doneJumping;
 }
 
+bool Graphic :: Player :: update(Weapon *weapon, bool isAutoAndShooting) {
+	return weapon->update(isAutoAndShooting);
+}
+
 void Graphic :: Player :: draw(Weapon *weapon) {
 	weapon->draw(true);
 }
@@ -39,8 +43,8 @@ void Graphic :: Player :: secondary(Weapon *weapon) {
 	weapon->secondary();
 }
 
-void Graphic :: Player :: reload(Weapon *weapon) {
-	weapon->reload();
+bool Graphic :: Player :: reload(Weapon *weapon) {
+	return weapon->reload();
 }
 
 void Graphic :: Player :: jump() {
