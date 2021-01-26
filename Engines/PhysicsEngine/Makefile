@@ -13,7 +13,7 @@ RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I$(GAMEINCDIR) -I /usr/inc
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
 
-DBGFLAG := $(filter test, $(MAKECMDGOALS))
+DBGFLAG := $(filter debug testDebug, $(MAKECMDGOALS))
 REALFLAGS = $(if $(DBGFLAG), $(CFLAGS), $(RLSFLAGS))
 
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image

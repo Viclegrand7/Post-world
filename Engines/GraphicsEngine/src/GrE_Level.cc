@@ -1,8 +1,7 @@
 #include "GrE_Level.hh"
 
 void Graphic :: Level :: draw() {
-	for (unsigned int i = 0 ; i < att_setup.size() ; ++i)
-		glCallList(att_setup[i]);
+		glCallList(att_setup);
 	for (unsigned int i = 0 ; i < att_curParticules.size() ; ++i)
 		att_curParticules[i]->draw();
 }

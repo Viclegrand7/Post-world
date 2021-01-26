@@ -21,3 +21,5 @@ void FPS :: Player :: update(int width, int height, bool isFullScreen, float gra
 	att_graphPlayer->att_camera.updateCamera(att_physPlayer->givePos());
 }
 
+FPS :: Player :: Player(Graphic :: Weapon *knife, std :: vector <Graphic :: Weapon *> weapons, ::Melee *gknife, std :: vector <::Weapon *>pweapons)
+: att_knife(knife), att_weapons(weapons), att_graphPlayer(new Graphic :: Player()), att_physPlayer(new Physic :: Player()), att_gamePlayer(new ::Player(gknife, pweapons)) {}

@@ -160,6 +160,9 @@ void Graphic :: Loader :: readTex(const std :: string &vertexLine) {
 }
 
 void Graphic :: Loader :: readFigure(const std :: string &vertexLine) {
+	unsigned int minus1(-1);
+	if (att_currentMaterial == minus1) //collision
+		return;
 	std :: stringstream myLine(vertexLine);
 	myLine.ignore(2); //'f '
 
@@ -232,7 +235,11 @@ GLuint Graphic :: Loader :: loadFile(const std :: string &filename) {	//Load a .
 		else if (buffer[0] == 'm')		//mtllib
 			readMaterialLib(filename, buffer);
 		else if (buffer[0] == 'u') {	//'usemtl '
-			if (att_materials.find(buffer.substr(7)) != att_materials.end())
+			if (buffer.substr(7, 15) == "collision" || buffer.substr(7, 12) == "(null)") {
+				unsigned int minus1(-1);
+				att_currentMaterial = minus1;
+			}
+			else if (att_materials.find(buffer.substr(7)) != att_materials.end() && buffer.substr(7, 15) != "collision")
 				att_currentMaterial = att_materials.find(buffer.substr(7))->second + 1;
 			else 
 				att_currentMaterial = 0; //We use an offset to make sure we have a way to recognize materials with no textures
@@ -260,7 +267,7 @@ std :: vector <GLuint> Graphic :: Loader :: loadAnimation(const std :: string &n
 	std :: string tmpName;
 	std :: ifstream myFile;
 	for (int i = 1 ; i < 1000000 ; ++i) {//We get every single possibility
-#ifndef NSFW
+#ifdef NSFW
 		tmpName = "." + name;
 #else
 		tmpName = name; //Refreshes the name

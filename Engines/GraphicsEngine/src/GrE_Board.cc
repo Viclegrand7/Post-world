@@ -10,7 +10,8 @@
 
 #define RV_ZD_GAMENAMEANDVERSION "Réaction Visible : Zone Dangereuse v1.0.0"
 
-Graphic :: Board :: Board(const std :: string &fileName)  {
+Graphic :: Board :: Board(const std :: string &fileName)
+: att_gravity(1.f), att_weaponNumber(0) {
 	if (SDL_Init(SDL_INIT_EVERYTHING)) { //Video, audio, handler, joysticks,... returns 0 on fail
 		std :: cerr << "Failed initialising SDL: " << SDL_GetError() << std :: endl;
 		throw "Failed initialising \n";
@@ -79,7 +80,8 @@ void Graphic :: Board :: readAllFromFile(std :: ifstream &myFile) {
 			att_particules.emplace_back(new Particule(loadFile(nextFileToRead), length2));
 			tmpParticules.push_back(att_particules[att_particules.size() - 1]);
 		}
-		att_levels.emplace_back(new Level(loadAnimation(nextFileToRead), tmpParticules));
+		myFile >> nextFileToRead;
+		att_levels.emplace_back(new Level(loadFile(nextFileToRead + ".obj"), tmpParticules));
 		tmpParticules.clear();
 	}
 }
@@ -104,6 +106,9 @@ void Graphic :: Board :: draw(const Vector3f &position) { //This cannot work bec
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);	//White color
 	float light_amb[] = {0.6f, 0.6f, 0.6f, 1.0f};
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);	//Ambient light
+
+	std :: cout << "CURRENT LEVEL" << att_currentLevel << std :: endl;
+	std :: cout << "LEVEL" << &att_levels[att_currentLevel] << std :: endl;
 
 	att_levels[att_currentLevel]->draw();
 }

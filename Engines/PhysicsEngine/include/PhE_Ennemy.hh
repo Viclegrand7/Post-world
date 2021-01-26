@@ -8,25 +8,33 @@
 
 namespace Physic {
 	class Ennemy {
-		CollisionSphere att_head;
-		CollisionBox att_torso;
-		CollisionBox att_legs[2];
-		CollisionBox att_arms[2];
-		CollisionSphere att_fakeBox;
+		std :: vector <CollisionSphere>att_head;
+		std :: vector <CollisionBox>att_torso;
+		std :: vector <CollisionBox>att_legs1;
+		std :: vector <CollisionBox>att_arms1;
+		std :: vector <CollisionBox>att_legs2;
+		std :: vector <CollisionBox>att_arms2;
+
+		void testCollisionWall(const std :: vector<CollisionBox *> &walls, unsigned int curFrame);
+		void testCollisionTeamates(const std :: vector<Ennemy *> &ennemies, unsigned int curFrame);
+		void moveDir(const Vector3f &other);
+	public:
+		std :: vector <CollisionSphere>att_fakeBox;
 		Vector3f att_rotation;
 		float att_speed;
 
-		void testCollisionWall(const std :: vector<CollisionBox *> &walls);
-		void testCollisionTeamates(const std :: vector<Ennemy *> &ennemies);
-		void moveDir(const Vector3f &other);
-	public:
+
+		Ennemy() : att_head{}, att_torso{}, att_legs1{}, att_arms1{}, att_legs2{}, att_arms2{}, att_fakeBox{}, att_rotation{}, att_speed{0.1f} {}
 		Ennemy(const CollisionSphere &h, const CollisionBox &t, const CollisionBox &l1, const CollisionBox &l2, const CollisionBox &a1, const CollisionBox &a2, const CollisionSphere &fhb)
-		: att_head(h), att_torso(t), att_legs{l1, l2}, att_arms{a1, a2}, att_fakeBox(fhb), att_rotation{0.f, 0.f, 0.f}, att_speed(0.1f) {}
-		CollisionSphere giveSphere() {return att_fakeBox;}
+		: att_head{h}, att_torso{t}, att_legs1{l1}, att_arms1{a1}, att_legs2{l2}, att_arms2{a2}, att_fakeBox{fhb}, att_rotation{0.f, 0.f, 0.f}, att_speed(0.1f) {}
+		Ennemy &operator+=(const Ennemy &other);
+		void equals(const Physic :: CollisionSphere &sphere, bool isHead);
+		void equals(const Physic :: CollisionBox &box, char isWhat);
+		CollisionSphere giveSphere() {return att_fakeBox[0];}
 		Vector3f &giveRot() {return att_rotation;}
-		bool doesGetHit(const Vector3f &pos, const Vector3f &dir, float *dis, Vector3f *collisionPoint);
-		void update(const Vector3f &character, const std :: vector<Ennemy *> &ennemies, const std :: vector <CollisionBox *> &wall, float gravity);
-		Vector3f givePos() {return att_fakeBox.att_center;}
+		bool doesGetHit(const Vector3f &pos, const Vector3f &dir, float *dis, Vector3f *collisionPoint, unsigned int curFrame);
+		void update(const Vector3f &character, const std :: vector<Ennemy *> &ennemies, const std :: vector <CollisionBox *> &wall, float gravity, unsigned int curFrame);
+		Vector3f givePos(unsigned int curFrame) {return att_fakeBox[curFrame].att_center;}
 	};
 }
 

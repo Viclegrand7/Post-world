@@ -1,7 +1,6 @@
 BIN := test
 DBGDIR := debug
 RLSDIR := bin
-RLSOPT := 1
 
 
 CC := g++
@@ -13,7 +12,7 @@ RLSFLAGS = -std=c++17 -m64 -O3 -DNDEBUG -I $(INCDIR) -I$(GAMEINCDIR) -I /usr/inc
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 GCHDEPFLAGS = -MT $@ -MMD -MP -MF $(GCHDEPDIR)/$*.Td
 
-DBGFLAG := $(filter test, $(MAKECMDGOALS))
+DBGFLAG := $(filter debug testDebug, $(MAKECMDGOALS))
 REALFLAGS = $(if $(DBGFLAG), $(CFLAGS), $(RLSFLAGS))
 
 LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
@@ -22,7 +21,7 @@ LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 GCH := GrE_Camera.gch GrE_Player.gch GrE_Item.gch GrE_Weapon.gch GrE_Gun.gch GrE_PowerUp.gch \
 GrE_Particule.gch GrE_Loader.gch GrE_Level.gch GrE_Board.gch GrE_Ennemy.gch
 
-OBJ := $(patsubst %.gch, %.o, $(GCH))
+OBJ = $(filter-out main.o, $(patsubst $(SRCDIR)/%.cc, %.o, $(wildcard $(SRCDIR)/*.cc)))
 ###############################################################################################################
 
 GAMEINCDIR := ../../Game/include
@@ -44,9 +43,6 @@ OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
 all : $(GCHS) $(OBJS)
-ifeq (0, $(RLSOPT))
-all : $(DBGDIR)/$(BIN)
-endif
 
 $(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
@@ -76,18 +72,17 @@ include $(wildcard $(DEPFILES))
 clean : 
 	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
-testDebug : REALFLAGS = $(CFLAGS)
+testDebug : $(REALFLAGS) = $(CFLAGS)
 testDebug : all $(DBGDIR)/$(BIN)
 
-testRelease : REALFLAGS = $(RLSFLAGS)
+testRelease : $(REALFLAGS) = $(RLSFLAGS)
 testRelease : all $(RLSDIR)/$(BIN)
 
-debug : REALFLAGS = $(CFLAGS)
-debug : all
+debug : $(GCHS) $(OBJS)
 
 nsfw : clean
 	@echo "That was possibly the worst idea you could have..."
-nsfw : REALFLAGS += -DNSFW
+nsfw : $(REALFLAGS) += -DNSFW
 nsfw : all
 
 love : 

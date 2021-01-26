@@ -1,6 +1,9 @@
 #include "Player.hh"
 
-Player::Player() : Character(), maxHealth(20), stamina(5), maxStamina(5), score(0), isSprinting(false), knife(NULL), currentWeapon(-1){}
+Player::Player() : Character(), maxHealth(20), stamina(5), maxStamina(5), score(0), isSprinting(false), knife(NULL), currentWeapon(1){}
+Player :: Player(Melee *_knife, std :: vector <Weapon *> _weapons) 
+: Character(), maxHealth(20), stamina(5), maxStamina(5), score(0), isSprinting(false), weapons(_weapons), knife(_knife), currentWeapon(1) {}
+
 
 Player::~Player(){
     weapons.clear();
@@ -115,19 +118,19 @@ bool Player::secondary(){
 }
 
 void Player::reload(){
-    weapons[currentWeapon-1]->reload();
+    currentWeapon ? weapons[currentWeapon-1]->reload() : knife->reload();
 }
 
 void Player::update(){
-    weapons[currentWeapon-1]->countDown();
+	currentWeapon ? weapons[currentWeapon-1]->countDown() : knife->countDown();
 }
 
 bool Player::attack(){
-    return weapons[currentWeapon-1]->attack();
+	return currentWeapon ? weapons[currentWeapon-1]->attack() : knife->attack();
 }
 
 bool Player::toAttack(){
-    weapons[currentWeapon-1]->isShooting() = true;
+	currentWeapon ? weapons[currentWeapon-1]->isShooting() = true : knife->isShooting();
     return false;
 }
 

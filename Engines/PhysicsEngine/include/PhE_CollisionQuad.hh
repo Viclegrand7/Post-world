@@ -13,6 +13,8 @@ namespace Physic {
 		CollisionQuad(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, 
 			float x4, float y4, float z4, float xn, float yn, float zn)
 		: att_corners{{x1, y1, z1}, {x2, y2, z2}, {x3, y3, z3}, {x4, y4, z4}}, att_normal({xn, yn, zn}) {}
+		CollisionQuad()
+		: att_corners{{0.f, 0.f, 0.f}, {0.f, 0.f, 0.f}, {0.f, 0.f, 0.f}, {0.f, 0.f, 0.f}}, att_normal({0.f, 0.f, 0.f}) {}
 		CollisionQuad operator-() const {return CollisionQuad(att_corners[0], att_corners[1], att_corners[2], att_corners[3], -att_normal);}
 		CollisionQuad &operator-=(const Vector3f &other);
 	};

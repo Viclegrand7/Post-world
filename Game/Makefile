@@ -62,7 +62,7 @@ tmpall :
 
 
 debug : REALFLAGS = $(CFLAGS) 
-debug : $(GCHS) $(OBJS) tmpdebug
+debug : tmpdebug $(GCHS) $(OBJS) 
 debug : $(DBGDIR)/$(BIN)
 
 tmpdebug : 

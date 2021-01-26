@@ -22,6 +22,12 @@ namespace FPS {
 		void reload();
 
 		void update(int width, int height, bool isFullScreen, float gravity);
+		Player(Graphic :: Weapon *knife, std :: vector <Graphic :: Weapon *> weapons, ::Melee *gknife, std :: vector <::Weapon *>pweapons);
+		~Player() {
+			delete att_graphPlayer;
+			delete att_physPlayer;
+			delete att_gamePlayer;
+		}
 	};
 }
 
