@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>6</zoom_level>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>3</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>288</y>
-      <w>186</w>
-      <h>54</h>
+      <x>456</x>
+      <y>135</y>
+      <w>93</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>*glList*
+    <panel_attributes>*GLuint*
 --
 -displayList: lotsOfCompiledGLInstructions
 --
@@ -19,10 +20,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>780</x>
-      <y>258</y>
-      <w>750</w>
-      <h>480</h>
+      <x>342</x>
+      <y>117</y>
+      <w>432</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>namespace GraphicsEngine
 --
@@ -33,86 +34,105 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1026</x>
+      <x>516</x>
       <y>0</y>
-      <w>162</w>
-      <h>120</h>
+      <w>102</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>*Vector3f*
 --
-+x: float
-+y: float
-+z: float
++att_x: float
++att_y: float
++att_z: float
 --
 +Vector3f(float, float, float): Vector3f
 +Vector3f(Vector3f) : Vector3f
+--
 +dotProduct(Vector3f): float
 +crossProduct(Vector3f): Vector3f
 +length(): float
 +normalize() : void
-+operators(...): ...</panel_attributes>
++operator=(const Vector3f): Vector3f
++operator+(const Vector3f): Vector
++operator-(const Vector3f): Vector
++operator*(const float): Vector
++operator/(const float): Vector
++operator+=(const Vector3f): Vector
++operator-=(const Vector3f): Vector
++operato*=(const float): Vector
++operator/=(const float): Vector
++operator==(const Vector3f): bool
++operator!=(const Vector3f): bool
++operator&lt;&lt;(ostream, const Vector3f): ostream&amp;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
-      <y>114</y>
-      <w>18</w>
-      <h>168</h>
+      <x>549</x>
+      <y>111</y>
+      <w>15</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 layer=-1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
+    <additional_attributes>30.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1206</x>
-      <y>276</y>
-      <w>144</w>
-      <h>72</h>
+      <x>609</x>
+      <y>144</y>
+      <w>72</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>/*Item*/
 --
--outerLook: glList
+-outerLook: GLuint
 -rotation: Vector3f
--position: Vector3f
 --
-/+draw(): void/
-/+update(bool isHappening): bool/
+Item(GLuint, Vector3f): Item
+Item(Item*): Item
+--
+/+draw(Vector3f): void/
+/+update(bool): bool/
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>288</y>
-      <w>138</w>
-      <h>18</h>
+      <x>546</x>
+      <y>135</y>
+      <w>69</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;210.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;210.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1356</x>
-      <y>342</y>
-      <w>168</w>
-      <h>120</h>
+      <x>684</x>
+      <y>183</y>
+      <w>84</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>/*Weapon*/
 --
--frames: vector&lt;glList&gt;
+-frames: vector&lt;GLuint&gt;
 -normalAnimation: unsigned int
 -attackAnimation: unsigned int
 -secondaryAnimation: unsigned int
 -currentFrame: unsigned int
 --
-/+draw(): void/
-+update(bool isHappening): bool
+Weapon(vector&lt;GLuint&gt;, unsigned int, 
+unsigned int, unsigned int): Weapon
+Weapon(Weapon*): Weapon
+--
+/+draw(bool): void/
+/+draw(Vector3f): void/
++update(bool): bool
 /+attack() : void/
 /+reload() : void/
 /+secondary() : void/</panel_attributes>
@@ -121,10 +141,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1374</x>
-      <y>540</y>
-      <w>126</w>
-      <h>108</h>
+      <x>705</x>
+      <y>297</y>
+      <w>63</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>*Gun*
 --
@@ -134,19 +154,24 @@ layer=-1</panel_attributes>
 -curRotation: Vector3f
 -isAiming: bool
 --
+Gun(vector&lt;GLuint&gt;, 
+Vector3f, Vector3f): Gun
+--
 +attack(): void
 +secondary(): void
 +reload(): void
-+draw(): void</panel_attributes>
++draw(Vector3f): void
++draw(bool): void
++update(bool): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1344</x>
-      <y>312</y>
-      <w>114</w>
-      <h>42</h>
+      <x>678</x>
+      <y>168</y>
+      <w>57</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;170.0;50.0</additional_attributes>
@@ -154,38 +179,42 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1428</x>
-      <y>456</y>
-      <w>18</w>
-      <h>96</h>
+      <x>732</x>
+      <y>261</y>
+      <w>9</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1200</x>
-      <y>366</y>
-      <w>150</w>
-      <h>60</h>
+      <x>606</x>
+      <y>195</y>
+      <w>75</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>*PowerUp*
 --
--activationLook: vector&lt;glList&gt;
+-activationLook: vector&lt;GLuint&gt;
 -currentFrame: unsigned int
 --
-+draw(): void
-+update(bool isPickedUp): bool</panel_attributes>
+PowerUp(vector&lt;GLuint&gt;, Vector3f, 
+unsigned int): PowerUp
+PowerUp(PowerUp*): PowerUp
+--
++draw(Vector3f): void
++update(bool): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1290</x>
-      <y>342</y>
-      <w>18</w>
-      <h>36</h>
+      <x>651</x>
+      <y>183</y>
+      <w>9</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -193,44 +222,45 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>786</x>
-      <y>402</y>
-      <w>162</w>
-      <h>78</h>
+      <x>375</x>
+      <y>222</y>
+      <w>111</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>*Level*
 --
--setup: vector&lt;glList&gt;
--particules: vector&lt;Particule&gt;
+-setup: vector&lt;GLuint&gt;
+-particules: vector&lt;Particule *&gt;
+-curParticules: vector&lt;Particule *&gt;
+--
+Level(vector&lt;GLuint&gt;, vector&lt;Particule*&gt;): Level
 --
 +draw(): void
-+spawnParticules(unsigned int, 
-Vector3f, Vector3f, int): void
++spawnParticules(unsigned int, Vector3f, int): void
 +update(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>894</x>
-      <y>336</y>
-      <w>18</w>
-      <h>78</h>
+      <x>453</x>
+      <y>159</y>
+      <w>9</w>
+      <h>69</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1212</x>
-      <y>492</y>
-      <w>150</w>
-      <h>222</h>
+      <x>609</x>
+      <y>273</y>
+      <w>93</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>*Camera*
 --
--location: Vector3f
 -pitch: float
 -yaw: float
 -roll: float
@@ -241,80 +271,96 @@ Vector3f, Vector3f, int): void
 -currentJump: unsigned int
 --
 -lockCamera(): void
--moveCamera(float, float): void
--moveCameraUp(float, float): void
--handleMoves(): void
-+control(int width, int height,
-    bool isFull, float speed,
-    float gravity): bool
-+setLocation(Vector3f): void
-+lookAt(float pitch, 
-	float yaw): void
+-moveCamera(Vector3f, float, float): void
+-moveCameraUp(Vector3f, float, float): void
+-handleMoves(Vector3f, float): void
++control(Vector3f, int, int,
+    bool, float, float): bool
++updateCamera(Vector3f): void
++lookAt(float, float): void
++getPitch(); float
++getYaw(): float
++getsight: Vector3f
++isMouseIn(): bool&amp;
++isMoving(): bool
 +jump(): void
--doJump(): bool</panel_attributes>
++doesJump(Vector3f): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1026</x>
-      <y>636</y>
-      <w>138</w>
-      <h>90</h>
+      <x>519</x>
+      <y>345</y>
+      <w>69</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>*Ennemy*
 --
--frames: vector&lt;glList&gt;
+-frames: vector&lt;GLuint&gt;
 -walkAnimation: unsigned int
 -attackAnimation: unsigned int
 -deathAnimation: unsigned int
 -currentFrame: unsigned int
+doesAttack: bool
+doesDie: bool
 --
 +draw(Vector3f, Vector3f): void
-+update(bool, bool): bool</panel_attributes>
++update(): bool
++die(): void
++attack(): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1038</x>
-      <y>348</y>
-      <w>138</w>
-      <h>120</h>
+      <x>525</x>
+      <y>165</y>
+      <w>69</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>*Board*
 --
--window: SDL_window*
--player: Player*
+-gravity: float
+-weaponNumber: unsigned int
+-displayMode: SDL_DisplayMode
+-context: SDL_GLContext
+-particules: vector &lt;Particule*&gt;
++fps: int
++currentLevel: unsigned int
++window: SDL_window*
 -ennemies: vector&lt;Ennemy *&gt;
--itemList: vector&lt;Item *&gt;
+-items: vector&lt;Item *&gt;
 -itemDisplayed: vector&lt;Item*&gt;
 -levels: vector&lt;Level *&gt;
--gravity: float
--currentLevel: unsigned int
 --
-+draw(): void
-+update(): void</panel_attributes>
+-readAllFromFile(ifstream): void
++draw(Vector3f): void
++spawnEnnemy(): void
++spawnItem(unsigned int): void
++changeLevel(unsigned int): void
++drawUI(int, int, unsigned int): void
++getGravity(): float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>336</y>
-      <w>18</w>
-      <h>312</h>
+      <x>519</x>
+      <y>159</y>
+      <w>9</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;620.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1062</x>
-      <y>486</y>
-      <w>132</w>
-      <h>138</h>
+      <x>537</x>
+      <y>270</y>
+      <w>66</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>*Player*
 --
@@ -323,67 +369,68 @@ Vector3f, Vector3f, int): void
 -speed: float
 -sprintSpeed: float
 --
-+update(int width, int height, 
-    boolfullScreen, 
-    bool running,
-    float gravity): bool
++update(Vector3f, int, int, 
+    bool, bool,float): bool
 +draw(Weapon *): void
 +attack(Weapon *): void
 +secondary(Weapon *): void
-+reload(Weapon *): void</panel_attributes>
++reload(Weapon *): void
++jump(): void
++giveSpeed(): float
+giveSprintSpeed(): float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1188</x>
-      <y>528</y>
-      <w>36</w>
-      <h>18</h>
+      <x>600</x>
+      <y>291</y>
+      <w>15</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>462</y>
-      <w>18</w>
-      <h>186</h>
+      <x>531</x>
+      <y>264</y>
+      <w>9</w>
+      <h>87</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;270.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1092</x>
-      <y>462</y>
-      <w>18</w>
-      <h>36</h>
+      <x>552</x>
+      <y>264</y>
+      <w>9</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1128</x>
-      <y>306</y>
-      <w>90</w>
-      <h>54</h>
+      <x>570</x>
+      <y>162</y>
+      <w>45</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>130.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>130.0;20.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1560</x>
-      <y>258</y>
-      <w>750</w>
-      <h>480</h>
+      <x>786</x>
+      <y>114</y>
+      <w>375</w>
+      <h>297</h>
     </coordinates>
     <panel_attributes>namespace PhysicsEngine
 --
@@ -395,9 +442,9 @@ layer=-1</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>258</y>
-      <w>750</w>
-      <h>480</h>
+      <y>138</y>
+      <w>339</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>namespace GameEngine
 --
@@ -408,33 +455,33 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1182</x>
-      <y>102</y>
-      <w>798</w>
-      <h>180</h>
+      <x>615</x>
+      <y>51</y>
+      <w>381</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;1310.0;280.0</additional_attributes>
+    <additional_attributes>10.0;10.0;1250.0;230.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1596</x>
-      <y>444</y>
-      <w>336</w>
-      <h>120</h>
+      <x>804</x>
+      <y>249</y>
+      <w>168</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>*Collision*
 --
--weight: float (in future updates?)
---
+-static weirdTriangleArea(Vector3f, Vector3f, Vector3f): float
 +static rayPlane(CollisionQuad quad, Vector3f origin,
     Vector3f direction, float *distance, Vector3f *collisionPoint): bool
--static triangleArea(Vector3f point1, Vector3f point2, Vector3f point3): float
 +static sphereQuad(CollisionSphere &amp;character, collisionQuad quad): bool
++static sphereBox(CollisionSphere, CollisionBox): bool
 +static raySphere(CollisionSphere sphere, Vector3f origin,
     Vector3f direction, float *distance, Vector3f *collisionPoint): bool
 +static sphereSphere(CollisionSphere &amp;character, CollisionSphere other): bool
++static doesSphereSphere(CollisonSphere, CollisionSphere): bool
 +static rayBox(CollisionBox box, Vector3f origin, Vector3f direction,
     float *distance, Vector3f *collisionPoint): bool</panel_attributes>
     <additional_attributes/>
@@ -442,10 +489,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2004</x>
-      <y>606</y>
-      <w>300</w>
-      <h>66</h>
+      <x>1008</x>
+      <y>330</y>
+      <w>150</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>*CollisionSphere*
 --
@@ -459,10 +506,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1602</x>
-      <y>588</y>
-      <w>282</w>
-      <h>108</h>
+      <x>807</x>
+      <y>321</y>
+      <w>141</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>*CollisionQuad*
 --
@@ -481,108 +528,122 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1890</x>
-      <y>678</y>
-      <w>162</w>
-      <h>54</h>
+      <x>951</x>
+      <y>366</y>
+      <w>93</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>*CollisionBox*
 --
 +diagonalFaces: CollisionQuad[2]
 --
 +CollisionBox(CollisionQuad quad1, 
-    CollisionQuad quad2): CollisionBox</panel_attributes>
+    CollisionQuad quad2): CollisionBox
++CollisionBox(10 x Vector3f): CollisionBox
++CollisionBox(27 x float): CollisionBox</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2094</x>
-      <y>282</y>
-      <w>174</w>
-      <h>90</h>
+      <x>1002</x>
+      <y>168</y>
+      <w>156</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>*Player*
 --
 -hitBox: CollisionSphere
 --
 +Player(CollisionSphere hitBox): Player
--testCollisionItem(Item[]): int
--testCollisionWalls(CollisionBox[]): void
--testCollisionEnnemies(Ennemy[]): void
--attack(Ennemy[], CollisionBox[]): void
-+update(Ennemy[], CollisionBox[]): int</panel_attributes>
+-testCollisionItem(vector&lt;Item*&gt;): int
+-testCollisionWalls(vector&lt;CollisionBox*&gt;): void
+-testCollisionEnnemies(vector&lt;Ennemy*&gt;): void
++update(vector&lt;Item*&gt;, vector&lt;Ennemy*&gt;, vector&lt;CollisionBox*&gt;): int
++givePos(): Vector3f
++setPos(Vector3f): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1572</x>
-      <y>282</y>
-      <w>252</w>
-      <h>144</h>
+      <x>792</x>
+      <y>126</y>
+      <w>126</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*Ennemy*
 --
-+head: CollisionSphere
-+torso: CollisionBox
-+legs: CollsionBox[2]
-+arms: CollisionBox[2]
-+fakeBox: CollisionSphere
+-head: CollisionSphere
+-torso: CollisionBox
+-legs: CollsionBox[2]
+-arms: CollisionBox[2]
+-fakeBox: CollisionSphere
+-rotation: Vector3f
+speed: float
 --
 +Ennemy(CollisionSphere head, CollisionBox torso, 
     CollisionBox leg1, CollisionBox leg2, 
     CollisionBox arm1, CollisionBox arm2, 
     CollisionBox hitBox): Ennemy
+--
 -testCollisionWall(vector&lt;CollisionBox&gt;): void
 -testCollisionTeamates(vector&lt;Ennemy&gt;): void
-+update(vector&lt;CollisionBox&gt;, vector&lt;Ennemy&gt;): void</panel_attributes>
+-moveDir(Vector3f): void
++update(vector&lt;CollisionBox&gt;, vector&lt;Ennemy&gt;): void
++giveSphere(): Vector3f
++giveRot(): Vector3f
++doesGetHit(Vector3f, Vector3f, float, Vector3f): bool
++givePos(): Vector3f</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2130</x>
-      <y>480</y>
-      <w>162</w>
-      <h>42</h>
+      <x>1071</x>
+      <y>267</y>
+      <w>81</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>*Item*
 --
 +hitBox: CollisionSphere
 --
-+Item(CollisionSphere hitBox): Item</panel_attributes>
++Item(CollisionSphere hitBox): Item
+--
++giveSphere(): CollisionSphere
++givePos(): Vector3f</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1752</x>
-      <y>420</y>
-      <w>18</w>
-      <h>36</h>
+      <x>882</x>
+      <y>228</y>
+      <w>9</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1818</x>
-      <y>306</y>
-      <w>288</w>
-      <h>18</h>
+      <x>915</x>
+      <y>180</y>
+      <w>93</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;460.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;290.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2220</x>
-      <y>366</y>
-      <w>18</w>
-      <h>126</h>
+      <x>1116</x>
+      <y>210</y>
+      <w>9</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
@@ -590,57 +651,59 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>288</y>
-      <w>108</w>
-      <h>60</h>
+      <x>42</x>
+      <y>165</y>
+      <w>54</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>/*Character*/
 --
--health: int
+#name:string
+#health: int
 --
-/+getHealth(): int/
-/+getHit(int value): void/
+Character(): Character
+--
++getHealth(): int
++getHit(int value): void
 /+attack(): void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>192</x>
-      <y>408</y>
-      <w>108</w>
-      <h>126</h>
+      <x>102</x>
+      <y>231</y>
+      <w>60</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>*Ennemy*
 --
 -isDead: bool
 -damage: int
 -attackDownTime: int
--timeBeforeAttack(): int
+-timeBeforeAttack: int
 --
-+Ennemy(...): Ennemy
++Ennemy(): Ennemy
++Ennemy(int, int): Ennemy
+--
 +getDamage(): int
 +isDead(): bool
-+randomDrop(): Item
-+getHealth(): int
-+getHit(int value): void
-+attack(): void</panel_attributes>
++toAttack(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>12</x>
-      <y>408</y>
-      <w>162</w>
-      <h>282</h>
+      <y>231</y>
+      <w>81</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>*Player*
 --
 -maxHealth: int
 -stamina: int
--maxStamina(): int
+-maxStamina: int
 -score: int
 -isSprinting: bool
 -weapons: vector&lt;Weapon *&gt;
@@ -648,72 +711,79 @@ layer=-1</panel_attributes>
 -currentWeapon: unsigned int
 --
 +Player(...): Player
+~Player(): destructor
+--
++getCurrentWeapon(): int
 +getMaxHealth(): int
 +getStamina(): int
 +getMaxStamina(): int
 +sprint(): void
 +stopSprint(): void
 +getScore(): int
++addScore(int): void
 +changeWeapon(unsigned int): void
 +prevWeapon(): void
 +nextWeapon(): void
-+dropWeapon(): bool
++dropWeapon(): Weapon*
 +getCurMag(): int
 +getCurBull(): int
-+use(Item): void
++use(Item&amp;): Weapon*
 +secondary(): bool
 +reload(): void
-+getHealth(): int
-+getHit(int value): void
-+attack(): void</panel_attributes>
++update(): void
++attack(): void
++toAttack(): bool
++getWeaponDamage(): int
++isRunning(): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
-      <y>342</y>
-      <w>30</w>
-      <h>78</h>
+      <x>51</x>
+      <y>204</y>
+      <w>15</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>30.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>342</y>
-      <w>102</w>
-      <h>78</h>
+      <x>84</x>
+      <y>204</y>
+      <w>48</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>378</y>
-      <w>108</w>
-      <h>60</h>
+      <x>267</x>
+      <y>216</y>
+      <w>69</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>/*PowerUp*/
 --
 -id: int
 --
-+PowerUp(...): PowerUp
-+use(): int
-+giveName(): name</panel_attributes>
++PowerUp(int): PowerUp
++PowerUp(string, int) : PowerUp
+--
++use(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>348</y>
-      <w>120</w>
-      <h>156</h>
+      <x>186</x>
+      <y>201</y>
+      <w>69</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>/*Weapon*/
 --
@@ -722,25 +792,31 @@ layer=-1</panel_attributes>
 -timeBeforeAttack: int
 -attackDownTime: int
 --
-/+getCurMag(): int/
-/+getCurBull(): int/
-/+getDamage(): int/
-/+isAuto(): bool/
-/+getRange(): float/
+Weapon(): Weapon
+Weapon(bool, int, int): Weapon
+--
++getDamage(): int
++isAuto(): bool
++upgrade(int): void
++countdown(): void
 /+attack(): bool/
 /+stopAttack(): void/
+/+getCurMag(): int
+/+getCurBull(): int/
 /+secondary(): bool/
-/+addBullet(int value): void/
-/+reload(): void/</panel_attributes>
+/+addBullet(int): void/
+/+reload(): void/
+/+getRange(): float/
+/+isShooting(): bool&amp;/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>306</x>
-      <y>510</y>
-      <w>126</w>
-      <h>222</h>
+      <x>159</x>
+      <y>312</y>
+      <w>63</w>
+      <h>111</h>
     </coordinates>
     <panel_attributes>*Gun*
 --
@@ -749,78 +825,75 @@ layer=-1</panel_attributes>
 -curBullets: int
 -maxBullets: int
 -isAiming: bool
--isShooting: bool
 -isReloading: bool
 -precision: float
 --
 +Gun(...): Gun
++Gun(int, bool, int): Gun
++Gun(int, bool, int, int, int, float): Gun
+--
 +use(): int
-+giveName(): name
 +getCurMag(): int
 +getCurBull(): int
-+getDamage(): int
-+isAuto(): bool
-+getRange(): float
++addBullet(int): void
 +attack(): bool
 +stopAttack(): void
 +secondary(): bool
-+addBullet(int value): void
-+reload(): void</panel_attributes>
++getRange(): float
++reload(): void
++isReloading(): bool&amp;
++isAiming(): bool&amp;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
-      <y>552</y>
-      <w>126</w>
-      <h>180</h>
+      <x>231</x>
+      <y>318</y>
+      <w>63</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>*Melee*
 --
 -range: float
 -secondaryDownTime: int
--secondaryCost: int
 --
 +Melee(...): Melee
++Melee(int, int, float, int): Melee
 --
 +use(): int
-+giveName(): name
-+getCurMag(): int
-+getCurBull(): int
-+getDamage(): int
-+isAuto(): bool
 +getRange(): float
 +attack(): bool
-+stopAttack(): void
-+secondary(): bool
-+addBullet(int value): void
-+reload(): void</panel_attributes>
++secondary(): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>282</y>
-      <w>96</w>
-      <h>54</h>
+      <x>243</x>
+      <y>159</y>
+      <w>48</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>/*Item*/
 --
--name: string
+#name: string
 --
++Item(): Item
+~Item(): destructor
+--
++giveName(): name
 /+use(): int/
-/+giveName(): name/</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>330</y>
-      <w>18</w>
-      <h>60</h>
+      <x>276</x>
+      <y>192</y>
+      <w>9</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -828,10 +901,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>330</y>
-      <w>18</w>
-      <h>30</h>
+      <x>240</x>
+      <y>192</y>
+      <w>9</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
@@ -839,65 +912,43 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>498</y>
-      <w>18</w>
+      <x>198</x>
+      <y>300</y>
+      <w>9</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>237</x>
+      <y>315</y>
+      <w>9</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>75</x>
+      <y>147</y>
+      <w>192</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>468</x>
-      <y>498</y>
-      <w>18</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>264</x>
-      <y>282</y>
-      <w>222</w>
-      <h>138</h>
-    </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>350.0;10.0;10.0;10.0;10.0;210.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>138</x>
-      <y>294</y>
-      <w>348</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>560.0;10.0;330.0;10.0;330.0;150.0;10.0;150.0;10.0;190.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>162</x>
-      <y>390</y>
-      <w>210</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;10.0;10.0;10.0;30.0</additional_attributes>
+    <additional_attributes>620.0;40.0;620.0;10.0;10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>378</x>
-      <y>834</y>
-      <w>150</w>
-      <h>48</h>
+      <x>195</x>
+      <y>444</y>
+      <w>75</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Every class in the following inherits from its counterparts in namespaces. In order to improve visibility, they won't be linked
 bg=blue
@@ -907,18 +958,25 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>786</x>
-      <y>306</y>
-      <w>96</w>
-      <h>90</h>
+      <x>345</x>
+      <y>126</y>
+      <w>108</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>*Particule*
 --
 -position: Vector3f
 -direction: Vector3f
 -rotation: Vector3f
--visual: glList
+-rotationAdd: Vector3f
+-visual: GLuint
 -length: unsigned int
+-generator: default_random_engine
+-distribution: uniform_int_distribution&lt;int&gt;
+--
+Particule(GLuint, unsigned int, Vector3f&amp;): Particule
+Particule(Particule*, Vector3f): Particule
+~Particule() : destructor
 --
 +draw(): void
 +update(): bool</panel_attributes>
@@ -927,65 +985,65 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
-      <y>390</y>
-      <w>18</w>
-      <h>24</h>
+      <x>408</x>
+      <y>198</y>
+      <w>15</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
+    <additional_attributes>30.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>876</x>
-      <y>306</y>
-      <w>36</w>
+      <x>450</x>
+      <y>126</y>
+      <w>51</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>150.0;30.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>408</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;121.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>579</x>
+      <y>414</y>
+      <w>12</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>423</y>
+      <w>9</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1752</x>
-      <y>732</y>
-      <w>18</w>
-      <h>114</h>
-    </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;171.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1158</x>
-      <y>732</y>
-      <w>18</w>
-      <h>114</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>372</x>
-      <y>732</y>
-      <w>18</w>
-      <h>102</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>378</x>
-      <y>822</y>
-      <w>1380</w>
-      <h>1002</h>
+      <x>183</x>
+      <y>435</y>
+      <w>699</w>
+      <h>543</h>
     </coordinates>
     <panel_attributes>FPS
 --
@@ -996,12 +1054,12 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>684</x>
-      <y>1422</y>
-      <w>186</w>
-      <h>54</h>
+      <x>348</x>
+      <y>741</y>
+      <w>93</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>*glList*
+    <panel_attributes>*GLuint*
 --
 -displayList: lotsOfCompiledGLInstructions
 --
@@ -1012,25 +1070,31 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1086</x>
-      <y>1422</y>
-      <w>78</w>
+      <x>549</x>
+      <y>738</y>
+      <w>60</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>/*Item*/
 --
-outerLook: glList
+-outerLook: GLuint
+-rotation: Vector3f
 --
-/+draw(): void/</panel_attributes>
+Item(GLuint, Vector3f): Item
+Item(Item*): Item
+--
+/+draw(Vector3f): void/
+/+update(bool): bool/
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>864</x>
-      <y>1422</y>
-      <w>234</w>
-      <h>18</h>
+      <x>438</x>
+      <y>738</y>
+      <w>117</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;370.0;10.0</additional_attributes>
@@ -1038,312 +1102,336 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>1476</y>
-      <w>156</w>
-      <h>126</h>
+      <x>588</x>
+      <y>789</y>
+      <w>87</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>/*Weapon*/
 --
--frames: vector&lt;glList&gt;
+-frames: vector&lt;GLuint&gt;
 -normalAnimation: unsigned int
 -attackAnimation: unsigned int
 -secondaryAnimation: unsigned int
--defaultPosition: Vector3f
--defaultRotation: Vector3f
 -currentFrame: unsigned int
 --
+Weapon(vector&lt;GLuint&gt;, unsigned int, 
+unsigned int, unsigned int): Weapon
+Weapon(Weapon*): Weapon
+--
+/+draw(bool): void/
+/+draw(Vector3f): void/
++update(bool): bool
 /+attack() : void/
-/+secondary() : void/
 /+reload() : void/
-/+draw(): void/</panel_attributes>
+/+secondary() : void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1158</x>
-      <y>1674</y>
-      <w>126</w>
-      <h>84</h>
+      <x>597</x>
+      <y>885</y>
+      <w>63</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>*Gun*
 --
 -aimPosition: Vector3f
--aimRotation: Vecto3f
+-curPosition: Vector3f
+-aimRotation: Vector3f
+-curRotation: Vector3f
+-isAiming: bool
+--
+Gun(vector&lt;GLuint&gt;, 
+Vector3f, Vector3f): Gun
 --
 +attack(): void
 +secondary(): void
 +reload(): void
-+draw(): void</panel_attributes>
++draw(Vector3f): void
++draw(bool): void
++update(bool): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1158</x>
-      <y>1458</y>
-      <w>84</w>
-      <h>30</h>
+      <x>606</x>
+      <y>756</y>
+      <w>33</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1212</x>
-      <y>1596</y>
-      <w>18</w>
-      <h>90</h>
+      <x>624</x>
+      <y>867</y>
+      <w>9</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>996</x>
-      <y>1524</y>
-      <w>138</w>
-      <h>60</h>
+      <x>504</x>
+      <y>789</y>
+      <w>69</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>*PowerUp*
 --
--activationLook: vector&lt;glList&gt;
--rotation: Vector3f
---
-+draw(): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1110</x>
-      <y>1458</y>
-      <w>18</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>714</x>
-      <y>1494</y>
-      <w>72</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>*Obstacle*
---
--texture: glList
---
-+draw(): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>570</x>
-      <y>1554</y>
-      <w>162</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>*Level*
---
--setup: vector&lt;Obstacle&gt;
--background: vector&lt;glList&gt;
---
-+draw(): void
-+spawnParticules(Vector3f, int): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>678</x>
-      <y>1470</y>
-      <w>18</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>996</x>
-      <y>1650</y>
-      <w>144</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>*Camera*
---
--location: Vector3f
--pitch: float
--yaw: float
--roll: float
--isMouseIn: bool
---
--lockCamera(): void
--moveCamera(Vector3f): void
--moveCameraUp(Vector3f): void
-+control(int width, int height,
-    bool isFull): void
-+setLocation(Vector3f): void
-+lookAt(float pitch, 
-	float yaw): void
-+isMouseIn(): bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>684</x>
-      <y>1620</y>
-      <w>138</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>*Ennemy*
---
--frames: vector&lt;glList&gt;
--walkAnimation: unsigned int
--attackAnimation: unsigned int
--deathAnimation: unsigned int
+-activationLook: vector&lt;GLuint&gt;
 -currentFrame: unsigned int
--position: Vector3f
--rotation: Vector3f
 --
-+draw(): void
-+setLocation(Vector3f): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>840</x>
-      <y>1536</y>
-      <w>138</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>*Board*
+PowerUp(vector&lt;GLuint&gt;, Vector3f, 
+unsigned int): PowerUp
+PowerUp(PowerUp*): PowerUp
 --
--window: SDL_window*
--player: Player*
--ennemies: vector&lt;Ennemy *&gt;
--itemList: vector&lt;Item *&gt;
--levels: vector&lt;Level *&gt;
--gravity: float
--currentLevel: unsigned int
---
-+isFullScreen: bool
-+getRefreshRate(): int
-+draw(): void</panel_attributes>
++draw(Vector3f): void
++update(bool): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>1470</y>
-      <w>18</w>
-      <h>162</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;250.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>846</x>
-      <y>1692</y>
-      <w>132</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>*Player*
---
--weapons: vector&lt;Weapon*&gt;
-+camera: Camera
--currentWeapon: unsigned int
---
-+draw(): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>960</x>
-      <y>1662</y>
-      <w>48</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>816</x>
-      <y>1638</y>
-      <w>36</w>
+      <x>561</x>
+      <y>777</y>
+      <w>9</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>876</x>
-      <y>1650</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>930</x>
-      <y>1434</y>
-      <w>168</w>
-      <h>114</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>260.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>1530</y>
-      <w>18</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1146</x>
-      <y>1188</y>
-      <w>336</w>
-      <h>120</h>
+      <x>264</x>
+      <y>855</y>
+      <w>108</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>*Level*
+--
+-setup: vector&lt;GLuint&gt;
+-particules: vector&lt;Particule *&gt;
+-curParticules: vector&lt;Particule *&gt;
+--
+Level(vector&lt;GLuint&gt;, vector&lt;Particule*&gt;): Level
+--
++draw(): void
++spawnParticules(unsigned int, Vector3f, int): void
++update(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>345</x>
+      <y>765</y>
+      <w>9</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>507</x>
+      <y>843</y>
+      <w>72</w>
+      <h>123</h>
+    </coordinates>
+    <panel_attributes>*Camera*
+--
+-pitch: float
+-yaw: float
+-roll: float
+-mouseSpeed : float
+-isMouseIn: bool
+-isMoving: bool
+-jumpPos: vector&lt;float&gt;
+-currentJump: unsigned int
+--
+-lockCamera(): void
+-moveCamera(Vector3f, float, float): void
+-moveCameraUp(Vector3f, float, float): void
+-handleMoves(Vector3f, float): void
++control(Vector3f, int, int,
+    bool, float, float): bool
++updateCamera(Vector3f): void
++lookAt(float, float): void
++getPitch(); float
++getYaw(): float
++getsight: Vector3f
++isMouseIn(): bool&amp;
++isMoving(): bool
++jump(): void
++doesJump(Vector3f): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>915</y>
+      <w>69</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>*Ennemy*
+--
+-frames: vector&lt;GLuint&gt;
+-walkAnimation: unsigned int
+-attackAnimation: unsigned int
+-deathAnimation: unsigned int
+-currentFrame: unsigned int
+doesAttack: bool
+doesDie: bool
+--
++draw(Vector3f, Vector3f): void
++update(): bool
++die(): void
++attack(): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>426</x>
+      <y>768</y>
+      <w>69</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>*Board*
+--
+-gravity: float
+-weaponNumber: unsigned int
+-displayMode: SDL_DisplayMode
+-context: SDL_GLContext
+-particules: vector &lt;Particule*&gt;
++fps: int
++currentLevel: unsigned int
++window: SDL_window*
+-ennemies: vector&lt;Ennemy *&gt;
+-items: vector&lt;Item *&gt;
+-itemDisplayed: vector&lt;Item*&gt;
+-levels: vector&lt;Level *&gt;
+--
+-readAllFromFile(ifstream): void
++draw(Vector3f): void
++spawnEnnemy(): void
++spawnItem(unsigned int): void
++changeLevel(unsigned int): void
++drawUI(int, int, unsigned int): void
++getGravity(): float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>765</y>
+      <w>15</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>429</x>
+      <y>897</y>
+      <w>66</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>*Player*
+--
++camera: Camera
+-head: float
+-speed: float
+-sprintSpeed: float
+--
++update(Vector3f, int, int, 
+    bool, bool,float): bool
++draw(Weapon *): void
++attack(Weapon *): void
++secondary(Weapon *): void
++reload(Weapon *): void
++jump(): void
++giveSpeed(): float
+giveSprintSpeed(): float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>894</y>
+      <w>27</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>846</y>
+      <w>24</w>
+      <h>87</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;270.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>444</x>
+      <y>867</y>
+      <w>9</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>471</x>
+      <y>744</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>579</x>
+      <y>621</y>
+      <w>168</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>*Collision*
 --
--weight: float (in future updates?)
---
+-static weirdTriangleArea(Vector3f, Vector3f, Vector3f): float
 +static rayPlane(CollisionQuad quad, Vector3f origin,
     Vector3f direction, float *distance, Vector3f *collisionPoint): bool
--static triangleArea(Vector3f point1, Vector3f point2, Vector3f point3): float
 +static sphereQuad(CollisionSphere &amp;character, collisionQuad quad): bool
++static sphereBox(CollisionSphere, CollisionBox): bool
 +static raySphere(CollisionSphere sphere, Vector3f origin,
     Vector3f direction, float *distance, Vector3f *collisionPoint): bool
 +static sphereSphere(CollisionSphere &amp;character, CollisionSphere other): bool
++static doesSphereSphere(CollisonSphere, CollisionSphere): bool
 +static rayBox(CollisionBox box, Vector3f origin, Vector3f direction,
     float *distance, Vector3f *collisionPoint): bool</panel_attributes>
     <additional_attributes/>
@@ -1351,10 +1439,10 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1032</x>
-      <y>1344</y>
-      <w>300</w>
-      <h>66</h>
+      <x>522</x>
+      <y>699</y>
+      <w>150</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>*CollisionSphere*
 --
@@ -1368,10 +1456,10 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1452</x>
-      <y>1344</y>
-      <w>282</w>
-      <h>108</h>
+      <x>732</x>
+      <y>699</y>
+      <w>141</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>*CollisionQuad*
 --
@@ -1390,105 +1478,115 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1284</x>
-      <y>1416</y>
-      <w>162</w>
-      <h>54</h>
+      <x>636</x>
+      <y>735</y>
+      <w>93</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>*CollisionBox*
 --
 +diagonalFaces: CollisionQuad[2]
 --
 +CollisionBox(CollisionQuad quad1, 
-    CollisionQuad quad2): CollisionBox</panel_attributes>
+    CollisionQuad quad2): CollisionBox
++CollisionBox(10 x Vector3f): CollisionBox
++CollisionBox(27 x float): CollisionBox</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1242</x>
-      <y>1302</y>
-      <w>18</w>
-      <h>54</h>
+      <x>627</x>
+      <y>681</y>
+      <w>9</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1344</x>
-      <y>1302</y>
-      <w>18</w>
-      <h>126</h>
+      <x>678</x>
+      <y>681</y>
+      <w>9</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1470</x>
-      <y>1302</y>
-      <w>18</w>
-      <h>54</h>
+      <x>741</x>
+      <y>681</y>
+      <w>9</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1446</x>
-      <y>1026</y>
-      <w>174</w>
-      <h>90</h>
+      <x>729</x>
+      <y>534</y>
+      <w>150</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>*Player*
 --
 -hitBox: CollisionSphere
 --
 +Player(CollisionSphere hitBox): Player
--testCollisionItem(Item[]): int
--testCollisionWalls(Obstacle[]): void
--testCollisionEnnemies(Ennemy[]): void
--attack(Ennemy[], Obstacle[]): void
-+update(Ennemy[], Obstacle[]): int</panel_attributes>
+-testCollisionItem(vector&lt;Item*&gt;): int
+-testCollisionWalls(vector&lt;CollisionBox*&gt;): void
+-testCollisionEnnemies(vector&lt;Ennemy*&gt;): void
++update(vector&lt;Item*&gt;, vector&lt;Ennemy*&gt;, vector&lt;CollisionBox*&gt;): int
++givePos(): Vector3f
++setPos(Vector3f): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1044</x>
-      <y>1026</y>
-      <w>222</w>
-      <h>144</h>
+      <x>528</x>
+      <y>504</y>
+      <w>111</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>*Ennemy*
 --
-+head: CollisionSphere
-+torso: CollisionBox
-+legs: CollsionBox[2]
-+arms: CollisionBox[2]
-+fakeBox: CollisionSphere
+-head: CollisionSphere
+-torso: CollisionBox
+-legs: CollsionBox[2]
+-arms: CollisionBox[2]
+-fakeBox: CollisionSphere
+-rotation: Vector3f
+speed: float
 --
 +Ennemy(CollisionSphere head, CollisionBox torso, 
     CollisionBox leg1, CollisionBox leg2, 
     CollisionBox arm1, CollisionBox arm2, 
     CollisionBox hitBox): Ennemy
--testCollisionWall(Obstacle[]): void
--testCollisionTeamates(Ennemy[]): void
--testCollisionPlayer(Player): bool
--update(Obstacle[]): void</panel_attributes>
+--
+-testCollisionWall(vector&lt;CollisionBox&gt;): void
+-testCollisionTeamates(vector&lt;Ennemy&gt;): void
+-moveDir(Vector3f): void
++update(vector&lt;CollisionBox&gt;, vector&lt;Ennemy&gt;): void
++giveSphere(): Vector3f
++giveRot(): Vector3f
++doesGetHit(Vector3f, Vector3f, float, Vector3f): bool
++givePos(): Vector3f</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1278</x>
-      <y>1122</y>
-      <w>186</w>
-      <h>42</h>
+      <x>645</x>
+      <y>588</y>
+      <w>93</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>*Obstacle*
 --
@@ -1500,25 +1598,28 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1542</x>
-      <y>1224</y>
-      <w>162</w>
-      <h>42</h>
+      <x>777</x>
+      <y>639</y>
+      <w>81</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>*Item*
 --
 +hitBox: CollisionSphere
 --
-+Item(CollisionSphere hitBox): Item</panel_attributes>
++Item(CollisionSphere hitBox): Item
+--
++giveSphere(): CollisionSphere
++givePos(): Vector3f</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1224</x>
-      <y>1164</y>
-      <w>18</w>
-      <h>36</h>
+      <x>618</x>
+      <y>609</y>
+      <w>9</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -1526,10 +1627,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1374</x>
-      <y>1158</y>
-      <w>18</w>
-      <h>42</h>
+      <x>693</x>
+      <y>606</y>
+      <w>9</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -1537,10 +1638,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>1050</y>
-      <w>198</w>
-      <h>18</h>
+      <x>636</x>
+      <y>552</y>
+      <w>99</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;310.0;10.0</additional_attributes>
@@ -1548,10 +1649,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>1074</y>
-      <w>198</w>
-      <h>18</h>
+      <x>636</x>
+      <y>564</y>
+      <w>99</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>310.0;10.0;10.0;10.0</additional_attributes>
@@ -1559,10 +1660,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>1098</y>
-      <w>66</w>
-      <h>36</h>
+      <x>636</x>
+      <y>576</y>
+      <w>33</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>90.0;40.0;10.0;10.0</additional_attributes>
@@ -1570,10 +1671,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1422</x>
-      <y>1110</y>
-      <w>36</w>
-      <h>24</h>
+      <x>717</x>
+      <y>582</y>
+      <w>18</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;20.0;40.0;10.0</additional_attributes>
@@ -1581,10 +1682,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1572</x>
-      <y>1110</y>
-      <w>18</w>
-      <h>126</h>
+      <x>792</x>
+      <y>582</y>
+      <w>9</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
@@ -1592,10 +1693,10 @@ outerLook: glList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1476</x>
-      <y>1224</y>
-      <w>78</w>
-      <h>18</h>
+      <x>744</x>
+      <y>639</y>
+      <w>39</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
@@ -1603,57 +1704,59 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
-      <y>936</y>
-      <w>108</w>
-      <h>60</h>
+      <x>234</x>
+      <y>483</y>
+      <w>54</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>/*Character*/
 --
--health: int
+#name:string
+#health: int
 --
-/+getHealth(): int/
-/+getHit(int value): void/
+Character(): Character
+--
++getHealth(): int
++getHit(int value): void
 /+attack(): void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>576</x>
-      <y>1056</y>
-      <w>108</w>
-      <h>126</h>
+      <x>288</x>
+      <y>555</y>
+      <w>60</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>*Ennemy*
 --
 -isDead: bool
 -damage: int
 -attackDownTime: int
--timeBeforeAttack(): int
+-timeBeforeAttack: int
 --
-+Ennemy(...): Ennemy
++Ennemy(): Ennemy
++Ennemy(int, int): Ennemy
+--
 +getDamage(): int
 +isDead(): bool
-+randomDrop(): Item
-+getHealth(): int
-+getHit(int value): void
-+attack(): void</panel_attributes>
++toAttack(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>396</x>
-      <y>1056</y>
-      <w>162</w>
-      <h>282</h>
+      <x>198</x>
+      <y>555</y>
+      <w>81</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>*Player*
 --
 -maxHealth: int
 -stamina: int
--maxStamina(): int
+-maxStamina: int
 -score: int
 -isSprinting: bool
 -weapons: vector&lt;Weapon *&gt;
@@ -1661,72 +1764,79 @@ outerLook: glList
 -currentWeapon: unsigned int
 --
 +Player(...): Player
+~Player(): destructor
+--
++getCurrentWeapon(): int
 +getMaxHealth(): int
 +getStamina(): int
 +getMaxStamina(): int
 +sprint(): void
 +stopSprint(): void
 +getScore(): int
++addScore(int): void
 +changeWeapon(unsigned int): void
 +prevWeapon(): void
 +nextWeapon(): void
-+dropWeapon(): bool
++dropWeapon(): Weapon*
 +getCurMag(): int
 +getCurBull(): int
-+use(Item): void
++use(Item&amp;): Weapon*
 +secondary(): bool
 +reload(): void
-+getHealth(): int
-+getHit(int value): void
-+attack(): void</panel_attributes>
++update(): void
++attack(): void
++toAttack(): bool
++getWeaponDamage(): int
++isRunning(): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>474</x>
-      <y>990</y>
-      <w>30</w>
-      <h>78</h>
+      <x>234</x>
+      <y>522</y>
+      <w>24</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>534</x>
-      <y>990</y>
-      <w>102</w>
-      <h>78</h>
+      <x>273</x>
+      <y>522</y>
+      <w>45</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;110.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>924</x>
-      <y>1026</y>
-      <w>108</w>
-      <h>60</h>
+      <x>450</x>
+      <y>540</y>
+      <w>72</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>/*PowerUp*/
 --
 -id: int
 --
-+PowerUp(...): PowerUp
-+use(): int
-+giveName(): name</panel_attributes>
++PowerUp(int): PowerUp
++PowerUp(string, int) : PowerUp
+--
++use(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>744</x>
-      <y>996</y>
-      <w>120</w>
-      <h>156</h>
+      <x>378</x>
+      <y>510</y>
+      <w>66</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>/*Weapon*/
 --
@@ -1735,25 +1845,31 @@ outerLook: glList
 -timeBeforeAttack: int
 -attackDownTime: int
 --
-/+getCurMag(): int/
-/+getCurBull(): int/
-/+getDamage(): int/
-/+isAuto(): bool/
-/+getRange(): float/
+Weapon(): Weapon
+Weapon(bool, int, int): Weapon
+--
++getDamage(): int
++isAuto(): bool
++upgrade(int): void
++countdown(): void
 /+attack(): bool/
 /+stopAttack(): void/
+/+getCurMag(): int
+/+getCurBull(): int/
 /+secondary(): bool/
-/+addBullet(int value): void/
-/+reload(): void/</panel_attributes>
+/+addBullet(int): void/
+/+reload(): void/
+/+getRange(): float/
+/+isShooting(): bool&amp;/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>1158</y>
-      <w>126</w>
-      <h>222</h>
+      <x>351</x>
+      <y>624</y>
+      <w>63</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>*Gun*
 --
@@ -1762,237 +1878,225 @@ outerLook: glList
 -curBullets: int
 -maxBullets: int
 -isAiming: bool
--isShooting: bool
 -isReloading: bool
 -precision: float
 --
 +Gun(...): Gun
++Gun(int, bool, int): Gun
++Gun(int, bool, int, int, int, float): Gun
+--
 +use(): int
-+giveName(): name
 +getCurMag(): int
 +getCurBull(): int
-+getDamage(): int
-+isAuto(): bool
-+getRange(): float
++addBullet(int): void
 +attack(): bool
 +stopAttack(): void
 +secondary(): bool
-+addBullet(int value): void
-+reload(): void</panel_attributes>
++getRange(): float
++reload(): void
++isReloading(): bool&amp;
++isAiming(): bool&amp;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>1200</y>
-      <w>126</w>
-      <h>180</h>
+      <x>426</x>
+      <y>642</y>
+      <w>63</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>*Melee*
 --
 -range: float
 -secondaryDownTime: int
--secondaryCost: int
 --
 +Melee(...): Melee
++Melee(int, int, float, int): Melee
 --
 +use(): int
-+giveName(): name
-+getCurMag(): int
-+getCurBull(): int
-+getDamage(): int
-+isAuto(): bool
 +getRange(): float
 +attack(): bool
-+stopAttack(): void
-+secondary(): bool
-+addBullet(int value): void
-+reload(): void</panel_attributes>
++secondary(): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>858</x>
-      <y>930</y>
-      <w>96</w>
-      <h>54</h>
+      <x>435</x>
+      <y>459</y>
+      <w>48</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>/*Item*/
 --
--name: string
+#name: string
 --
++Item(): Item
+~Item(): destructor
+--
++giveName(): name
 /+use(): int/
-/+giveName(): name/</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>924</x>
-      <y>978</y>
-      <w>18</w>
-      <h>60</h>
+      <x>468</x>
+      <y>492</y>
+      <w>9</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>492</y>
+      <w>9</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>612</y>
+      <w>9</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>612</y>
+      <w>9</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>261</x>
+      <y>471</y>
+      <w>180</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>580.0;10.0;10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>225</x>
+      <y>756</y>
+      <w>114</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>*Particule*
+--
+-position: Vector3f
+-direction: Vector3f
+-rotation: Vector3f
+-rotationAdd: Vector3f
+-visual: GLuint
+-length: unsigned int
+-generator: default_random_engine
+-distribution: uniform_int_distribution&lt;int&gt;
+--
+Particule(GLuint, unsigned int, Vector3f&amp;): Particule
+Particule(Particule*, Vector3f): Particule
+~Particule() : destructor
+--
++draw(): void
++update(): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>831</y>
+      <w>9</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>852</x>
-      <y>978</y>
-      <w>18</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>768</x>
-      <y>1146</y>
-      <w>18</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>852</x>
-      <y>1146</y>
-      <w>18</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>648</x>
-      <y>930</y>
-      <w>222</w>
-      <h>138</h>
+      <x>312</x>
+      <y>747</y>
+      <w>42</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>350.0;10.0;10.0;10.0;10.0;210.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>522</x>
-      <y>942</y>
-      <w>348</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>560.0;10.0;330.0;10.0;330.0;150.0;10.0;150.0;10.0;190.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>546</x>
-      <y>1038</y>
-      <w>210</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;10.0;10.0;10.0;30.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>582</x>
-      <y>1482</y>
-      <w>84</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>*Particule*
---
--position: Vector3f
--visual: glList
---
-+draw(): void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>588</x>
-      <y>1530</y>
-      <w>18</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>612</x>
-      <y>1440</y>
-      <w>84</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>732</x>
-      <y>1470</y>
-      <w>18</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1014</x>
-      <y>906</y>
-      <w>162</w>
-      <h>108</h>
+      <x>642</x>
+      <y>441</y>
+      <w>81</w>
+      <h>111</h>
     </coordinates>
     <panel_attributes>*Vector3f*
 --
-+x: float
-+y: float
-+z: float
++att_x: float
++att_y: float
++att_z: float
 --
 +Vector3f(float, float, float): Vector3f
-+dotProduct(Vector3f): Vector3f
++Vector3f(Vector3f) : Vector3f
+--
++dotProduct(Vector3f): float
 +crossProduct(Vector3f): Vector3f
 +length(): float
 +normalize() : void
-+operators(...): ...</panel_attributes>
++operator=(const Vector3f): Vector3f
++operator+(const Vector3f): Vector
++operator-(const Vector3f): Vector
++operator*(const float): Vector
++operator/(const float): Vector
++operator+=(const Vector3f): Vector
++operator-=(const Vector3f): Vector
++operato*=(const float): Vector
++operator/=(const float): Vector
++operator==(const Vector3f): bool
++operator!=(const Vector3f): bool
++operator&lt;&lt;(ostream, const Vector3f): ostream&amp;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1170</x>
-      <y>432</y>
-      <w>198</w>
-      <h>18</h>
+      <x>591</x>
+      <y>240</y>
+      <w>99</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>310.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>310.0;20.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1176</x>
-      <y>444</y>
-      <w>192</w>
-      <h>54</h>
+      <x>594</x>
+      <y>249</y>
+      <w>96</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>300.0;10.0;10.0;10.0;10.0;70.0</additional_attributes>
@@ -2000,19 +2104,23 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>792</x>
-      <y>486</y>
-      <w>192</w>
-      <h>204</h>
+      <x>411</x>
+      <y>276</y>
+      <w>96</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>*Loader*
 --
 -textures: map&lt;string, GLuint&gt;
--drawings: vector&lt;glList&gt;
+-drawings: vector&lt;GLuint&gt;
 -materials: map&lt;string, GLuint&gt;
 -vertexes: vector&lt;Vector3f&gt;
 -normals: vector&lt;Vector3f&gt;
 -texVertexes: vector&lt;float*&gt;
+- currentMaterial: GLuint
+--
+Loader(): Loader
+~Loader(): destructor
 --
 -loadTexture(string): void
 -tryHardOpenFile(string): ifstream
@@ -2025,50 +2133,50 @@ outerLook: glList
 -readMaterial(string, ifstream): void
 -readTex(string): void
 -readFigure(string): void
-+loadFile(string): void
-+loadAnimation(string): vector&lt;glList&gt;</panel_attributes>
++loadFile(string): GLuint
++loadAnimation(string): vector&lt;GLuint&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>954</x>
-      <y>438</y>
-      <w>96</w>
-      <h>60</h>
+      <x>492</x>
+      <y>243</y>
+      <w>39</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1818</x>
-      <y>330</y>
-      <w>288</w>
-      <h>18</h>
+      <x>915</x>
+      <y>192</y>
+      <w>93</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>460.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1818</x>
-      <y>414</y>
-      <w>408</w>
-      <h>204</h>
+      <x>915</x>
+      <y>228</y>
+      <w>204</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>660.0;320.0;660.0;210.0;530.0;210.0;530.0;190.0;480.0;190.0;480.0;210.0;230.0;210.0;230.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>660.0;340.0;660.0;230.0;530.0;230.0;530.0;210.0;480.0;210.0;480.0;230.0;230.0;230.0;230.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1926</x>
-      <y>546</y>
-      <w>132</w>
-      <h>72</h>
+      <x>969</x>
+      <y>300</y>
+      <w>66</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>200.0;100.0;200.0;10.0;10.0;10.0</additional_attributes>
@@ -2076,28 +2184,28 @@ outerLook: glList
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1968</x>
-      <y>384</y>
-      <w>144</w>
-      <h>114</h>
+      <x>990</x>
+      <y>219</y>
+      <w>72</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>*Board*
 --
--id: Long
-_-ClassAttribute: Long_
+-curLevel: unsigned int
+-ennemies: vector&lt;Ennemy*&gt;
+-items: vector&lt;Item*&gt;
+-levels: vector&lt;CollisionBox*&gt;
 --
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
+-changeLevel(unsigned int): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1926</x>
-      <y>474</y>
-      <w>54</w>
-      <h>30</h>
+      <x>969</x>
+      <y>264</y>
+      <w>27</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;30.0;30.0;30.0;30.0;10.0;60.0;10.0;60.0;30.0;70.0;30.0</additional_attributes>
@@ -2105,10 +2213,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2118</x>
-      <y>366</y>
-      <w>18</w>
-      <h>252</h>
+      <x>1065</x>
+      <y>210</y>
+      <w>9</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;400.0;10.0;10.0</additional_attributes>
@@ -2116,10 +2224,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2262</x>
-      <y>516</y>
-      <w>18</w>
-      <h>102</h>
+      <x>1137</x>
+      <y>285</y>
+      <w>9</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
@@ -2127,10 +2235,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1908</x>
-      <y>558</y>
-      <w>18</w>
-      <h>132</h>
+      <x>960</x>
+      <y>306</y>
+      <w>9</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
@@ -2138,10 +2246,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1650</x>
-      <y>558</y>
-      <w>18</w>
-      <h>42</h>
+      <x>831</x>
+      <y>306</y>
+      <w>9</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -2149,23 +2257,34 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1740</x>
-      <y>414</y>
-      <w>228</w>
-      <h>186</h>
+      <x>876</x>
+      <y>228</y>
+      <w>114</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;290.0;10.0;270.0;360.0;270.0;360.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;310.0;10.0;290.0;360.0;290.0;360.0;10.0;140.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1818</x>
-      <y>414</y>
-      <w>150</w>
-      <h>276</h>
+      <x>915</x>
+      <y>228</y>
+      <w>75</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>230.0;440.0;230.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>230.0;460.0;230.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>300</y>
+      <w>9</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>
