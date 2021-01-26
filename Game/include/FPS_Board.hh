@@ -10,7 +10,6 @@
 
 namespace FPS {
 	class Board {
-	public:
 		Physic :: Board *att_physBoard;
 		Graphic :: Board *att_graphBoard;
 
@@ -22,10 +21,12 @@ namespace FPS {
 		unsigned int att_timeBeforeSpawn;
 		unsigned int att_numberToSpawn;
 		unsigned int att_timeSinceLastSpawn;
+	public:
 
 		Board(const char *);
 		~Board();
 
+		void drawACube();
 		void draw();
 		void spawnEnnemy();
 		void update();

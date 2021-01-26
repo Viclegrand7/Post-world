@@ -39,5 +39,7 @@ class Player : public Character{
     bool attack();
     bool toAttack();
     int getWeaponDamage();
+    void reset() {currentWeapon ? weapons[currentWeapon - 1]->reset() : knife->reset();}
+    bool isAutoAndShooting();
     bool isRunning() {return isSprinting;}
 };

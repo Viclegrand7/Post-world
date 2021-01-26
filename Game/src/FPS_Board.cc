@@ -18,7 +18,7 @@ FPS :: Board :: Board(const char *filename) : att_physBoard(NULL), att_graphBoar
 	playerWeapon.push_back((Graphic :: Weapon *)att_graphBoard->att_items[1]);
 	std :: vector <:: Weapon *> playerPWeapon;
 	playerPWeapon.push_back(att_gameWeapons[1]);
-	att_player = new Player((Graphic :: Weapon *)att_graphBoard->att_items[1], playerWeapon, (::Melee *)att_gameWeapons[0], playerPWeapon);
+	att_player = new Player((Graphic :: Weapon *)att_graphBoard->att_items[0], playerWeapon, (::Melee *)att_gameWeapons[1], playerPWeapon);
 	att_player->att_gamePlayer->getCurrentWeapon() = 1;
 }
 
@@ -41,77 +41,77 @@ FPS :: Board :: ~Board() {
 	delete att_player;
 }
 
+void FPS :: Board :: drawACube() {
+	glColor3f(1,1,1);
+	glBegin(GL_QUADS);	//and draw a face
+		//back face
+		glColor3f(0,1,1);
+		glVertex3f(200.f/2,200.f/2,200.f/2);	//and a vertex
+		glColor3f(1,0,1);
+		glVertex3f(-200.f/2,200.f/2,200.f/2);
+		glColor3f(1,1,0);
+		glVertex3f(-200.f/2,-200.f/2,200.f/2);
+		glColor3f(1,0,0);
+		glVertex3f(200.f/2,-200.f/2,200.f/2);
+	glEnd();
+	glColor3f(0,1,1);
+	glBegin(GL_QUADS);	
+		//left face
+		glVertex3f(-200.f/2,200.f/2,200.f/2);
+		glVertex3f(-200.f/2,200.f/2,-200.f/2);
+		glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+		glVertex3f(-200.f/2,-200.f/2,200.f/2);
+	glEnd();
+	glColor3f(0,0,1);
+	glBegin(GL_QUADS);	
+		//front face
+		glVertex3f(200.f/2,200.f/2,-200.f/2);
+		glColor3f(1,0,0);
+		glVertex3f(-200.f/2,200.f/2,-200.f/2);
+		glColor3f(1,0,1);
+		glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+		glColor3f(1,1,0);
+		glVertex3f(200.f/2,-200.f/2,-200.f/2);
+		glColor3f(0,1,1);
+	glEnd();
+	glColor3f(0,0,0);
+	glBegin(GL_QUADS);	
+		//right face
+		glVertex3f(200.f/2,200.f/2,-200.f/2);
+		glVertex3f(200.f/2,200.f/2,200.f/2);
+		glVertex3f(200.f/2,-200.f/2,200.f/2);
+		glVertex3f(200.f/2,-200.f/2,-200.f/2);
+	glEnd();
+	glColor3f(1,0,1);
+	glBegin(GL_QUADS);			//top face
+		glVertex3f(200.f/2,200.f/2,200.f/2);
+		glVertex3f(-200.f/2,200.f/2,200.f/2);
+		glVertex3f(-200.f/2,200.f/2,-200.f/2);
+		glVertex3f(200.f/2,200.f/2,-200.f/2);
+	glEnd();
+	glColor3f(1,1,0);
+	glBegin(GL_QUADS);
+		//bottom face
+		glVertex3f(200.f/2,-200.f/2,200.f/2);
+		glVertex3f(-200.f/2,-200.f/2,200.f/2);
+		glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+		glVertex3f(200.f/2,-200.f/2,-200.f/2);
+	glEnd();
+}
+
 void FPS :: Board :: draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
 
-	att_player->att_graphPlayer->att_camera.updateCamera(att_player->att_physPlayer->givePos());
-	{
-		glColor3f(1,1,1);
-		glBegin(GL_QUADS);	//and draw a face
-			//back face
-			glColor3f(0,1,1);
-			glVertex3f(200.f/2,200.f/2,200.f/2);	//and a vertex
-			glColor3f(1,0,1);
-			glVertex3f(-200.f/2,200.f/2,200.f/2);
-			glColor3f(1,1,0);
-			glVertex3f(-200.f/2,-200.f/2,200.f/2);
-			glColor3f(1,0,0);
-			glVertex3f(200.f/2,-200.f/2,200.f/2);
-		glEnd();
-		glColor3f(0,1,1);
-		glBegin(GL_QUADS);	
-			//left face
-			glVertex3f(-200.f/2,200.f/2,200.f/2);
-			glVertex3f(-200.f/2,200.f/2,-200.f/2);
-			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
-			glVertex3f(-200.f/2,-200.f/2,200.f/2);
-		glEnd();
-		glColor3f(0,0,1);
-		glBegin(GL_QUADS);	
-			//front face
-			glVertex3f(200.f/2,200.f/2,-200.f/2);
-			glColor3f(1,0,0);
-			glVertex3f(-200.f/2,200.f/2,-200.f/2);
-			glColor3f(1,0,1);
-			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
-			glColor3f(1,1,0);
-			glVertex3f(200.f/2,-200.f/2,-200.f/2);
-			glColor3f(0,1,1);
-		glEnd();
-		glColor3f(0,0,0);
-		glBegin(GL_QUADS);	
-			//right face
-			glVertex3f(200.f/2,200.f/2,-200.f/2);
-			glVertex3f(200.f/2,200.f/2,200.f/2);
-			glVertex3f(200.f/2,-200.f/2,200.f/2);
-			glVertex3f(200.f/2,-200.f/2,-200.f/2);
-		glEnd();
-		glColor3f(1,0,1);
-		glBegin(GL_QUADS);			//top face
-			glVertex3f(200.f/2,200.f/2,200.f/2);
-			glVertex3f(-200.f/2,200.f/2,200.f/2);
-			glVertex3f(-200.f/2,200.f/2,-200.f/2);
-			glVertex3f(200.f/2,200.f/2,-200.f/2);
-		glEnd();
-		glColor3f(1,1,0);
-		glBegin(GL_QUADS);
-			//bottom face
-			glVertex3f(200.f/2,-200.f/2,200.f/2);
-			glVertex3f(-200.f/2,-200.f/2,200.f/2);
-			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
-			glVertex3f(200.f/2,-200.f/2,-200.f/2);
-		glEnd();
-
-	}
-
-//	att_graphBoard->draw(att_player->att_physPlayer->givePos());
-
 	int width;
 	int height;
 	SDL_GetWindowSize(att_graphBoard->att_window, &width, &height);
 	att_player->update(width, height, SDL_GetWindowFlags(att_graphBoard->att_window) & SDL_WINDOW_FULLSCREEN, att_graphBoard->getGravity());
+
+	drawACube();
+	att_graphBoard->draw(att_player->att_physPlayer->givePos());
+
 
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i)
 		att_graphBoard->att_ennemies[i]->draw(att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame), att_physBoard->att_ennemies[i]->giveRot());
@@ -164,6 +164,7 @@ void FPS :: Board :: update() {
 		att_timeSinceLastSpawn = att_timeBeforeSpawn++;
 		++att_numberToSpawn;
 	}
+	att_player->att_graphPlayer->draw(att_player->att_gamePlayer->getCurrentWeapon() ? att_player->att_weapons[att_player->att_gamePlayer->getCurrentWeapon() - 1] : att_player->att_knife);
 	draw();
 }
 
@@ -218,9 +219,13 @@ void FPS :: Board :: run() {
 						case SDL_SCANCODE_ESCAPE:
 							isRunning = false; //Should have options and stuff
 						break;
+						case SDL_SCANCODE_R:
+							att_player->reload();
+						break;
 						case SDL_SCANCODE_LALT:
 							att_player->att_graphPlayer->att_camera.isMouseIn() = false;
 							SDL_ShowCursor(SDL_ENABLE);
+						break;
 						default:
 						break;
 					}

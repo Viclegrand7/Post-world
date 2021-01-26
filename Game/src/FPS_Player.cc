@@ -13,12 +13,23 @@ void FPS :: Player :: secondary() {
 }
 
 void FPS :: Player :: reload() {
-	att_graphPlayer->reload(att_gamePlayer->getCurrentWeapon() ? att_weapons[att_gamePlayer->getCurrentWeapon() - 1] : att_knife);
+	if (att_graphPlayer->reload(att_gamePlayer->getCurrentWeapon() ? att_weapons[att_gamePlayer->getCurrentWeapon() - 1] : att_knife))
+		att_gamePlayer->reload();
 }
 
 void FPS :: Player :: update(int width, int height, bool isFullScreen, float gravity) {
 	att_graphPlayer->update(att_physPlayer->givePos(), width, height, isFullScreen, att_gamePlayer->isRunning(), gravity);
 	att_graphPlayer->att_camera.updateCamera(att_physPlayer->givePos());
+	if (att_gamePlayer->getCurrentWeapon()) {
+		att_gamePlayer->update();
+		if (att_graphPlayer->update(att_weapons[att_gamePlayer->getCurrentWeapon() - 1], att_gamePlayer->isAutoAndShooting()))
+			att_gamePlayer->reset();
+	}
+	else {
+		att_gamePlayer->update();
+		if (att_graphPlayer->update(att_gamePlayer->getCurrentWeapon() ? att_weapons[att_gamePlayer->getCurrentWeapon() - 1] : att_knife, att_gamePlayer->isAutoAndShooting()))
+			att_gamePlayer->reset();
+	}
 }
 
 FPS :: Player :: Player(Graphic :: Weapon *knife, std :: vector <Graphic :: Weapon *> weapons, ::Melee *gknife, std :: vector <::Weapon *>pweapons)

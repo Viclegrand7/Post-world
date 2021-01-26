@@ -142,3 +142,10 @@ int Player::getWeaponDamage(){
         dam = weapons[currentWeapon -1]->getDamage();
     return dam;
 }
+
+bool Player :: isAutoAndShooting() {
+	if (currentWeapon)
+		return weapons[currentWeapon - 1]->isAuto() && weapons[currentWeapon - 1]->isShooting();
+	else 
+		return knife->isShooting();
+}

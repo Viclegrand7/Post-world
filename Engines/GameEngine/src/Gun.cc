@@ -61,5 +61,5 @@ void Gun::stopAttack(){
 
 bool Gun::secondary(){  //change isAiming
     _isAiming = !_isAiming;
-    return _isAiming;
+    return true;
 }
