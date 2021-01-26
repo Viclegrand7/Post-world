@@ -30,7 +30,7 @@ Graphic :: Board :: Board(const std :: string &fileName)
 	gluPerspective(45.0f, 1.777778f, 0.1f, 400.0f); //Angle, width/height, how close you can see, how far
 	glMatrixMode(GL_MODELVIEW);			//Honesly not sure what it does but you need it
 
-//	glDisable(GL_DEPTH_TEST);			//Things don't appear if they're behind non transparent walls
+	glEnable(GL_DEPTH_TEST);			//Things don't appear if they're behind non transparent walls
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_LIGHTING);	//Requires to have normals on every shape, may be too much a bother
 	glEnable(GL_LIGHT0); 	//Some lighting
@@ -66,7 +66,7 @@ void Graphic :: Board :: readAllFromFile(std :: ifstream &myFile) {
 	att_weaponNumber += tmp;
 	for (unsigned int i = 0 ; i < tmp ; ++i) {
 		myFile >> nextFileToRead >> length1 >> length2 >> length3 >> tmpx >> tmpy >> tmpz >> tmpRotx >> tmpRoty >> tmpRotz;
-		att_items.emplace_back(new Gun(loadAnimation(nextFileToRead), length1, length2, length3/*, Vector3f(tmpx, tmpy, tmpz), Vector3f(tmpRotx, tmpRoty, tmpRotz)*/));
+		att_items.emplace_back(new Gun(loadAnimation(nextFileToRead), length1, length2, length3, Vector3f(tmpx, tmpy, tmpz), Vector3f(tmpRotx, tmpRoty, tmpRotz)));
 	}
 	myFile >> length1;
 	for (unsigned int i = 0 ; i < length1 ; ++i) {

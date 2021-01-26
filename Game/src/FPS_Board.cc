@@ -132,7 +132,9 @@ void FPS :: Board :: spawnEnnemy() {
 void FPS :: Board :: update() {
 	unsigned int usableItem(att_player->att_physPlayer->update(att_physBoard->att_items, att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel]));
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i) {
+		std :: cout << "MOVING ENNEMY " << i << std :: endl << " POSITION BEFORE " << att_physBoard->att_ennemies[i]->givePos(0);
 		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
+		std :: cout << "MOVED ENNEMY " << i << std :: endl << " POSITION AFTER " << att_physBoard->att_ennemies[i]->givePos(0);
 		if (att_graphBoard->att_ennemies[i]->update()) {
 			//He died
 			att_graphBoard->att_ennemies.erase(att_graphBoard->att_ennemies.begin() + i);
@@ -161,7 +163,7 @@ void FPS :: Board :: update() {
 	if (!--att_timeSinceLastSpawn) {
 		for (unsigned int i = 0 ; i < att_numberToSpawn ; ++i)
 			spawnEnnemy();
-		att_timeSinceLastSpawn = att_timeBeforeSpawn++;
+		att_timeSinceLastSpawn = att_timeBeforeSpawn += 60;
 		++att_numberToSpawn;
 	}
 	att_player->att_graphPlayer->draw(att_player->att_gamePlayer->getCurrentWeapon() ? att_player->att_weapons[att_player->att_gamePlayer->getCurrentWeapon() - 1] : att_player->att_knife);
@@ -175,7 +177,7 @@ void FPS :: Board :: playerShoot(bool secondary) {
 	Vector3f direction(att_player->att_graphPlayer->att_camera.getSight());
 	for (unsigned int i = 0 ; i < att_physBoard->att_levels[att_physBoard->att_curLevel].size() ; ++i)
 		Physic :: Collision :: rayBox(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
-//	if (particulePoint != Vector3f(0.f, 0.f, 0.f))
+//	if (firstWallDistance > 0 && firstWallDistance < 100)
 //		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
 	for (unsigned int i = 1 ; i < att_physBoard->att_ennemies.size() ; ++i)
 		if (att_physBoard->att_ennemies[i]->doesGetHit(origin, direction, &firstWallDistance, &particulePoint, att_graphBoard->att_ennemies[i]->att_currentFrame)) {
