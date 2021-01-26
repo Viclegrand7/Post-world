@@ -8,5 +8,9 @@ This is a FPS game writted with C++.
 
 **Game** : contains Makefile to obtain the executable file
 
+**Collision** : files of 3D object 
+
+**Old** : Old rpg game code
+
 
 
