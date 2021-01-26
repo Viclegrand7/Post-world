@@ -89,6 +89,8 @@ $(GCHDIR)/%.gch : $(INCDIR)/%.hh $(GCHDEPDIR)/%.d | $(GCHDIR) $(GCHDEPDIR)
 $(DEPDIR) : ; @mkdir -p $@
 $(GCHDIR) : ; @mkdir -p $@
 $(GCHDEPDIR) : ; @mkdir -p $@
+$(RLSDIR) : ; @mkdir -p $@
+$(DBGDIR) : ; @mkdir -p $@
 
 DEPFILES := $(OBJ:%.o=$(DEPDIR)/%.d) $(GCH:%.gch=$(GCHDEPDIR)/%.d)
 $(DEPFILES):

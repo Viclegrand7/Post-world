@@ -13,12 +13,12 @@ void Physic :: Player :: testCollisionEnnemies(std :: vector <Ennemy *> ennemyLi
 		Physic :: Collision :: sphereSphere(att_hitBox, ennemyList[i]->giveSphere());
 }
 
-void Physic :: Player :: testCollisionWalls(std :: vector <CollisionBox *> wallList) {
+void Physic :: Player :: testCollisionWalls(std :: vector <CollisionQuad *> wallList) {
 	for (unsigned int i = 0 ; i < wallList.size() ; ++i)
-		Physic :: Collision :: sphereBox(att_hitBox, *wallList[i]);
+		Physic :: Collision :: sphereQuad(att_hitBox, *wallList[i]);
 }
 
-unsigned int Physic :: Player :: update(std :: vector <Item *> itemList, std :: vector <Ennemy *> ennemyList, std :: vector <CollisionBox *> wallList) {
+unsigned int Physic :: Player :: update(std :: vector <Item *> itemList, std :: vector <Ennemy *> ennemyList, std :: vector <CollisionQuad *> wallList) {
 	testCollisionEnnemies(ennemyList);
 	testCollisionWalls(wallList);
 	return testCollisionItems(itemList); //Says which item we can interact with

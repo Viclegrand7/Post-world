@@ -18,7 +18,7 @@ namespace Physic {
 		Vector3f att_rotation;
 		float att_speed;
 
-		void testCollisionWall(const std :: vector<CollisionBox *> &walls, unsigned int curFrame);
+		void testCollisionWall(const std :: vector<CollisionQuad *> &walls, unsigned int curFrame);
 		void testCollisionTeamates(const std :: vector<Ennemy *> &ennemies, unsigned int curFrame);
 		void moveDir(const Vector3f &other);
 	public:
@@ -34,7 +34,7 @@ namespace Physic {
 		CollisionSphere giveSphere() {return att_fakeBox[0];}
 		Vector3f &giveRot() {return att_rotation;}
 		bool doesGetHit(const Vector3f &pos, const Vector3f &dir, float *dis, Vector3f *collisionPoint, unsigned int curFrame);
-		void update(const Vector3f &character, const std :: vector<Ennemy *> &ennemies, const std :: vector <CollisionBox *> &wall, float gravity, unsigned int curFrame);
+		void update(const Vector3f &character, const std :: vector<Ennemy *> &ennemies, const std :: vector <CollisionQuad *> &wall, float gravity, unsigned int curFrame);
 		Vector3f givePos(unsigned int curFrame) {return att_fakeBox[curFrame].att_center;}
 	};
 }

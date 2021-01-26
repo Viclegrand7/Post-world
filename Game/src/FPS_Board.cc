@@ -97,6 +97,62 @@ void FPS :: Board :: drawACube() {
 		glVertex3f(-200.f/2,-200.f/2,-200.f/2);
 		glVertex3f(200.f/2,-200.f/2,-200.f/2);
 	glEnd();
+
+	glColor3f(1,1,1);
+	glBegin(GL_QUADS);	//and draw a face
+		//back face
+		glColor3f(0,1,1);
+		glVertex3f(2.f/2,2.f/2,2.f/2);	//and a vertex
+		glColor3f(1,0,1);
+		glVertex3f(-2.f/2,2.f/2,2.f/2);
+		glColor3f(1,1,0);
+		glVertex3f(-2.f/2,-2.f/2,2.f/2);
+		glColor3f(1,0,0);
+		glVertex3f(2.f/2,-2.f/2,2.f/2);
+	glEnd();
+	glColor3f(0,1,1);
+	glBegin(GL_QUADS);	
+		//left face
+		glVertex3f(-2.f/2,2.f/2,2.f/2);
+		glVertex3f(-2.f/2,2.f/2,-2.f/2);
+		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
+		glVertex3f(-2.f/2,-2.f/2,2.f/2);
+	glEnd();
+	glColor3f(0,0,1);
+	glBegin(GL_QUADS);	
+		//front face
+		glVertex3f(2.f/2,2.f/2,-2.f/2);
+		glColor3f(1,0,0);
+		glVertex3f(-2.f/2,2.f/2,-2.f/2);
+		glColor3f(1,0,1);
+		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
+		glColor3f(1,1,0);
+		glVertex3f(2.f/2,-2.f/2,-2.f/2);
+		glColor3f(0,1,1);
+	glEnd();
+	glColor3f(0,0,0);
+	glBegin(GL_QUADS);	
+		//right face
+		glVertex3f(2.f/2,2.f/2,-2.f/2);
+		glVertex3f(2.f/2,2.f/2,2.f/2);
+		glVertex3f(2.f/2,-2.f/2,2.f/2);
+		glVertex3f(2.f/2,-2.f/2,-2.f/2);
+	glEnd();
+	glColor3f(1,0,1);
+	glBegin(GL_QUADS);			//top face
+		glVertex3f(2.f/2,2.f/2,2.f/2);
+		glVertex3f(-2.f/2,2.f/2,2.f/2);
+		glVertex3f(-2.f/2,2.f/2,-2.f/2);
+		glVertex3f(2.f/2,2.f/2,-2.f/2);
+	glEnd();
+	glColor3f(1,1,0);
+	glBegin(GL_QUADS);
+		//bottom face
+		glVertex3f(2.f/2,-2.f/2,2.f/2);
+		glVertex3f(-2.f/2,-2.f/2,2.f/2);
+		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
+		glVertex3f(2.f/2,-2.f/2,-2.f/2);
+	glEnd();
 }
 
 void FPS :: Board :: draw() {
@@ -132,9 +188,7 @@ void FPS :: Board :: spawnEnnemy() {
 void FPS :: Board :: update() {
 	unsigned int usableItem(att_player->att_physPlayer->update(att_physBoard->att_items, att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel]));
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i) {
-		std :: cout << "MOVING ENNEMY " << i << std :: endl << " POSITION BEFORE " << att_physBoard->att_ennemies[i]->givePos(0);
 		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
-		std :: cout << "MOVED ENNEMY " << i << std :: endl << " POSITION AFTER " << att_physBoard->att_ennemies[i]->givePos(0);
 		if (att_graphBoard->att_ennemies[i]->update()) {
 			//He died
 			att_graphBoard->att_ennemies.erase(att_graphBoard->att_ennemies.begin() + i);
@@ -176,7 +230,7 @@ void FPS :: Board :: playerShoot(bool secondary) {
 	Vector3f origin(att_player->att_physPlayer->givePos());
 	Vector3f direction(att_player->att_graphPlayer->att_camera.getSight());
 	for (unsigned int i = 0 ; i < att_physBoard->att_levels[att_physBoard->att_curLevel].size() ; ++i)
-		Physic :: Collision :: rayBox(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
+		Physic :: Collision :: rayPlane(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
 //	if (firstWallDistance > 0 && firstWallDistance < 100)
 //		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
 	for (unsigned int i = 1 ; i < att_physBoard->att_ennemies.size() ; ++i)
@@ -184,6 +238,7 @@ void FPS :: Board :: playerShoot(bool secondary) {
 			if (att_gameEnnemies[i]->getHit(att_player->att_gamePlayer->getWeaponDamage()))
 				att_graphBoard->att_ennemies[i]->die();
 //			att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(1, particulePoint, 8); //Blood
+			std :: cout << "ARGH TU M'AS EU !" << std :: endl;
 		}	
 }
 

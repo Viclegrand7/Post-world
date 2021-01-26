@@ -46,9 +46,8 @@ void Gun::reload(){             //This function should reload the weapon, aka ch
 }
 
 bool Gun::attack(){ //to tell if is possible to shoot, ie has at least 1 bullet, timeBeforeAttack ==0 and not already shooting or reloading
-    if (_isShooting && _curBullet != 0 && _timeBeforeAttack == 0 && !_isReloading){
+    if (_isShooting && _curMagazine != 0 && _timeBeforeAttack == 0 && !_isReloading){
         _timeBeforeAttack += _attackDownTime;
-        _curBullet--;
         _curMagazine--;
         return true;
     }

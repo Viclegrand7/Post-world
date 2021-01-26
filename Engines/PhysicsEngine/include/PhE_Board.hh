@@ -33,7 +33,7 @@ namespace Physic {
 		unsigned int att_curLevel;
 		std :: vector <Ennemy *> att_ennemies;
 		std :: vector <Item *> att_items;
-		std :: vector <std :: vector <CollisionBox *>> att_levels;
+		std :: vector <std :: vector <CollisionQuad *>> att_levels;
 		void changeLevel(unsigned int level);		
 //		std :: vector<Vector3f> playerShoot(const Vector3f &dir);
 		Board(const char* filename);

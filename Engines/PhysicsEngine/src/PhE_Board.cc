@@ -101,20 +101,12 @@ void Physic :: Board :: loadFigure(const std :: string &vertexLine, unsigned int
 				>> posNum2 >> fake >> fake >> normNum
 				>> posNum3 >> fake >> fake >> normNum
 				>> posNum4 >> fake >> fake >> normNum;
-		if (att_currentSecond[0]) {
-			att_currentSecond[0] = false;
-			if (att_levels.size() != number)
-				att_levels[att_levels.size() - 1].emplace_back(new Physic :: CollisionBox(att_tmpQuads[0], att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]));
-			else {
-				std :: vector <Physic :: CollisionBox *> tmpVector;
-				tmpVector.emplace_back(new Physic :: CollisionBox(att_tmpQuads[0], att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]));
-				att_levels.push_back(tmpVector);
-			}
-			att_tmpQuads[0] = Physic :: CollisionQuad();
-		}
+		if (att_levels.size() != number)
+			att_levels[att_levels.size() - 1].emplace_back(new Physic :: CollisionQuad(att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]));
 		else {
-			att_currentSecond[0] = true;
-			att_tmpQuads[0] = Physic :: CollisionQuad(att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]);
+			std :: vector <Physic :: CollisionQuad *> tmpVector;
+			tmpVector.emplace_back(new Physic :: CollisionQuad(att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]));
+			att_levels.push_back(tmpVector);
 		}
 	}
 }
