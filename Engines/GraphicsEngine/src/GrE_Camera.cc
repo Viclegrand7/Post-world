@@ -34,14 +34,14 @@ void Graphic :: Camera :: handleMoves(Vector3f &location, float speed) {
 			att_isMoving = true;
 		moveCamera(location, 0, speed);
 //		if (NO_GRAVITY)
-			moveCameraUp(location, 0, speed);
+//			moveCameraUp(location, 0, speed);
 	}
 	if (keyboardState[DOWN_Key]) {
 		if (!keyboardState[UP_Key])
 			att_isMoving = true;
 		moveCamera(location, 180, speed);
 //		if (NO_GRAVITY)
-			moveCameraUp(location, 180, speed);
+//			moveCameraUp(location, 180, speed);
 	}
 	if (keyboardState[LEFT_Key]) {
 		if (!keyboardState[RIGHT_Key])
@@ -57,7 +57,6 @@ void Graphic :: Camera :: handleMoves(Vector3f &location, float speed) {
 
 bool Graphic :: Camera :: control(Vector3f &location, int width, int height, bool isFullScreen, float speed, float gravity) {
 	if (att_isMouseIn) { //Is no when alt tabbed, when in settings,...
-		std :: cout << "MOUSE IS IN" << std :: endl;
 		width /= 2 ; height /= 2 ; //Get middle of screen
 		int tmpx, tmpy;
 		SDL_GetMouseState(&tmpx, &tmpy);

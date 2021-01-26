@@ -3,7 +3,6 @@
 void Graphic :: Ennemy :: draw(const Vector3f &pos, const Vector3f &rot) {
 	glPushMatrix(); //Saves previous Matrix
 
-	glLoadIdentity();							//To get the right position, independant of where we were
 	glTranslatef(pos.att_x, pos.att_y, pos.att_z); 	//Get to right position
 	glRotatef(rot.att_x,	1.0f, 0.0f, 0.0f);
 	glRotatef(rot.att_y,	0.0f, 1.0f, 0.0f);								//Rotations

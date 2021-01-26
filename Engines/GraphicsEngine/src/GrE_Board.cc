@@ -11,7 +11,7 @@
 #define RV_ZD_GAMENAMEANDVERSION "Réaction Visible : Zone Dangereuse v1.0.0"
 
 Graphic :: Board :: Board(const std :: string &fileName)
-: att_gravity(1.f), att_weaponNumber(0), att_currentLevel(0) {
+: att_gravity(0.f), att_weaponNumber(0), att_currentLevel(0) {
 	if (SDL_Init(SDL_INIT_EVERYTHING)) { //Video, audio, handler, joysticks,... returns 0 on fail
 		std :: cerr << "Failed initialising SDL: " << SDL_GetError() << std :: endl;
 		throw "Failed initialising \n";
@@ -30,10 +30,10 @@ Graphic :: Board :: Board(const std :: string &fileName)
 	gluPerspective(45.0f, 1.777778f, 0.1f, 400.0f); //Angle, width/height, how close you can see, how far
 	glMatrixMode(GL_MODELVIEW);			//Honesly not sure what it does but you need it
 
-	glEnable(GL_DEPTH_TEST);			//Things don't appear if they're behind non transparent walls
+	glDisable(GL_DEPTH_TEST);			//Things don't appear if they're behind non transparent walls
 //	glEnable(GL_NORMALIZE);
-	glEnable(GL_LIGHTING);	//Requires to have normals on every shape, may be too much a bother
-	glEnable(GL_LIGHT0); 	//Some lighting
+	// glEnable(GL_LIGHTING);	//Requires to have normals on every shape, may be too much a bother
+	// glEnable(GL_LIGHT0); 	//Some lighting
 	glEnable(GL_COLOR_MATERIAL); //Materials have colors too
 	glEnable(GL_TEXTURE_2D);		//To attach textures to drawings
 

@@ -2,6 +2,7 @@
 #include "PhE_Collision.hh"
 
 #include <iostream>
+#include <GL/gl.h>
 
 FPS :: Board :: Board(const char *filename) : att_physBoard(NULL), att_graphBoard(NULL), att_gameEnnemies{}, att_gameItems{}, att_displayedGameItems{}, att_gameWeapons{}, att_player(NULL), att_timeBeforeSpawn(120), att_numberToSpawn(0), att_timeSinceLastSpawn(200) {
 	att_graphBoard = new Graphic :: Board(filename); //He read everything, started the window,filled its attributes,...
@@ -17,17 +18,20 @@ FPS :: Board :: Board(const char *filename) : att_physBoard(NULL), att_graphBoar
 	playerWeapon.push_back((Graphic :: Weapon *)att_graphBoard->att_items[1]);
 	std :: vector <:: Weapon *> playerPWeapon;
 	playerPWeapon.push_back(att_gameWeapons[1]);
-	att_player = new Player((Graphic :: Weapon *)att_graphBoard->att_items[0], playerWeapon, (::Melee *)att_gameWeapons[0], playerPWeapon);
+	att_player = new Player((Graphic :: Weapon *)att_graphBoard->att_items[1], playerWeapon, (::Melee *)att_gameWeapons[0], playerPWeapon);
 	att_player->att_gamePlayer->getCurrentWeapon() = 1;
 }
 
 FPS :: Board :: ~Board() {
-	for (unsigned int i = 0 ; i < att_physBoard->att_ennemies.size() ; ++i)
-		delete att_physBoard->att_ennemies[i];
-	for (unsigned int i = 0 ; i < att_graphBoard->att_ennemies.size() ; ++i)
-		delete att_graphBoard->att_ennemies[i];
-	for (unsigned int i = 0 ; i < att_gameEnnemies.size() ; ++i)
-		delete att_gameEnnemies[i];
+	// for (unsigned int i = 0 ; i < att_physBoard->att_ennemies.size() ; ++i)
+	// 	delete att_physBoard->att_ennemies[i];
+	// for (unsigned int i = 0 ; i < att_graphBoard->att_ennemies.size() ; ++i)
+	// 	delete att_graphBoard->att_ennemies[i];
+	// for (unsigned int i = 0 ; i < att_gameEnnemies.size() ; ++i)
+	// 	delete att_gameEnnemies[i];
+		delete att_gameEnnemies[0];
+		delete att_graphBoard->att_ennemies[0];
+		delete att_physBoard->att_ennemies[0];
 	for (unsigned int i = 0 ; i < att_gameItems.size() ; ++i)
 		delete att_gameItems[i];
 	for (unsigned int i = 0 ; i < att_gameWeapons.size() ; ++i)
@@ -41,7 +45,74 @@ void FPS :: Board :: draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	att_graphBoard->draw(att_player->att_physPlayer->givePos());
+
+	att_player->att_graphPlayer->att_camera.updateCamera(att_player->att_physPlayer->givePos());
+	{
+		glColor3f(1,1,1);
+		glBegin(GL_QUADS);	//and draw a face
+			//back face
+			glColor3f(0,1,1);
+			glVertex3f(200.f/2,200.f/2,200.f/2);	//and a vertex
+			glColor3f(1,0,1);
+			glVertex3f(-200.f/2,200.f/2,200.f/2);
+			glColor3f(1,1,0);
+			glVertex3f(-200.f/2,-200.f/2,200.f/2);
+			glColor3f(1,0,0);
+			glVertex3f(200.f/2,-200.f/2,200.f/2);
+		glEnd();
+		glColor3f(0,1,1);
+		glBegin(GL_QUADS);	
+			//left face
+			glVertex3f(-200.f/2,200.f/2,200.f/2);
+			glVertex3f(-200.f/2,200.f/2,-200.f/2);
+			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+			glVertex3f(-200.f/2,-200.f/2,200.f/2);
+		glEnd();
+		glColor3f(0,0,1);
+		glBegin(GL_QUADS);	
+			//front face
+			glVertex3f(200.f/2,200.f/2,-200.f/2);
+			glColor3f(1,0,0);
+			glVertex3f(-200.f/2,200.f/2,-200.f/2);
+			glColor3f(1,0,1);
+			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+			glColor3f(1,1,0);
+			glVertex3f(200.f/2,-200.f/2,-200.f/2);
+			glColor3f(0,1,1);
+		glEnd();
+		glColor3f(0,0,0);
+		glBegin(GL_QUADS);	
+			//right face
+			glVertex3f(200.f/2,200.f/2,-200.f/2);
+			glVertex3f(200.f/2,200.f/2,200.f/2);
+			glVertex3f(200.f/2,-200.f/2,200.f/2);
+			glVertex3f(200.f/2,-200.f/2,-200.f/2);
+		glEnd();
+		glColor3f(1,0,1);
+		glBegin(GL_QUADS);			//top face
+			glVertex3f(200.f/2,200.f/2,200.f/2);
+			glVertex3f(-200.f/2,200.f/2,200.f/2);
+			glVertex3f(-200.f/2,200.f/2,-200.f/2);
+			glVertex3f(200.f/2,200.f/2,-200.f/2);
+		glEnd();
+		glColor3f(1,1,0);
+		glBegin(GL_QUADS);
+			//bottom face
+			glVertex3f(200.f/2,-200.f/2,200.f/2);
+			glVertex3f(-200.f/2,-200.f/2,200.f/2);
+			glVertex3f(-200.f/2,-200.f/2,-200.f/2);
+			glVertex3f(200.f/2,-200.f/2,-200.f/2);
+		glEnd();
+
+	}
+
+//	att_graphBoard->draw(att_player->att_physPlayer->givePos());
+
+	int width;
+	int height;
+	SDL_GetWindowSize(att_graphBoard->att_window, &width, &height);
+	att_player->update(width, height, SDL_GetWindowFlags(att_graphBoard->att_window) & SDL_WINDOW_FULLSCREEN, att_graphBoard->getGravity());
+
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i)
 		att_graphBoard->att_ennemies[i]->draw(att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame), att_physBoard->att_ennemies[i]->giveRot());
 	for (unsigned int i = 1 ; i < att_graphBoard->att_displayedItems.size() ; ++i)
@@ -59,20 +130,18 @@ void FPS :: Board :: spawnEnnemy() {
 }
 
 void FPS :: Board :: update() {
-	int width;
-	int height;
-	SDL_GetWindowSize(att_graphBoard->att_window, &width, &height);
-	att_player->update(width, height, SDL_GetWindowFlags(att_graphBoard->att_window) & SDL_WINDOW_FULLSCREEN, att_graphBoard->getGravity());
 	unsigned int usableItem(att_player->att_physPlayer->update(att_physBoard->att_items, att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel]));
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i) {
 		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
 		if (att_graphBoard->att_ennemies[i]->update()) {
 			//He died
 			att_graphBoard->att_ennemies.erase(att_graphBoard->att_ennemies.begin() + i);
+			delete att_graphBoard->att_ennemies[i];
 			att_gameEnnemies.erase(att_gameEnnemies.begin() + i--);
+			delete att_gameEnnemies[i];
 			continue;
 		}
-		if ((att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame) - att_player->att_physPlayer->givePos()).length() < 0.5f) {
+		if ((att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame) - att_player->att_physPlayer->givePos()).length() < 1.5f) {
 			att_graphBoard->att_ennemies[i]->attack();
 			att_player->att_gamePlayer->getHit(att_gameEnnemies[i]->getDamage());
 		}
@@ -162,7 +231,6 @@ void FPS :: Board :: run() {
 				break;
 			}
 		}
-				std :: cout << "MY POS " << att_player->att_physPlayer->givePos() << std :: endl;
 		if (isSecondaring) {
 			att_player->secondary();
 			playerShoot(true);

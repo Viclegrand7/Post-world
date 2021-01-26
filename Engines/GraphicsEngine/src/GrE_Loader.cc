@@ -235,7 +235,7 @@ GLuint Graphic :: Loader :: loadFile(const std :: string &filename) {	//Load a .
 		else if (buffer[0] == 'm')		//mtllib
 			readMaterialLib(filename, buffer);
 		else if (buffer[0] == 'u') {	//'usemtl '
-			if (buffer.substr(7, 15) == "collision" || buffer.substr(7, 12) == "(null)") {
+			if (buffer.substr(7, 15) == "collision" || buffer.substr(7, 15) == "Collision" || buffer.substr(7, 12) == "(null)") {
 				unsigned int minus1(-1);
 				att_currentMaterial = minus1;
 			}
