@@ -8,6 +8,7 @@ namespace Physic {
 	struct CollisionBox { //Everything is public, let's gain some time
 		CollisionQuad att_diagonals[2]; //I feel like you can get off with checking collision with 2 boxes only
 		
+		CollisionBox() : att_diagonals{Physic :: CollisionQuad(), Physic :: CollisionQuad()} {}
 		CollisionBox(const CollisionQuad &first, const CollisionQuad &second) : att_diagonals{first, second} {}
 		CollisionBox(const CollisionQuad &first, const Vector3f &p1, const Vector3f &p2, const Vector3f &p3, const Vector3f &p4, const Vector3f &n1) 
 		: att_diagonals{first, {p1, p2, p3, p4, n1}} {}

@@ -74,6 +74,17 @@ Physic :: Ennemy & Physic :: Ennemy :: operator+=(const Ennemy &other) {
 	return *this;
 }
 
+Physic :: Ennemy & Physic :: Ennemy :: operator=(const Ennemy &other) {
+	att_head = other.att_head;
+	att_torso = other.att_torso;
+	att_legs1 = other.att_legs1;
+	att_legs2 = other.att_legs2;
+	att_arms1 = other.att_arms1;
+	att_arms2 = other.att_arms2;
+	att_fakeBox = other.att_fakeBox;
+	return *this;
+}
+
 void Physic :: Ennemy :: equals(const Physic :: CollisionSphere &sphere, bool isHead) {
 	if (isHead){
 		att_head.clear();

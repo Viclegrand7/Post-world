@@ -163,6 +163,7 @@ void Physic :: Board :: readFigure(const std :: string &vertexLine, Physic :: En
 		myEnnemy.equals(loadSphere(vertexLine), false);
 		return;
 	}
+									return; //Because I miss an element, I will just not write any :)))))
 	std :: stringstream myLine(vertexLine);
 	myLine.ignore(2); //'f '
 
@@ -176,7 +177,6 @@ void Physic :: Board :: readFigure(const std :: string &vertexLine, Physic :: En
 	myLine >> posNum2 >> fake >> texPosNum >> fake >> normNum; //Get the three nums, separated by /, no reason to store
 	myLine >> posNum3 >> fake >> texPosNum >> fake >> normNum; //Get the three nums, separated by /, no reason to store
 	myLine >> posNum4 >> fake >> texPosNum >> fake >> normNum; //Get the three nums, separated by /, no reason to store
-
 	if (att_currentSecond[att_currentMaterial]) {
 		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[att_currentMaterial], att_vertexes[posNum1 - 1], att_vertexes[posNum2 - 1], att_vertexes[posNum3 - 1], att_vertexes[posNum4 - 1], att_normals[normNum - 1]), att_currentMaterial);
 		att_tmpQuads[att_currentMaterial] = Physic :: CollisionQuad();
@@ -238,19 +238,20 @@ Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//
 					att_currentMaterial = 1;
 				else if (buffer[16] == 'T') //Torso
 					att_currentMaterial = 2;
-				else if (buffer[16] == 'L' && buffer[19] == '1') //Leg1
+				else if (buffer[16] == 'L' && buffer[20] == 'L') //LeftLeg
 					att_currentMaterial = 3;
-				else if (buffer[16] == 'L' && buffer[19] == '2') //Leg2
+				else if (buffer[16] == 'R' && buffer[21] == 'L') //RightLeg
 					att_currentMaterial = 4;
-				else if (buffer[16] == 'A' && buffer[20] == '1') //Arm1
+				else if (buffer[16] == 'L' && buffer[20] == 'A') //LeftArm
 					att_currentMaterial = 5;
-				else if (buffer[16] == 'A' && buffer[20] == '2') //Arm2
+				else if (buffer[16] == 'R' && buffer[21] == 'A') //RightArm
 					att_currentMaterial = 6;
 				else if (buffer[16] == 'B') //BigBox
 					att_currentMaterial = 7;
 				else att_currentMaterial = 0; //We don't care
 			}
-
+			else 
+				att_currentMaterial = 0;
 		}
 	}
 	att_vertexes.clear();
@@ -262,6 +263,7 @@ Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//
 void Physic :: Board :: loadAnimation(const std :: string &name) { //Loads a whole animation for a given rootFileName (pistolet -> pistolet_abcdef.obj)
 	std :: string tmpName;
 	std :: ifstream myFile;
+	Physic :: Ennemy tmpEnnemy;
 	for (int i = 1 ; i < 1000000 ; ++i) {//We get every single possibility
 #ifdef NSFW
 		tmpName = "." + name;
@@ -281,16 +283,13 @@ void Physic :: Board :: loadAnimation(const std :: string &name) { //Loads a who
 		else
 			tmpName += "_" + std :: to_string(i) + ".obj";
 		myFile.open(tmpName);
-		if (!myFile.is_open()) //We have done all the bmp files we had
-			return ;
-		std :: cout << tmpName << " I READ THIS GUY" << std :: endl;
-		myFile.close();
-		if (att_ennemies.size())
-			*att_ennemies[0] += loadFile(tmpName);
-		else 
-			att_ennemies.emplace_back(new Physic :: Ennemy(loadFile(tmpName)));
+		if (!myFile.is_open()) {//We have done all the bmp files we had
+			att_ennemies.emplace_back(new Physic :: Ennemy(tmpEnnemy));
+			return;
+		}
+		myFile.close(); 
+		i == 1 ? (tmpEnnemy = loadFile(tmpName)) : (tmpEnnemy += loadFile(tmpName));
 	}
-		std :: cout << att_ennemies[0]->att_fakeBox.size() << " THIS GUYS IS THIS SIZE" << std :: endl;
 }
 
 Physic :: CollisionSphere Physic :: Board :: loadSphere(const std :: string &line) {
@@ -300,6 +299,7 @@ Physic :: CollisionSphere Physic :: Board :: loadSphere(const std :: string &lin
 	myLine.ignore(2); //'f '
 	int posNum(0); myLine >> posNum;
 	mySphere.att_center = att_vertexes[posNum - 1];
+	myLine >> garbage >> posNum >> garbage >> posNum >> posNum; //The two next to each other are the closest
 	myLine >> garbage >> posNum >> garbage >> posNum >> posNum;
 	mySphere.att_radius = (mySphere.att_center - att_vertexes[posNum - 1]).length();
 	return mySphere;
@@ -333,7 +333,6 @@ void Physic :: Board :: loadPowerUp(const std :: string &name) { //Loads a whole
 	att_vertexes.clear();
 	att_normals.clear(); //Need to make sure they don't interfere with next file
 	att_currentMaterial = 0;
-
 }
 
 Physic :: Board :: ~Board() {

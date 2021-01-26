@@ -57,6 +57,7 @@ void Graphic :: Camera :: handleMoves(Vector3f &location, float speed) {
 
 bool Graphic :: Camera :: control(Vector3f &location, int width, int height, bool isFullScreen, float speed, float gravity) {
 	if (att_isMouseIn) { //Is no when alt tabbed, when in settings,...
+		std :: cout << "MOUSE IS IN" << std :: endl;
 		width /= 2 ; height /= 2 ; //Get middle of screen
 		int tmpx, tmpy;
 		SDL_GetMouseState(&tmpx, &tmpy);

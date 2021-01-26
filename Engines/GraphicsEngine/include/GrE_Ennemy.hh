@@ -16,14 +16,15 @@ namespace Graphic {
 		bool att_doesDie;
 	public:
 		unsigned int att_currentFrame; //Where we're at. 0->normal-1: Normal. normal->normal+attack-1: attacking. normal+attack->frames.size()-1: secondary. frames.size(): outerLook
-		Ennemy(const std :: vector <GLuint> &frames, unsigned int walk, unsigned int attack, unsigned int die)
-		: att_frames(frames), att_walkAnimation(walk), att_attackAnimation(attack), att_deathAnimation(die), att_currentFrame(0) {}
+		Ennemy(std :: vector <GLuint> frames, unsigned int walk, unsigned int attack, unsigned int die)
+		: att_frames(frames), att_walkAnimation(walk), att_attackAnimation(attack), att_deathAnimation(die), att_doesAttack(false), att_doesDie(false), att_currentFrame(0) {}
 		Ennemy(const Ennemy *other)	: att_frames(other->att_frames), att_walkAnimation(other->att_walkAnimation), 
-			att_attackAnimation(other->att_attackAnimation), att_deathAnimation(other->att_deathAnimation), att_currentFrame(0) {}
+			att_attackAnimation(other->att_attackAnimation), att_deathAnimation(other->att_deathAnimation), att_doesAttack(false), att_doesDie(false), att_currentFrame(0) {}
 		void draw(const Vector3f &pos, const Vector3f &rot);
 		bool update();
 		void die();
 		bool attack();
+		~Ennemy() {}
 	};
 }
 

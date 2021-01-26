@@ -239,7 +239,7 @@ GLuint Graphic :: Loader :: loadFile(const std :: string &filename) {	//Load a .
 				unsigned int minus1(-1);
 				att_currentMaterial = minus1;
 			}
-			else if (att_materials.find(buffer.substr(7)) != att_materials.end() && buffer.substr(7, 15) != "collision")
+			else if (att_materials.find(buffer.substr(7)) != att_materials.end())
 				att_currentMaterial = att_materials.find(buffer.substr(7))->second + 1;
 			else 
 				att_currentMaterial = 0; //We use an offset to make sure we have a way to recognize materials with no textures

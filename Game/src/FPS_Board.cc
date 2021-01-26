@@ -87,8 +87,6 @@ void FPS :: Board :: update() {
 				att_graphBoard->att_displayedItems.erase(att_graphBoard->att_displayedItems.begin() + i);
 			}
 		}
-
-
 	}
 
 	if (!--att_timeSinceLastSpawn) {
@@ -107,37 +105,32 @@ void FPS :: Board :: playerShoot(bool secondary) {
 	Vector3f direction(att_player->att_graphPlayer->att_camera.getSight());
 	for (unsigned int i = 0 ; i < att_physBoard->att_levels[att_physBoard->att_curLevel].size() ; ++i)
 		Physic :: Collision :: rayBox(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
-	if (particulePoint != Vector3f(0.f, 0.f, 0.f))
-		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
-	for (unsigned int i = 0 ; i < att_physBoard->att_ennemies.size() ; ++i)
+//	if (particulePoint != Vector3f(0.f, 0.f, 0.f))
+//		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
+	for (unsigned int i = 1 ; i < att_physBoard->att_ennemies.size() ; ++i)
 		if (att_physBoard->att_ennemies[i]->doesGetHit(origin, direction, &firstWallDistance, &particulePoint, att_graphBoard->att_ennemies[i]->att_currentFrame)) {
 			if (att_gameEnnemies[i]->getHit(att_player->att_gamePlayer->getWeaponDamage()))
 				att_graphBoard->att_ennemies[i]->die();
-			att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(1, particulePoint, 8); //Blood
+//			att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(1, particulePoint, 8); //Blood
 		}	
 }
 
 void FPS :: Board :: run() {
-	std :: cout << "Starting to run" << std :: endl;
 	bool isRunning(true);
 	Uint32 currentTimeTick(0); //FPS regulation
 	SDL_Event event;
 	bool isSecondaring(false);
-	std :: cout << "Ready to run" << std :: endl;
 
 	while (isRunning) {
-		std :: cout << "Beginning of while" << std :: endl;
 		isSecondaring = false;
 		currentTimeTick = SDL_GetTicks();
 
 		while (SDL_PollEvent(&event)) {
-			std :: cout << "Beginning of PollEvent" << std :: endl;
 			switch (event.type) {
 				case SDL_QUIT:
 					isRunning = false;
 				break;
 				case SDL_MOUSEBUTTONDOWN:
-				std :: cout << "Button down" << std :: endl;
 					if (event.button.button == SDL_BUTTON_LEFT)
 						att_player->att_gamePlayer->toAttack();
 					if (event.button.button == SDL_BUTTON_RIGHT)
@@ -146,22 +139,17 @@ void FPS :: Board :: run() {
 					SDL_ShowCursor(SDL_DISABLE);
 				break;
 				case SDL_KEYDOWN:
-				std :: cout << "Key down" << std :: endl;
 					switch (event.key.keysym.scancode) {
 						case SDL_SCANCODE_LSHIFT:
-				std :: cout << "LSHIFT down" << std :: endl;
 							att_player->att_gamePlayer->sprint();
 						break;
 						case SDL_SCANCODE_SPACE:
-				std :: cout << "SPACE down" << std :: endl;
 							att_player->att_graphPlayer->jump();
 						break;
 						case SDL_SCANCODE_ESCAPE:
-				std :: cout << "ESCAPE down" << std :: endl;
 							isRunning = false; //Should have options and stuff
 						break;
 						case SDL_SCANCODE_LALT:
-				std :: cout << "LALT down" << std :: endl;
 							att_player->att_graphPlayer->att_camera.isMouseIn() = false;
 							SDL_ShowCursor(SDL_ENABLE);
 						default:
@@ -169,36 +157,29 @@ void FPS :: Board :: run() {
 					}
 				break;
 				case SDL_KEYUP:
-				std :: cout << "KEYUP" << std :: endl;
 					if (event.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
 						att_player->att_gamePlayer->stopSprint();
 				break;
 			}
 		}
-		std :: cout << "End of PollEvent" << std :: endl;
+				std :: cout << "MY POS " << att_player->att_physPlayer->givePos() << std :: endl;
 		if (isSecondaring) {
-			std :: cout << "IS SECONDARING" << std :: endl;
 			att_player->secondary();
 			playerShoot(true);
 		}
 		if (att_player->att_gamePlayer->attack()) {
-			std :: cout << "IS ATTACKING" << std :: endl;
 			att_player->attack();
 			playerShoot(false);
 		}
-			std :: cout << "UPDATING" << std :: endl;
 		update();
 		if (att_player->att_gamePlayer->getHealth() <= 0) {
 			isRunning = false;
 			std :: cout << "You lost" << std :: endl;
 		}
 
-
-		std :: cout << "End of while" << std :: endl;
 		if (1000.0f/att_graphBoard->att_fps > SDL_GetTicks() - currentTimeTick) {
 			SDL_Delay(1000./att_graphBoard->att_fps - (SDL_GetTicks() - currentTimeTick));
 		}
 	}
-
 }
 
