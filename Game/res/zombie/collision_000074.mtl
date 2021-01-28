@@ -130,4 +130,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd /Users/ruxue/Documents/C++/Projet/Post-world/Collision/zombie-skin.bmp
+map_Kd zombie-skin.bmp
