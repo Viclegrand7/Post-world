@@ -36,27 +36,26 @@ This is a malfunctioning 3D FPS game written in C++, using SDL2 and OPENGL
 
 *Why can't I hit ennemies?*
 
-    They are not where they are drawn. A misunderstanding between the two authors regarding the making of 3D zombies led to this. 
-
-*My camera keeps on moving, and my mouse is not*
-
-    The game was only tested on one computer. It should work in fullscreen. To enable fullscreen, go in 'Engines/GraphicEngines/src/GrE_Board.cc', line 21, and add ` | SDL_WINDOW_FULLSCREEN_DESKTOP` to the flags. 
+    They are not where they are drawn. A misunderstanding between the two authors regarding the making of 3D zombies led to this.
     
-     I am honeslty not sure it will help, but it should.
-
+    Try to hit somewhere near they pixels though.
 
 *Is this game ever going to be fixed?*
 
-    YES. Without a doubt.
-
-*When I close the game I get a Segfault*
-
-    Yes, me too. I know how to fix it, need a few more hours to do so.
-
-*Why don't I die?*
-
-    I am honestly not sure, player's health should drop. It doesn't.
+    YES. Without a doubt. Most of it comes down to having bad 3D objects
 
 *What's going on with ennemies's skins?*
 
     Wish I knew, I made the gun, had my colleague do the ennemies...
+    
+*Is it playable?*
+
+    Well, you don't know where ennemies are exactly, though you see them.
+    
+    You seem to bounce off of a non existing ennemy in the middle of the map.
+    
+    Textures certainly didn't load right (except for gun, only thing I personally drew).
+    
+    Other than that, yeah.
+    
+    Oh, and there's no gravity so by pressing Space you end up flying. But it works :)
