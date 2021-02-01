@@ -1,5 +1,6 @@
 #include "GrE_Ennemy.hh"
 
+
 void Graphic :: Ennemy :: draw(const Vector3f &pos, const Vector3f &rot) {
 	glPushMatrix(); //Saves previous Matrix
 

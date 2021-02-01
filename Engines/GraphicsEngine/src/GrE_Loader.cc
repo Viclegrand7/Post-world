@@ -256,6 +256,8 @@ GLuint Graphic :: Loader :: loadFile(const std :: string &filename) {	//Load a .
 		att_drawings.push_back(myList);
 	}
 	att_vertexes.clear();
+	for (unsigned int i = 0 ; i < att_texVertex.size() ; ++i)
+		delete[] att_texVertex[i];
 	att_texVertex.clear();
 	att_normals.clear(); //Need to make sure they don't interfere with next file
 	att_currentMaterial = 0;
@@ -300,6 +302,4 @@ Graphic :: Loader :: ~Loader() {
 		glDeleteLists(att_drawings[i], 1);
 	for (std :: map <std :: string, GLuint> :: iterator it = att_materials.begin() ; it != att_materials.end() ; ++it)
 		glDeleteLists(it->second, 1);
-	for (unsigned int i = 0 ; i < att_texVertex.size() ; ++i)
-		delete[] att_texVertex[i];
 }

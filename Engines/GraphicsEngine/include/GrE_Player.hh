@@ -18,7 +18,7 @@ namespace Graphic {
 
 		Player(Camera cam = Camera(), float speed = 0.2, float sprintSpeed = 0.5)
 		: att_head(0), att_speed(speed), att_sprintSpeed(sprintSpeed), att_camera(cam) {}
-		bool update(Vector3f &location, int width, int height, bool isFullScreen, bool isRunning, float gravity);
+		bool update(Vector3f &location, int width, int height, bool isRunning, float gravity);
 		bool update(Weapon *weapon, bool);
 		void draw(Weapon *weapon);
 		void attack(Weapon *weapon);

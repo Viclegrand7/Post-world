@@ -55,17 +55,10 @@ void Graphic :: Camera :: handleMoves(Vector3f &location, float speed) {
 	}
 }
 
-bool Graphic :: Camera :: control(Vector3f &location, int width, int height, bool isFullScreen, float speed, float gravity) {
+bool Graphic :: Camera :: control(Vector3f &location, int xMove, int yMove, float speed, float gravity) {
 	if (att_isMouseIn) { //Is no when alt tabbed, when in settings,...
-		width /= 2 ; height /= 2 ; //Get middle of screen
-		int tmpx, tmpy;
-		SDL_GetMouseState(&tmpx, &tmpy);
-		if (!isFullScreen)
-			tmpy += 23; //Seems like the top border is 46 pixels high or something. Worked for me
-
-		att_yaw += att_mouseSpeed * (width - tmpx);
-		att_pitch += att_mouseSpeed * (height - tmpy);
-		SDL_WarpMouseGlobal(width, height);
+		att_yaw -= att_mouseSpeed * xMove;
+		att_pitch -= att_mouseSpeed * yMove;
 		lockCamera();
 
 		handleMoves(location, speed); //deals with Keyboard

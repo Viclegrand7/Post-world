@@ -17,8 +17,8 @@ void FPS :: Player :: reload() {
 		att_gamePlayer->reload();
 }
 
-void FPS :: Player :: update(int width, int height, bool isFullScreen, float gravity) {
-	att_graphPlayer->update(att_physPlayer->givePos(), width, height, isFullScreen, att_gamePlayer->isRunning(), gravity);
+void FPS :: Player :: update(int xMove, int yMove, float gravity) {
+	att_graphPlayer->update(att_physPlayer->givePos(), xMove, yMove, att_gamePlayer->isRunning(), gravity);
 	att_graphPlayer->att_camera.updateCamera(att_physPlayer->givePos());
 	if (att_gamePlayer->getCurrentWeapon()) {
 		att_gamePlayer->update();

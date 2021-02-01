@@ -18,7 +18,7 @@ Graphic :: Board :: Board(const std :: string &fileName)
 	}
 	SDL_GetCurrentDisplayMode(0, &att_displayMode); //Asks computer for information considering the (current?) monitor
 	att_fps = att_displayMode.refresh_rate;			//The monitor's display rate
-	if (!(att_window = SDL_CreateWindow(RV_ZD_GAMENAMEANDVERSION, 0, 0, att_displayMode.w, att_displayMode.h, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED | SDL_WINDOW_OPENGL))) {
+	if (!(att_window = SDL_CreateWindow(RV_ZD_GAMENAMEANDVERSION, 0, 0, att_displayMode.w, att_displayMode.h, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL))) {
 		std :: cerr << "Failed creating window: " << SDL_GetError() << std :: endl; //We created an info with a bunch of flags for what we needed, returns 0 on success
 		throw "Failed creating window \n";
 	}
@@ -29,11 +29,12 @@ Graphic :: Board :: Board(const std :: string &fileName)
 	glLoadIdentity();					//You never know what used it last, always load identity
 	gluPerspective(45.0f, 1.777778f, 0.1f, 400.0f); //Angle, width/height, how close you can see, how far
 	glMatrixMode(GL_MODELVIEW);			//Honesly not sure what it does but you need it
+	SDL_SetRelativeMouseMode(SDL_TRUE); //Middle of the (window? screen?)
 
 	glEnable(GL_DEPTH_TEST);			//Things don't appear if they're behind non transparent walls
 	glEnable(GL_NORMALIZE);
-	glEnable(GL_LIGHTING);	//Requires to have normals on every shape, may be too much a bother
-	glEnable(GL_LIGHT0); 	//Some lighting
+	// glEnable(GL_LIGHTING);	//Requires to have normals on every shape, may be too much a bother
+	// glEnable(GL_LIGHT0); 	//Some lighting
 //	glEnable(GL_COLOR_MATERIAL); //Materials have colors too
 	glEnable(GL_TEXTURE_2D);		//To attach textures to drawings
 
@@ -139,8 +140,9 @@ Graphic :: Board :: ~Board() {
 		delete[] att_texVertex[i];
 	//We need to delete them here because we're the Loader, rather than possessing one
 
-	for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i)
+	for (unsigned int i = 0 ; i < att_ennemies.size() ; ++i) {
 		delete att_ennemies[i];
+	}
 	for (unsigned int i = 0 ; i < att_items.size() ; ++i)
 		delete att_items[i];
 	for (unsigned int i = 0 ; i < att_displayedItems.size() ; ++i)

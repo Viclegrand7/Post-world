@@ -27,11 +27,9 @@ FPS :: Board :: ~Board() {
 	// 	delete att_physBoard->att_ennemies[i];
 	// for (unsigned int i = 0 ; i < att_graphBoard->att_ennemies.size() ; ++i)
 	// 	delete att_graphBoard->att_ennemies[i];
-	// for (unsigned int i = 0 ; i < att_gameEnnemies.size() ; ++i)
-	// 	delete att_gameEnnemies[i];
-		delete att_gameEnnemies[0];
-		delete att_graphBoard->att_ennemies[0];
-		delete att_physBoard->att_ennemies[0];
+	for (unsigned int i = 0 ; i < att_gameEnnemies.size() ; ++i)
+		delete att_gameEnnemies[i];
+//		delete att_gameEnnemies[0];
 	for (unsigned int i = 0 ; i < att_gameItems.size() ; ++i)
 		delete att_gameItems[i];
 	for (unsigned int i = 0 ; i < att_gameWeapons.size() ; ++i)
@@ -97,82 +95,22 @@ void FPS :: Board :: drawACube() {
 		glVertex3f(-200.f/2,-200.f/2,-200.f/2);
 		glVertex3f(200.f/2,-200.f/2,-200.f/2);
 	glEnd();
-
-	glColor3f(1,1,1);
-	glBegin(GL_QUADS);	//and draw a face
-		//back face
-		glColor3f(0,1,1);
-		glVertex3f(2.f/2,2.f/2,2.f/2);	//and a vertex
-		glColor3f(1,0,1);
-		glVertex3f(-2.f/2,2.f/2,2.f/2);
-		glColor3f(1,1,0);
-		glVertex3f(-2.f/2,-2.f/2,2.f/2);
-		glColor3f(1,0,0);
-		glVertex3f(2.f/2,-2.f/2,2.f/2);
-	glEnd();
-	glColor3f(0,1,1);
-	glBegin(GL_QUADS);	
-		//left face
-		glVertex3f(-2.f/2,2.f/2,2.f/2);
-		glVertex3f(-2.f/2,2.f/2,-2.f/2);
-		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
-		glVertex3f(-2.f/2,-2.f/2,2.f/2);
-	glEnd();
-	glColor3f(0,0,1);
-	glBegin(GL_QUADS);	
-		//front face
-		glVertex3f(2.f/2,2.f/2,-2.f/2);
-		glColor3f(1,0,0);
-		glVertex3f(-2.f/2,2.f/2,-2.f/2);
-		glColor3f(1,0,1);
-		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
-		glColor3f(1,1,0);
-		glVertex3f(2.f/2,-2.f/2,-2.f/2);
-		glColor3f(0,1,1);
-	glEnd();
-	glColor3f(0,0,0);
-	glBegin(GL_QUADS);	
-		//right face
-		glVertex3f(2.f/2,2.f/2,-2.f/2);
-		glVertex3f(2.f/2,2.f/2,2.f/2);
-		glVertex3f(2.f/2,-2.f/2,2.f/2);
-		glVertex3f(2.f/2,-2.f/2,-2.f/2);
-	glEnd();
-	glColor3f(1,0,1);
-	glBegin(GL_QUADS);			//top face
-		glVertex3f(2.f/2,2.f/2,2.f/2);
-		glVertex3f(-2.f/2,2.f/2,2.f/2);
-		glVertex3f(-2.f/2,2.f/2,-2.f/2);
-		glVertex3f(2.f/2,2.f/2,-2.f/2);
-	glEnd();
-	glColor3f(1,1,0);
-	glBegin(GL_QUADS);
-		//bottom face
-		glVertex3f(2.f/2,-2.f/2,2.f/2);
-		glVertex3f(-2.f/2,-2.f/2,2.f/2);
-		glVertex3f(-2.f/2,-2.f/2,-2.f/2);
-		glVertex3f(2.f/2,-2.f/2,-2.f/2);
-	glEnd();
 }
 
-void FPS :: Board :: draw() {
+void FPS :: Board :: draw(int xMove, int yMove) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-
-	int width;
-	int height;
-	SDL_GetWindowSize(att_graphBoard->att_window, &width, &height);
-	att_player->update(width, height, SDL_GetWindowFlags(att_graphBoard->att_window) & SDL_WINDOW_FULLSCREEN, att_graphBoard->getGravity());
+	att_player->update(xMove, yMove, att_graphBoard->getGravity());
 
 	drawACube();
 	att_graphBoard->draw(att_player->att_physPlayer->givePos());
 
 
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i)
-		att_graphBoard->att_ennemies[i]->draw(att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame), att_physBoard->att_ennemies[i]->giveRot());
+		att_graphBoard->att_ennemies[i]->draw(att_physBoard->att_ennemies[i]->givePos(), att_physBoard->att_ennemies[i]->giveRot());
 	for (unsigned int i = 1 ; i < att_graphBoard->att_displayedItems.size() ; ++i)
-		att_graphBoard->att_displayedItems[i]->draw(att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame));
+		att_graphBoard->att_displayedItems[i]->draw(att_physBoard->att_ennemies[i]->givePos());
 
 	att_player->draw();
 
@@ -185,21 +123,26 @@ void FPS :: Board :: spawnEnnemy() {
 	att_graphBoard->att_ennemies.emplace_back(new Graphic :: Ennemy(att_graphBoard->att_ennemies[0]));
 }
 
-void FPS :: Board :: update() {
+void FPS :: Board :: update(int xMove, int yMove) {
 	unsigned int usableItem(att_player->att_physPlayer->update(att_physBoard->att_items, att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel]));
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i) {
-		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
+//		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
+		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity());
 		if (att_graphBoard->att_ennemies[i]->update()) {
-			//He died
-			att_graphBoard->att_ennemies.erase(att_graphBoard->att_ennemies.begin() + i);
+			//He's done dying
 			delete att_graphBoard->att_ennemies[i];
-			att_gameEnnemies.erase(att_gameEnnemies.begin() + i--);
+			att_graphBoard->att_ennemies.erase(att_graphBoard->att_ennemies.begin() + i);
+			delete att_physBoard->att_ennemies[i];
+			att_physBoard->att_ennemies.erase(att_physBoard->att_ennemies.begin() + i);
 			delete att_gameEnnemies[i];
+			att_gameEnnemies.erase(att_gameEnnemies.begin() + i--);
 			continue;
 		}
-		if ((att_physBoard->att_ennemies[i]->givePos(att_graphBoard->att_ennemies[i]->att_currentFrame) - att_player->att_physPlayer->givePos()).length() < 1.5f) {
-			att_graphBoard->att_ennemies[i]->attack();
-			att_player->att_gamePlayer->getHit(att_gameEnnemies[i]->getDamage());
+		if ((att_physBoard->att_ennemies[i]->givePos() - att_player->att_physPlayer->givePos()).length() < 5.f) {
+			if (att_gameEnnemies[i]->toAttack()) {
+				att_graphBoard->att_ennemies[i]->attack();
+				att_player->att_gamePlayer->getHit(att_gameEnnemies[i]->getDamage());
+			}
 		}
 	}
 	for (unsigned int i = 0 ; i < att_graphBoard->att_displayedItems.size() ; ++i) {
@@ -221,25 +164,26 @@ void FPS :: Board :: update() {
 		++att_numberToSpawn;
 	}
 	att_player->att_graphPlayer->draw(att_player->att_gamePlayer->getCurrentWeapon() ? att_player->att_weapons[att_player->att_gamePlayer->getCurrentWeapon() - 1] : att_player->att_knife);
-	draw();
+	draw(xMove, yMove);
 }
 
 void FPS :: Board :: playerShoot(bool secondary) {
-	float firstWallDistance(0);
-	Vector3f particulePoint{0.f, 0.f, 0.f};
-	Vector3f origin(att_player->att_physPlayer->givePos());
-	Vector3f direction(att_player->att_graphPlayer->att_camera.getSight());
-	for (unsigned int i = 0 ; i < att_physBoard->att_levels[att_physBoard->att_curLevel].size() ; ++i)
-		Physic :: Collision :: rayPlane(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
-//	if (firstWallDistance > 0 && firstWallDistance < 100)
-//		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
-	for (unsigned int i = 1 ; i < att_physBoard->att_ennemies.size() ; ++i)
-		if (att_physBoard->att_ennemies[i]->doesGetHit(origin, direction, &firstWallDistance, &particulePoint, att_graphBoard->att_ennemies[i]->att_currentFrame)) {
-			if (att_gameEnnemies[i]->getHit(att_player->att_gamePlayer->getWeaponDamage()))
-				att_graphBoard->att_ennemies[i]->die();
-//			att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(1, particulePoint, 8); //Blood
-			std :: cout << "ARGH TU M'AS EU !" << std :: endl;
-		}	
+	if (!secondary) {
+		float firstWallDistance(0);
+		Vector3f particulePoint{0.f, 0.f, 0.f};
+		Vector3f origin(att_player->att_physPlayer->givePos());
+		Vector3f direction(att_player->att_graphPlayer->att_camera.getSight());
+		for (unsigned int i = 0 ; i < att_physBoard->att_levels[att_physBoard->att_curLevel].size() ; ++i)
+			Physic :: Collision :: rayPlane(origin, direction, *att_physBoard->att_levels[att_physBoard->att_curLevel][i], &firstWallDistance, &particulePoint);
+	//	if (firstWallDistance > 0 && firstWallDistance < 100)
+	//		att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(0, particulePoint, 5); //Wall
+		for (unsigned int i = 1 ; i < att_physBoard->att_ennemies.size() ; ++i)
+			if (att_physBoard->att_ennemies[i]->doesGetHit(origin, direction, &firstWallDistance, &particulePoint)) {
+				if (att_gameEnnemies[i]->getHit(att_player->att_gamePlayer->getWeaponDamage()))
+					att_graphBoard->att_ennemies[i]->die();
+	//			att_graphBoard->att_levels[att_graphBoard->att_currentLevel]->spawnParticules(1, particulePoint, 8); //Blood
+			}			
+	}
 }
 
 void FPS :: Board :: run() {
@@ -247,13 +191,21 @@ void FPS :: Board :: run() {
 	Uint32 currentTimeTick(0); //FPS regulation
 	SDL_Event event;
 	bool isSecondaring(false);
+	int xMove, yMove;
 
 	while (isRunning) {
 		isSecondaring = false;
 		currentTimeTick = SDL_GetTicks();
+		xMove = yMove = 0;
 
 		while (SDL_PollEvent(&event)) {
 			switch (event.type) {
+				case SDL_MOUSEMOTION:
+					if (att_player->att_graphPlayer->att_camera.isMouseIn()) {
+						xMove = event.motion.xrel;
+						yMove = event.motion.yrel;
+					}
+				break;
 				case SDL_QUIT:
 					isRunning = false;
 				break;
@@ -263,6 +215,7 @@ void FPS :: Board :: run() {
 					if (event.button.button == SDL_BUTTON_RIGHT)
 						isSecondaring = att_player->att_gamePlayer->secondary();
 					att_player->att_graphPlayer->att_camera.isMouseIn() = true;
+					SDL_SetRelativeMouseMode(SDL_TRUE); //Middle of the (window? screen?)
 					SDL_ShowCursor(SDL_DISABLE);
 				break;
 				case SDL_KEYDOWN:
@@ -281,6 +234,7 @@ void FPS :: Board :: run() {
 						break;
 						case SDL_SCANCODE_LALT:
 							att_player->att_graphPlayer->att_camera.isMouseIn() = false;
+							SDL_SetRelativeMouseMode(SDL_FALSE); //Middle of the (window? screen?)
 							SDL_ShowCursor(SDL_ENABLE);
 						break;
 						default:
@@ -301,10 +255,10 @@ void FPS :: Board :: run() {
 			att_player->attack();
 			playerShoot(false);
 		}
-		update();
+		update(xMove, yMove);
 		if (att_player->att_gamePlayer->getHealth() <= 0) {
 			isRunning = false;
-			std :: cout << "You lost" << std :: endl;
+			std :: cout << "You lost. NOOB" << std :: endl;
 		}
 
 		if (1000.0f/att_graphBoard->att_fps > SDL_GetTicks() - currentTimeTick) {

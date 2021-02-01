@@ -21,7 +21,7 @@ namespace FPS {
 		void secondary();
 		void reload();
 
-		void update(int width, int height, bool isFullScreen, float gravity);
+		void update(int width, int height, float gravity);
 		Player(Graphic :: Weapon *knife, std :: vector <Graphic :: Weapon *> weapons, ::Melee *gknife, std :: vector <::Weapon *>pweapons);
 		~Player() {
 			delete att_graphPlayer;

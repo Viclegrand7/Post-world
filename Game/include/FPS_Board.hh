@@ -27,9 +27,9 @@ namespace FPS {
 		~Board();
 
 		void drawACube();
-		void draw();
+		void draw(int, int);
 		void spawnEnnemy();
-		void update();
+		void update(int, int);
 		void run();
 		void playerShoot(bool);
 	};

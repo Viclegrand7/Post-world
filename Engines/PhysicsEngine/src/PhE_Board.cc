@@ -26,7 +26,7 @@ void Physic :: Board :: changeLevel(unsigned int level) {
 }
 
 Physic :: Board :: Board(const char *fileName)
-: att_currentMaterial(0), att_currentSecond{false, false, false, false, false, false}, att_tmpQuads(), att_curLevel(0) {
+: att_currentMaterial(0), att_currentSecond{false, false, false, false, false, false}, att_tmpQuads{}, att_curLevel(0) {
 //Here is what one of these files will look like: 
 //	EnnemyFile		moveLength	attackLength	dieLength
 //	MeleeNumber		WeaponFile	normLength	attackLength	secondaryLength	WeaponFile	...	secondaryLength
@@ -155,7 +155,8 @@ void Physic :: Board :: readFigure(const std :: string &vertexLine, Physic :: En
 		myEnnemy.equals(loadSphere(vertexLine), false);
 		return;
 	}
-									return; //Because I miss an element, I will just not write any :)))))
+	if (!att_currentMaterial)
+		return;
 	std :: stringstream myLine(vertexLine);
 	myLine.ignore(2); //'f '
 
@@ -209,6 +210,7 @@ void Physic :: Board :: readFigure(const std :: string &vertexLine, Physic :: En
 //				s : groupNumber. All following Fs until another s are part of the same 'smoothing group'
 //	X			f : shapes
 Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//Load a .obj file
+	att_currentSecond[0] = att_currentSecond[1] = att_currentSecond[2] = att_currentSecond[3] = att_currentSecond[4] = att_currentSecond[5] = false;
 	Physic :: Ennemy myEnnemy;
 	std :: ifstream file(tryHardOpenFile(filename));
 	std :: string buffer;
@@ -246,6 +248,16 @@ Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//
 				att_currentMaterial = 0;
 		}
 	}
+	if (att_currentSecond[2]) //Someone messed up writing the collisionFiles :)
+		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[2], att_tmpQuads[2]), 2);
+	if (att_currentSecond[3]) //Someone messed up writing the collisionFiles :)
+		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[3], att_tmpQuads[3]), 3);
+	if (att_currentSecond[4]) //Someone messed up writing the collisionFiles :)
+		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[4], att_tmpQuads[4]), 4);
+	if (att_currentSecond[5]) //Someone messed up writing the collisionFiles :)
+		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[5], att_tmpQuads[5]), 5);
+	if (att_currentSecond[6]) //Someone messed up writing the collisionFiles :)
+		myEnnemy.equals(Physic :: CollisionBox(att_tmpQuads[6], att_tmpQuads[6]), 6);
 	att_vertexes.clear();
 	att_normals.clear(); //Need to make sure they don't interfere with next file
 	att_currentMaterial = 0;
@@ -253,35 +265,7 @@ Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//
 }
 
 void Physic :: Board :: loadAnimation(const std :: string &name) { //Loads a whole animation for a given rootFileName (pistolet -> pistolet_abcdef.obj)
-	std :: string tmpName;
-	std :: ifstream myFile;
-	Physic :: Ennemy tmpEnnemy;
-	for (int i = 1 ; i < 1000000 ; ++i) {//We get every single possibility
-#ifdef NSFW
-		tmpName = "." + name;
-#else
-		tmpName = name; //Refreshes the name
-#endif
-		if (i < 10)
-			tmpName += "_00000" + std :: to_string(i) + ".obj";
-		else if (i < 100)
-			tmpName += "_0000" + std :: to_string(i) + ".obj";
-		else if (i < 1000)
-			tmpName += "_000" + std :: to_string(i) + ".obj";
-		else if (i < 10000)
-			tmpName += "_00" + std :: to_string(i) + ".obj";
-		else if (i < 100000)
-			tmpName += "_0" + std :: to_string(i) + ".obj";
-		else
-			tmpName += "_" + std :: to_string(i) + ".obj";
-		myFile.open(tmpName);
-		if (!myFile.is_open()) {//We have done all the bmp files we had
-			att_ennemies.emplace_back(new Physic :: Ennemy(tmpEnnemy));
-			return;
-		}
-		myFile.close(); 
-		i == 1 ? (tmpEnnemy = loadFile(tmpName)) : (tmpEnnemy += loadFile(tmpName));
-	}
+	att_ennemies.push_back(new Physic :: Ennemy(loadFile(name + "_000001.obj")));
 }
 
 Physic :: CollisionSphere Physic :: Board :: loadSphere(const std :: string &line) {
@@ -332,6 +316,6 @@ Physic :: Board :: ~Board() {
 		delete att_ennemies[i];
 	}
 	for (unsigned int i = 0 ; i < att_levels.size() ; ++i)
-		for (unsigned int j = 0 ; j < att_levels.size() ; ++j)
+		for (unsigned int j = 0 ; j < att_levels[i].size() ; ++j)
 			delete att_levels[i][j];
 }

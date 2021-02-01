@@ -22,10 +22,10 @@ namespace Graphic {
 		void moveCameraUp(Vector3f &location, float direction, float speed);
 		void handleMoves(Vector3f &location, float speed);
 	public:
-		Camera(float pitch = 0.0f, float yaw = 0.0f, float roll = 0.0f, float mouseSpeed = 0.1f)
+		Camera(float pitch = 0.0f, float yaw = 0.0f, float roll = 0.0f, float mouseSpeed = 0.5f)
 			: att_pitch(pitch), att_yaw(yaw), att_roll(roll), att_mouseSpeed(mouseSpeed),
 			att_isMouseIn(true), att_isMoving(false), att_jumpPos({0.7f, 0.6f, 0.5f, 0.4f, 0.3f}), att_currentJump(0) {}
-		bool control(Vector3f &location, int width, int height, bool isFullScreen, float speed, float gravity);
+		bool control(Vector3f &location, int width, int height, float speed, float gravity);
 		void updateCamera(const Vector3f &location) const;
 		void lookAt(float pitch, float yaw);
 		float getPitch() const;

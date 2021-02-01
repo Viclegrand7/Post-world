@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"RLS",
+				"RLSDIR"
+			],
+			[
+				"agp",
+				"att_gamePlayer"
+			],
+			[
+				"pp",
+				"att_physPlayer"
+			],
+			[
+				"agr",
+				"att_graphPlayer"
+			],
+			[
 				"PHEN",
 				"PHYSENGDIR"
 			],
@@ -448,10 +464,6 @@
 				"printSVG"
 			],
 			[
-				"agr",
-				"att_graphic_number"
-			],
-			[
 				"ag",
 				"att_graphic_number"
 			],
@@ -502,73 +514,62 @@
 			[
 				"creat",
 				"created_cells"
-			],
-			[
-				"cre",
-				"created_cells"
-			],
-			[
-				"b",
-				"beginend\t$1.begin(), $1.end()"
-			],
-			[
-				"ce",
-				"cells_in_scope"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "include/FPS_Camera.hh",
+			"file": "src/FPS_main.cc",
 			"settings":
 			{
-				"buffer_size": 165,
+				"buffer_size": 84,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include \"FPS_Board.hh\""
+			}
+		},
+		{
+			"file": "include/FPS_Board.hh",
+			"settings":
+			{
+				"buffer_size": 753,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "include/FPS_Gun.hh",
+			"file": "src/FPS_Board.cc",
 			"settings":
 			{
-				"buffer_size": 227,
+				"buffer_size": 11907,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/FPS_Gun.cc",
+			"file": "res/main",
 			"settings":
 			{
-				"buffer_size": 380,
+				"buffer_size": 141,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "include/FPS_Weapon.hh",
+			"file": "include/FPS_Player.hh",
 			"settings":
 			{
-				"buffer_size": 272,
+				"buffer_size": 754,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/FPS_Weapon.cc",
+			"file": "src/FPS_Player.cc",
 			"settings":
 			{
-				"buffer_size": 394,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "include/FPS_PowerUp.hh",
-			"settings":
-			{
-				"buffer_size": 216,
+				"buffer_size": 1778,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -587,7 +588,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 3213,
+				"buffer_size": 3663,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -637,12 +638,96 @@
 	},
 	"expanded_folders":
 	[
-		"/home/victor/Desktop/NPost-world/Post-world/Game",
-		"/home/victor/Desktop/NPost-world/Post-world/Game/include",
-		"/home/victor/Desktop/NPost-world/Post-world/Game/src"
+		"/home/victor/Desktop/Post-world/Game",
+		"/home/victor/Desktop/Post-world/Game/include",
+		"/home/victor/Desktop/Post-world/Game/obj",
+		"/home/victor/Desktop/Post-world/Game/src"
 	],
 	"file_history":
 	[
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000001.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000002.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000003.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000004.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000005.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000006.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000007.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000008.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000009.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000010.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000011.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000012.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000013.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000014.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000015.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000016.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000017.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000018.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000019.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000020.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000021.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000022.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000023.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000024.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000025.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000026.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000027.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000028.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000029.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000030.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000031.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000032.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000033.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000034.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000035.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000036.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000037.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000038.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000039.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000040.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000041.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000042.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000043.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000044.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000045.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000046.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000047.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000048.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000049.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000050.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000051.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000052.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000053.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000054.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000055.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000056.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000057.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000058.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000059.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000060.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000061.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000062.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000063.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000064.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000065.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000066.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000067.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000068.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000069.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000070.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000071.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000072.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000073.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/zombie/collision_000074.mtl",
+		"/home/victor/Desktop/Post-world/Game/res/main",
+		"/home/victor/Desktop/Post-world/.gitignore",
+		"/home/victor/Desktop/Post-world/Collision/collision_000001.mtl",
+		"/home/victor/Desktop/Post-world/Game/src/FPS_Weapon.cc",
+		"/home/victor/Desktop/Post-world/Game/src/FPS_Gun.cc",
+		"/home/victor/Desktop/Post-world/Game/include/FPS_Weapon.hh",
+		"/home/victor/Desktop/Post-world/Game/include/FPS_PowerUp.hh",
+		"/home/victor/Desktop/Post-world/Game/include/FPS_Gun.hh",
+		"/home/victor/Desktop/Post-world/Game/include/FPS_Camera.hh",
 		"/tmp/jeu/jeu/Makefile",
 		"/home/victor/Desktop/NPost-world/Post-world/Engines/GraphicsEngine/include/GrE_Camera.hh",
 		"/home/victor/Desktop/NPost-world/Post-world/Game/FPS.sublime-project",
@@ -655,7 +740,6 @@
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/src/GrE_Board.cc",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/GraphicsEngine.sublime-project",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/res/pistol/pistolet_000001.mtl",
-		"/home/victor/Desktop/Post-world/.gitignore",
 		"/home/victor/Desktop/Post-world/Engines/GraphicsEngine/Project.sublime-project",
 		"/home/victor/Desktop/Post-world/src/Level.cc",
 		"/home/victor/Desktop/Post-world/include/Level.hh",
@@ -688,99 +772,20 @@
 		"/home/victor/Desktop/Post-world/Old/fps/collision.cpp",
 		"/home/victor/Desktop/Post-world/Old/fps/zombie.h",
 		"/home/victor/Desktop/Post-world/Old/fps/player.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/player.h",
-		"/home/victor/Desktop/Post-world/src/Loader.cc",
-		"/home/victor/Desktop/Post-world/include/Loader.hh",
-		"/home/victor/Desktop/Post-world/src/Camera.cc",
-		"/home/victor/Desktop/Post-world/include/Camera.hh",
-		"/home/victor/Desktop/Post-world/Old/fps/weapon.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/weapon.h",
-		"/home/victor/Desktop/Post-world/Old/fps/objloader.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/item.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/item.h",
-		"/home/victor/Desktop/Post-world/Old/fps/knife.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/game.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/game.h",
-		"/home/victor/Desktop/Post-world/src/Collision.cc",
-		"/home/victor/Desktop/Post-world/include/Collision.hh",
-		"/home/victor/Desktop/Post-world/src/Math.cc",
-		"/home/victor/Desktop/Post-world/include/Math.hh",
-		"/home/victor/Desktop/Post-world/src/Render.cc",
-		"/home/victor/Desktop/Post-world/include/Render.hh",
-		"/home/victor/Desktop/Post-world/src/Ennemy.cc",
-		"/home/victor/Desktop/Post-world/include/Ennemy.hh",
-		"/home/victor/Desktop/Post-world/include/Item.hh",
-		"/home/victor/Desktop/Post-world/src/Weapon.cc",
-		"/home/victor/Desktop/Post-world/include/Weapon.hh",
-		"/home/victor/Desktop/Post-world/reminder.txt",
-		"/home/victor/Desktop/Post-world/src/Player.cc",
-		"/home/victor/Desktop/Post-world/include/Player.hh",
-		"/home/victor/Desktop/Post-world/src/Map.cc",
-		"/home/victor/Desktop/Post-world/include/Map.hh",
-		"/home/victor/Desktop/Post-world/debug/errorLog.txt",
-		"/home/victor/Desktop/Post-world/include/Game.hh",
-		"/home/victor/Desktop/Post-world/src/main.cc",
-		"/home/victor/Downloads/UML.drawio",
-		"/home/victor/Desktop/Post-world/res/obj/map/map.obj",
-		"/home/victor/Desktop/Post-world/res/obj/map/map.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000001.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/chair-back_column3.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/chair-back_column3_000001.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/chair-back_column3_000001.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/chair-back_column3.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000001.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000002.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000002.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000003.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000003.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000004.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000004.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000005.mtl",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/puck_000005.obj",
-		"/home/victor/Desktop/Post-world/res/obj/weapons/puck/knife_000003.mtl",
-		"/tmp/untitled.obj",
-		"/home/victor/Documents/blender-2.91.0-linux64/copyright.txt",
-		"/home/victor/Desktop/Post-world/Old/fps/map.obj",
-		"/home/victor/Desktop/Post-world/Old/fps/knife.h",
-		"/home/victor/Desktop/Post-world/Old/fps/camera.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/nap.obj",
-		"/home/victor/Desktop/Post-world/Project.sublime-project",
-		"/home/victor/Desktop/Post-world/Old/fps/objloader.h",
-		"/home/victor/Desktop/Post-world/debug/objReport.txt",
-		"/home/victor/Desktop/Post-world/Old/fps/text.cpp",
-		"/home/victor/Desktop/Post-world/Old/fps/functions.cpp",
-		"/home/victor/Downloads/message (2).txt",
-		"/home/victor/Desktop/Post-world/Old/fps/functions.h",
-		"/home/victor/Desktop/Post-world/Old/fps/main.cpp",
-		"/home/victor/Downloads/TestCase.cc",
-		"/home/victor/Downloads/matrix.hh",
-		"/home/victor/Downloads/tableau2D.hh",
-		"/home/victor/Downloads/graillat.txt",
-		"/home/victor/Desktop/Cpp/tp4-Viclegrand7/tests/TestCase.cc",
-		"/home/victor/.config/sublime-text-3/Packages/Default/exec.py",
-		"/home/victor/Desktop/MyTP/Debugger.cpp",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/include/SDL_config.h.cmake",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/CMakeLists.txt",
-		"/home/victor/Desktop/Post-world/SDL2-2.0.12/SDL2Config.cmake",
-		"/home/victor/Downloads/SDL2-2.0.12.tar.gz.sig",
-		"/home/victor/Desktop/DB/meReminder.txt",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/include/test_hs_operator.h",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.out",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/exe/gmon.bak",
-		"/home/victor/Downloads/MyTP/tests/TestCase.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/test_hs_operator_V2.cpp",
-		"/home/victor/Desktop/meteor-main4-2020-2021/HornShunk++/src/nrpyramid.cpp"
+		"/home/victor/Desktop/Post-world/Old/fps/player.h"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 33.0
 	},
 	"find_in_files":
 	{
-		"height": 98.0,
+		"height": 119.0,
 		"where_history":
 		[
+			"collision_*",
+			"collision_",
+			""
 		]
 	},
 	"find_state":
@@ -788,6 +793,35 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"usemtl",
+			"/home/victor/Desktop/Documents/C++/Projet/Post-world/Collision/",
+			"usemtl",
+			"200",
+			"usemtl",
+			"f",
+			"countDown",
+			"update",
+			"levels",
+			"usemtl Collision",
+			"usemtl CollisionR",
+			"usemtl Collision",
+			"usemtl CollisionL",
+			"usemtl Collision",
+			"usemtl CollisionT",
+			"usemtl Collision",
+			"usemtl CollisionB",
+			"usemtl Collision",
+			"usemtl Col",
+			"usemtl",
+			"usemtl Coll",
+			"usemtl Collision",
+			"usemtl CollisionL",
+			"CollisionL",
+			"collision",
+			"Collision",
+			"collision",
+			"//",
+			"collision"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -795,6 +829,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			"2"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -805,16 +841,74 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "include/FPS_Camera.hh",
+					"file": "src/FPS_main.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 165,
+						"buffer_size": 84,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include \"FPS_Board.hh\"",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "include/FPS_Board.hh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 753,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								588,
+								588
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/FPS_Board.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11907,
 						"regions":
 						{
 						},
@@ -834,52 +928,81 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "include/FPS_Gun.hh",
+					"buffer": 3,
+					"file": "res/main",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 227,
+						"buffer_size": 141,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								82,
-								82
+								98,
+								98
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "src/FPS_Gun.cc",
+					"buffer": 4,
+					"file": "include/FPS_Player.hh",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 380,
+						"buffer_size": 754,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								379,
-								379
+								677,
+								677
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/FPS_Player.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
 							]
 						],
 						"settings":
@@ -891,90 +1014,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "include/FPS_Weapon.hh",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 272,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								94,
-								94
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/FPS_Weapon.cc",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 394,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								355,
-								355
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "include/FPS_PowerUp.hh",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 216,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								203,
-								203
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1003,7 +1042,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1012,15 +1051,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3213,
+						"buffer_size": 3663,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								777,
-								777
+								3242,
+								3242
 							]
 						],
 						"settings":
@@ -1029,10 +1068,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 273.0,
+						"translation.y": 700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1040,11 +1079,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 38.0
+		"height": 33.0
 	},
 	"input":
 	{
-		"height": 36.0
+		"height": 45.0
 	},
 	"layout":
 	{
@@ -1077,7 +1116,7 @@
 	"project": "FPS.sublime-project",
 	"replace":
 	{
-		"height": 66.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
