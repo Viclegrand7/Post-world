@@ -26,7 +26,7 @@ void Physic :: Board :: changeLevel(unsigned int level) {
 }
 
 Physic :: Board :: Board(const char *fileName)
-: att_currentMaterial(0), att_currentSecond{false, false, false, false, false, false}, att_tmpQuads{}, att_curLevel(0) {
+: att_currentMaterial(0), att_currentSecond{false, false, false, false, false, false, false}, att_tmpQuads{}, att_curLevel(0) {
 //Here is what one of these files will look like: 
 //	EnnemyFile		moveLength	attackLength	dieLength
 //	MeleeNumber		WeaponFile	normLength	attackLength	secondaryLength	WeaponFile	...	secondaryLength
@@ -210,7 +210,6 @@ void Physic :: Board :: readFigure(const std :: string &vertexLine, Physic :: En
 //				s : groupNumber. All following Fs until another s are part of the same 'smoothing group'
 //	X			f : shapes
 Physic :: Ennemy Physic :: Board :: loadFile(const std :: string &filename) {	//Load a .obj file
-	att_currentSecond[0] = att_currentSecond[1] = att_currentSecond[2] = att_currentSecond[3] = att_currentSecond[4] = att_currentSecond[5] = false;
 	Physic :: Ennemy myEnnemy;
 	std :: ifstream file(tryHardOpenFile(filename));
 	std :: string buffer;

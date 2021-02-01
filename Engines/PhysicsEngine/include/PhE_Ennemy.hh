@@ -54,6 +54,7 @@ namespace Physic {
 		void equals(const Physic :: CollisionBox &box, char isWhat);
 		CollisionSphere giveSphere() {return att_fakeBox;}
 		Vector3f &giveRot() {return att_rotation;}
+		float giveRange() {return att_fakeBox.att_radius;}
 		bool doesGetHit(const Vector3f &pos, const Vector3f &dir, float *dis, Vector3f *collisionPoint);
 		void update(const Vector3f &character, const std :: vector<Ennemy *> &ennemies, const std :: vector <CollisionQuad *> &wall, float gravity);
 		Vector3f givePos() {return att_fakeBox.att_center - att_initialStupidOffsetBecause3D;}

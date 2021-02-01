@@ -150,7 +150,9 @@ void Physic :: Ennemy :: equals(const Physic :: CollisionSphere &sphere, bool is
 	if (isHead)
 		att_head = sphere;
 	else {
-		att_initialStupidOffsetBecause3D = sphere.att_center;
+		att_initialStupidOffsetBecause3D.att_x = 0.f;
+		att_initialStupidOffsetBecause3D.att_y = sphere.att_center.att_y;
+		att_initialStupidOffsetBecause3D.att_z = 0.f;
 		att_fakeBox = sphere;
 	}
 }

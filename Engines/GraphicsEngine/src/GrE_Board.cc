@@ -8,7 +8,7 @@
 #include "GrE_Gun.hh"
 #include "GrE_PowerUp.hh"
 
-#define RV_ZD_GAMENAMEANDVERSION "Réaction Visible : Zone Dangereuse v1.0.0"
+#define RV_ZD_GAMENAMEANDVERSION "Réaction Visible : Zone Dangereuse v2.0.0"
 
 Graphic :: Board :: Board(const std :: string &fileName)
 : att_gravity(0.f), att_weaponNumber(0), att_currentLevel(0) {

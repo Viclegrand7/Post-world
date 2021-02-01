@@ -16,8 +16,8 @@ namespace Physic {
 		std :: vector <Vector3f> att_vertexes; 	//Every vertex in the obj (position)
 		std :: vector <Vector3f> att_normals; 	//Every normal vertex in the obj (position)
 		int att_currentMaterial;
-		bool att_currentSecond[6];
-		Physic :: CollisionQuad att_tmpQuads[6];
+		bool att_currentSecond[7];
+		Physic :: CollisionQuad att_tmpQuads[7];
 
 		std :: ifstream tryHardOpenFile(const std :: string &file);
 		void readVertex(const std :: string &vertexLine);

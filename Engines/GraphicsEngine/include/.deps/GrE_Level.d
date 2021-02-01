@@ -1,13 +1,5 @@
 include/.gch/GrE_Level.gch: include/GrE_Level.hh \
-  /usr/local/include/GL/gl.h /usr/local/include/GL/glext.h \
-  /usr/local/include/KHR/khrplatform.h ../../Game/include/Vector3f.hh \
-  include/GrE_Particule.hh
-
-/usr/local/include/GL/gl.h:
-
-/usr/local/include/GL/glext.h:
-
-/usr/local/include/KHR/khrplatform.h:
+ ../../Game/include/Vector3f.hh include/GrE_Particule.hh
 
 ../../Game/include/Vector3f.hh:
 

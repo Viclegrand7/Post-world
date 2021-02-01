@@ -19,6 +19,7 @@ namespace Physic {
 		Vector3f &givePos() {return att_hitBox.att_center;}
 		void setPos(const Vector3f &pos);
 		unsigned int update(std :: vector <Item *> itemList, std :: vector <Ennemy *> ennemyList, std :: vector <CollisionQuad *> wallList);
+		float giveRange() {return att_hitBox.att_radius;}
 	};
 }
 

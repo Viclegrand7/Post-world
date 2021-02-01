@@ -6,7 +6,7 @@ void Graphic :: Ennemy :: draw(const Vector3f &pos, const Vector3f &rot) {
 
 	glTranslatef(pos.att_x, pos.att_y, pos.att_z); 	//Get to right position
 	glRotatef(rot.att_x,	1.0f, 0.0f, 0.0f);
-	glRotatef(rot.att_y,	0.0f, 1.0f, 0.0f);								//Rotations
+	glRotatef(rot.att_y,	0.0f, 1.0f, 0.0f);								//Rotations (Somehow it stopped working version 2.0.0 right after the pull)
 	glRotatef(rot.att_z,	0.0f, 0.0f, 1.0f);
 	glCallList(att_frames[att_currentFrame]); //Draws the current frame
 

@@ -9,7 +9,7 @@ unsigned int Physic :: Player :: testCollisionItems(std :: vector <Item *> itemL
 }
 
 void Physic :: Player :: testCollisionEnnemies(std :: vector <Ennemy *> ennemyList) {
-	for (unsigned int i = 0 ; i < ennemyList.size() ; ++i)
+	for (unsigned int i = 1 ; i < ennemyList.size() ; ++i) //First dude is the sample
 		Physic :: Collision :: sphereSphere(att_hitBox, ennemyList[i]->giveSphere());
 }
 

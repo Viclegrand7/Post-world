@@ -126,6 +126,7 @@ void FPS :: Board :: spawnEnnemy() {
 void FPS :: Board :: update(int xMove, int yMove) {
 	unsigned int usableItem(att_player->att_physPlayer->update(att_physBoard->att_items, att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel]));
 	for (unsigned int i = 1 ; i < att_gameEnnemies.size() ; ++i) {
+		att_gameEnnemies[i]->upgrade();
 //		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity(), att_graphBoard->att_ennemies[i]->att_currentFrame);
 		att_physBoard->att_ennemies[i]->update(att_player->att_physPlayer->givePos(), att_physBoard->att_ennemies, att_physBoard->att_levels[att_physBoard->att_curLevel], att_graphBoard->getGravity());
 		if (att_graphBoard->att_ennemies[i]->update()) {
@@ -138,7 +139,7 @@ void FPS :: Board :: update(int xMove, int yMove) {
 			att_gameEnnemies.erase(att_gameEnnemies.begin() + i--);
 			continue;
 		}
-		if ((att_physBoard->att_ennemies[i]->givePos() - att_player->att_physPlayer->givePos()).length() < 5.f) {
+		if ((att_physBoard->att_ennemies[i]->givePos() - att_player->att_physPlayer->givePos()).length() < att_player->att_physPlayer->giveRange() + att_physBoard->att_ennemies[i]->giveRange() + 1.f) {
 			if (att_gameEnnemies[i]->toAttack()) {
 				att_graphBoard->att_ennemies[i]->attack();
 				att_player->att_gamePlayer->getHit(att_gameEnnemies[i]->getDamage());
