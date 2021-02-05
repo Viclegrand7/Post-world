@@ -21,6 +21,7 @@ LDLIBS := -lGL -lGLU -lSDL2 -lSDL2_image
 GCH = $(patsubst $(INCDIR)/%.hh, %.gch, $(wildcard $(INCDIR)/*.hh))
 
 OBJ = $(patsubst $(SRCDIR)/%.cc, %.o, $(wildcard $(SRCDIR)/*.cc))
+
 ###############################################################################################################
 
 ENGOBJ  = $(filter-out $(PHYSENGDIR)/obj/main.o, $(patsubst $(PHYSENGDIR)/src/%.cc, $(PHYSENGDIR)/obj/%.o, $(wildcard $(PHYSENGDIR)/src/*.cc)))
@@ -38,6 +39,7 @@ GRAPHENGINCDIR := $(GRAPHENGDIR)/include
 INCDIR := include
 OBJDIR := obj
 SRCDIR := src
+TSTDIR := ../Engines/GameEngine
 
 DEPDIR := $(OBJDIR)/.deps
 GCHDEPDIR := $(INCDIR)/.deps
@@ -54,6 +56,9 @@ GCHS := $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 
 all : tmpall $(GCHS) $(OBJS)
 all : $(RLSDIR)/$(BIN) #Does it work?
+
+testcase :
+	cd $(TSTDIR)/ ; make testcase
 
 tmpall :
 	@cd $(PHYSENGDIR) && make
@@ -97,12 +102,15 @@ $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 
-.PHONY : clean debug love all
+.PHONY : clean cleantest debug love all
 clean : 
 	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.gch, $(GCHDIR)/%.gch, $(GCH))
 	@cd $(PHYSENGDIR) && make clean
 	@cd $(GAMEENGDIR) && make clean
 	@cd $(GRAPHENGDIR) && make clean
+
+cleantest :
+	cd $(TSTDIR)/ ; make cleantest
 
 love : 
 	@echo "not war"

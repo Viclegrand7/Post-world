@@ -28,6 +28,7 @@ GAMEINCDIR := ../../Game/include
 INCDIR := include
 OBJDIR := obj
 SRCDIR := src
+TSTDIR := tests
 
 DEPDIR := $(OBJDIR)/.deps
 GCHDEPDIR := $(INCDIR)/.deps
@@ -41,11 +42,15 @@ COMPINC = $(CC) $(GCHDEPFLAGS) $(REALFLAGS) $(TARGET_ARCH) -c
 
 OBJS := $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 GCHS := $(patsubst %.hh, $(GCHDIR)/%.hh, $(GCH))
+TST  := $(wildcard $(TSTDIR)/)
 
 all : $(GCHS) $(OBJS)
 ifeq (0, $(RLSOPT))
 all : $(DBGDIR)/$(BIN)
 endif
+
+testcase :
+	cd $(TSTDIR)/ ; make
 
 $(RLSDIR)/$(BIN) : $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ))
 	$(CC) $(REALFLAGS) $^ $(LDLIBS) -o $@
@@ -71,9 +76,12 @@ $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 
-.PHONY : clean testDebug testRelease debug love all
+.PHONY : clean cleantest testDebug testRelease debug love all
 clean : 
 	rm -f $(DBGDIR)/$(BIN) $(RLSDIR)/$(BIN) $(patsubst %.o, $(OBJDIR)/%.o, $(OBJ)) $(patsubst %.hh, $(GCHDIR)/%.hh, $(GCH))
+
+cleantest :
+	cd $(TSTDIR)/ ; make clean
 
 testDebug : REALFLAGS = $(CFLAGS)
 testDebug : all $(DBGDIR)/$(BIN)
